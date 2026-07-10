@@ -1,0 +1,170 @@
+name: Generate SDK for Changed YAML Files
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  generate-sdk:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:22.04
+
+    steps:
+      - name: Setup Env
+        run: apt-get update && apt-get install -y npm curl git
+        shell: bash
+
+      - name: Install GH CLI
+        run: |
+          type -p curl >/dev/null || (apt update && apt install curl -y)
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+          && apt update \
+          && apt install gh -y
+        shell: bash
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: run safe dir
+        run: git config --global --add safe.directory /__w/azionapi-v4-typescript-sdk/azionapi-v4-typescript-sdk
+
+      - name: Get PR Commit Message
+        id: pr_commit_message
+        run: |
+          COMMIT_MSG=$(git log --format=%B -n 1 ${{ github.event.pull_request.head.sha }})
+          echo "Commit message: $COMMIT_MSG"
+          echo "commit_msg=$COMMIT_MSG" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Check if Commit Message Matches
+        id: check-commit
+        run: |
+          echo "Commit message -> " ${{ steps.pr_commit_message.outputs.commit_msg }}
+          if [[ "${{ steps.pr_commit_message.outputs.commit_msg }}" == *"chore: updated YAML files"* ]]; then
+            echo "run_commit=true" >> $GITHUB_OUTPUT
+          else
+            echo "::warning::Commit message does not match. Skipping workflow."
+            echo "run_commit=false" >> $GITHUB_OUTPUT
+          fi
+        shell: bash
+
+      - name: Find Modified YAML Files
+        id: find-yaml
+        if: steps.check-commit.outputs.run_commit == 'true'
+        run: |
+          # Fetch all branches to make sure origin/main is available
+          git fetch origin main
+        
+          YAML_FILES=$(git diff --name-only origin/main HEAD | grep -E '\.yaml$' | grep -v '/api/openapi\.yaml$' || echo "")
+
+          if [ -z "$YAML_FILES" ]; then
+            echo "::warning::No YAML files modified. Skipping SDK generation."
+            echo "run_sdk=false" >> $GITHUB_OUTPUT
+          else
+            echo "Modified YAML files: $YAML_FILES"
+            echo "run_sdk=true" >> $GITHUB_OUTPUT
+            echo "$YAML_FILES" > yaml_files_list.txt
+          fi
+        shell: bash
+
+      - name: Install OpenAPI Generator
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        run: npm install @openapitools/openapi-generator-cli -g
+        shell: bash
+
+      - name: Rename openapi.yaml to azion-api.yaml
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        run: |
+          temp_file=$(mktemp)
+          while IFS= read -r file; do
+            filename=$(basename "$file")
+            if [ "$filename" = "openapi.yaml" ]; then
+              dir=$(dirname "$file")
+              if [ "$dir" = "." ]; then
+                new_file="azion-api.yaml"
+              else
+                new_file="${dir}/azion-api.yaml"
+              fi
+              echo "Renaming $file -> $new_file"
+              mv "$file" "$new_file"
+              echo "$new_file" >> "$temp_file"
+            else
+              echo "$file" >> "$temp_file"
+            fi
+          done < yaml_files_list.txt
+          mv "$temp_file" yaml_files_list.txt
+          echo "Updated yaml_files_list.txt contents:"
+          cat yaml_files_list.txt
+        shell: bash
+
+      - name: Run OpenAPI Generator for Changed Files
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        run: |
+          while IFS= read -r file; do
+            removed=$(echo ${file} | cut -d. -f1)
+            pkg_name=$(echo ${removed} | tr -d '-')
+            npx @openapitools/openapi-generator-cli generate -i "$file" -g go -o "./${removed}" --package-name "${pkg_name}"
+
+            echo 'go.mod' >> ./${removed}/.gitignore
+            echo 'go.sum' >> ./${removed}/.gitignore
+            echo 'api/openapi.yaml' >> ./${removed}/.gitignore
+          done < yaml_files_list.txt
+
+      - name: Commit and Push Generated SDKs
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add .
+
+          while IFS= read -r file; do
+            git rm -f "$file"
+          done < yaml_files_list.txt
+
+          if git diff-index --quiet HEAD --; then
+            echo "::warning::No SDK changes to commit."
+          else
+            git commit -m "Auto-generated SDKs for YAML files"
+            git push origin ${{ github.event.pull_request.head.ref }}
+          fi
+
+      - name: Notify Slack
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        run: |
+          SLACK_WEBHOOK_URL="${{ secrets.SLACK_WEBHOOK }}"
+            
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_URL="https://github.com/${GITHUB_REPOSITORY}/pull/${PR_NUMBER}"
+            
+          # Commit message with the PR URL
+          COMMIT_MESSAGE="New SDK generated and committed by GitHub Actions. View the PR here: ${PR_URL}"
+            
+          # Prepare Slack message payload with the escaped commit message
+          PAYLOAD=$(echo "{\"attachments\":[{\"color\":\"#00008B\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*[GitHub Action] New STAGE SDK generated and committed!*\\nDetail: ${COMMIT_MESSAGE}\"}}]}]}")
+            
+          # Send the Slack message with a timeout
+          RESPONSE=$(curl -X POST "${SLACK_WEBHOOK_URL}" -H "Content-Type: application/json" -H "Accept: application/json" --data "${PAYLOAD}" --max-time 15)
+          
+          if [ $? -ne 0 ]; then
+            echo "[Slack-Notify] Failed to notify Slack!"
+          else
+            echo "[Slack-Notify] Slack response: ${RESPONSE}"
+          fi

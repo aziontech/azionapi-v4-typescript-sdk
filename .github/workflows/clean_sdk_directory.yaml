@@ -1,0 +1,40 @@
+name: Clean SDK Directory
+
+on:
+  workflow_dispatch:
+    inputs:
+      directory_path:
+        description: 'Directory path to delete (relative to repo root)'
+        required: true
+        type: string
+
+jobs:
+  clean-directory:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Delete directory
+        run: |
+          if [ -d "${{ inputs.directory_path }}" ]; then
+            rm -rf "${{ inputs.directory_path }}"
+            echo "Directory ${{ inputs.directory_path }} deleted successfully"
+          else
+            echo "Directory ${{ inputs.directory_path }} does not exist"
+            exit 1
+          fi
+      
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: clean SDK directory ${{ inputs.directory_path }}"
+          git push origin main

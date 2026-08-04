@@ -3,11 +3,12 @@ on:
       branches:
         - main
 
+permissions: {}
+
 jobs:
     build:
       permissions:
-        contents: write
-        pull-requests: write
+        contents: write # pushes the version tag
       runs-on: ubuntu-latest
   
       steps:

@@ -4,11 +4,12 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+permissions: {}
+
 jobs:
   generate-sdk:
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write # pushes generated SDKs to the PR head branch
     runs-on: ubuntu-latest
     container:
       image: ubuntu:22.04

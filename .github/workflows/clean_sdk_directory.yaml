@@ -8,11 +8,13 @@ on:
         required: true
         type: string
 
+permissions: {}
+
 jobs:
   clean-directory:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # commits the directory removal to main
     
     steps:
       - name: Checkout repository

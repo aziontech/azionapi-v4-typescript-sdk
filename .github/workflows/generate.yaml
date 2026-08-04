@@ -46,23 +46,20 @@ jobs:
       - name: run safe dir
         run: git config --global --add safe.directory /__w/azionapi-v4-typescript-sdk/azionapi-v4-typescript-sdk
 
-      - name: Get PR Commit Message
-        id: pr_commit_message
-        run: |
-          COMMIT_MSG=$(git log --format=%B -n 1 ${{ github.event.pull_request.head.sha }})
-          echo "Commit message: $COMMIT_MSG"
-          echo "commit_msg=$COMMIT_MSG" >> $GITHUB_OUTPUT
-        shell: bash
-
       - name: Check if Commit Message Matches
         id: check-commit
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          echo "Commit message -> " ${{ steps.pr_commit_message.outputs.commit_msg }}
-          if [[ "${{ steps.pr_commit_message.outputs.commit_msg }}" == *"chore: updated YAML files"* ]]; then
-            echo "run_commit=true" >> $GITHUB_OUTPUT
+          # The commit message is attacker-controlled, so it never leaves this
+          # step: it stays in a shell variable and only a boolean is exported.
+          COMMIT_MSG=$(git log --format=%B -n 1 "$HEAD_SHA")
+          echo "Commit message -> $COMMIT_MSG"
+          if [[ "$COMMIT_MSG" == *"chore: updated YAML files"* ]]; then
+            echo "run_commit=true" >> "$GITHUB_OUTPUT"
           else
             echo "::warning::Commit message does not match. Skipping workflow."
-            echo "run_commit=false" >> $GITHUB_OUTPUT
+            echo "run_commit=false" >> "$GITHUB_OUTPUT"
           fi
         shell: bash
 
@@ -130,6 +127,8 @@ jobs:
 
       - name: Commit and Push Generated SDKs
         if: steps.find-yaml.outputs.run_sdk == 'true'
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -144,15 +143,15 @@ jobs:
             echo "::warning::No SDK changes to commit."
           else
             git commit -m "Auto-generated SDKs for YAML files"
-            git push origin ${{ github.event.pull_request.head.ref }}
+            git push origin "HEAD:refs/heads/$HEAD_REF"
           fi
 
       - name: Notify Slack
         if: steps.find-yaml.outputs.run_sdk == 'true'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          SLACK_WEBHOOK_URL="${{ secrets.SLACK_WEBHOOK }}"
-            
-          PR_NUMBER="${{ github.event.pull_request.number }}"
           PR_URL="https://github.com/${GITHUB_REPOSITORY}/pull/${PR_NUMBER}"
             
           # Commit message with the PR URL

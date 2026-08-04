@@ -28,17 +28,17 @@ jobs:
           && apt install gh -y
         shell: bash
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 18
 
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           distribution: 'temurin'
           java-version: '11'
 
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
@@ -86,7 +86,7 @@ jobs:
 
       - name: Install OpenAPI Generator
         if: steps.find-yaml.outputs.run_sdk == 'true'
-        run: npm install @openapitools/openapi-generator-cli -g
+        run: npm install @openapitools/openapi-generator-cli@2.40.1 -g
         shell: bash
 
       - name: Rename openapi.yaml to azion-api.yaml
@@ -120,7 +120,7 @@ jobs:
           while IFS= read -r file; do
             removed=$(echo ${file} | cut -d. -f1)
             pkg_name=$(echo ${removed} | tr -d '-')
-            npx @openapitools/openapi-generator-cli generate -i "$file" -g go -o "./${removed}" --package-name "${pkg_name}"
+            npx @openapitools/openapi-generator-cli@2.40.1 generate -i "$file" -g go -o "./${removed}" --package-name "${pkg_name}"
 
             echo 'go.mod' >> ./${removed}/.gitignore
             echo 'go.sum' >> ./${removed}/.gitignore

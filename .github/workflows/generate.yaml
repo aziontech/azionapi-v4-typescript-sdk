@@ -8,6 +8,9 @@ permissions: {}
 
 jobs:
   generate-sdk:
+    # Only same-repo PRs: this job pushes to a base-repo branch named after
+    # head.ref, which is meaningless (or wrong) for a fork's head branch.
+    if: github.event.pull_request.head.repo.full_name == github.repository
     permissions:
       contents: write # pushes generated SDKs to the PR head branch
     runs-on: ubuntu-latest
@@ -41,7 +44,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          # Pin to the exact commit that triggered the event, not the branch
+          # pointer: head.ref resolves at run time and can advance mid-run,
+          # letting content bypass the commit-message gate below.
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: run safe dir
         run: git config --global --add safe.directory /__w/azionapi-v4-typescript-sdk/azionapi-v4-typescript-sdk

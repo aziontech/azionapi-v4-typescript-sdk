@@ -14,8 +14,13 @@ jobs:
     permissions:
       contents: write # pushes generated SDKs to the PR head branch
     runs-on: ubuntu-latest
+    outputs:
+      run_sdk: ${{ steps.find-yaml.outputs.run_sdk }}
     container:
-      image: ubuntu:22.04
+      # Pinned by digest: a mutable tag in the repo's only contents: write job
+      # is a supply-chain hole. Refresh with:
+      #   docker buildx imagetools inspect ubuntu:22.04
+      image: ubuntu@sha256:2edbbc5dc405e9612ba3584ce95480277e3eb374407b5505fe26f17df77c7dbc # 22.04
 
     steps:
       - name: Setup Env
@@ -23,13 +28,25 @@ jobs:
         shell: bash
 
       - name: Install GH CLI
+        # Pinned release + sha256 verification instead of adding an unverified
+        # keyring and a floating apt source to a contents: write job.
+        env:
+          GH_VERSION: '2.98.0'
+          GH_SHA256_AMD64: 'f65a3fa2fa0eb2e97c445ee3f5e087a40aae03b64847f45a8f13805e504535d6'
+          GH_SHA256_ARM64: 'bbc4ac7964c2a091fd555cd1758d10a7cfcfdc472e405f0b0fb958f05d535cb6'
         run: |
-          type -p curl >/dev/null || (apt update && apt install curl -y)
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-          && apt update \
-          && apt install gh -y
+          set -euo pipefail
+          ARCH=$(dpkg --print-architecture)
+          case "$ARCH" in
+            amd64) EXPECTED="$GH_SHA256_AMD64" ;;
+            arm64) EXPECTED="$GH_SHA256_ARM64" ;;
+            *) echo "::error::unsupported architecture $ARCH"; exit 1 ;;
+          esac
+          DEB="gh_${GH_VERSION}_linux_${ARCH}.deb"
+          curl -fsSL -o "/tmp/${DEB}" \
+            "https://github.com/cli/cli/releases/download/v${GH_VERSION}/${DEB}"
+          echo "${EXPECTED}  /tmp/${DEB}" | sha256sum -c -
+          apt-get install -y "/tmp/${DEB}"
         shell: bash
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -152,25 +169,31 @@ jobs:
             git push origin "HEAD:refs/heads/$HEAD_REF"
           fi
 
+  notify-slack:
+    # Separate job so the webhook is never present in a runner that has checked
+    # out and executed PR-controlled content.
+    needs: generate-sdk
+    if: needs.generate-sdk.outputs.run_sdk == 'true'
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
       - name: Notify Slack
-        if: steps.find-yaml.outputs.run_sdk == 'true'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           PR_URL="https://github.com/${GITHUB_REPOSITORY}/pull/${PR_NUMBER}"
-            
+
           # Commit message with the PR URL
           COMMIT_MESSAGE="New SDK generated and committed by GitHub Actions. View the PR here: ${PR_URL}"
-            
+
           # Prepare Slack message payload with the escaped commit message
           PAYLOAD=$(echo "{\"attachments\":[{\"color\":\"#00008B\",\"blocks\":[{\"type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"*[GitHub Action] New STAGE SDK generated and committed!*\\nDetail: ${COMMIT_MESSAGE}\"}}]}]}")
-            
+
           # Send the Slack message with a timeout
-          RESPONSE=$(curl -X POST "${SLACK_WEBHOOK_URL}" -H "Content-Type: application/json" -H "Accept: application/json" --data "${PAYLOAD}" --max-time 15)
-          
-          if [ $? -ne 0 ]; then
-            echo "[Slack-Notify] Failed to notify Slack!"
-          else
+          if RESPONSE=$(curl -sS -X POST "${SLACK_WEBHOOK_URL}" -H "Content-Type: application/json" -H "Accept: application/json" --data "${PAYLOAD}" --max-time 15); then
             echo "[Slack-Notify] Slack response: ${RESPONSE}"
+          else
+            echo "[Slack-Notify] Failed to notify Slack!"
           fi
+        shell: bash

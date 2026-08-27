@@ -35,7 +35,13 @@ jobs:
           SCORE=$(jq -r '.score' results.json)
           echo "OSSF aggregate = ${SCORE}  (threshold ${THRESHOLD}, mode ${MODE})"
           if [ "$SCORE" = "-1" ] || [ "$SCORE" = "null" ]; then
-            echo "::warning::Scorecard returned inconclusive score — not gating"; exit 0
+            # -1/null is what a rate-limited or partially-failed run returns.
+            # Passing the gate on it is reproducible, so enforce mode fails
+            # closed here just as it does on a missing results.json.
+            if [ "$MODE" = "enforce" ]; then
+              echo "::error::Scorecard returned an inconclusive score — failing closed"; exit 1
+            fi
+            echo "::warning::Scorecard returned inconclusive score — warn mode, not blocking"; exit 0
           fi
           below=$(awk -v s="$SCORE" -v t="$THRESHOLD" 'BEGIN{print (s<t)?1:0}')
           if [ "$below" = "1" ]; then

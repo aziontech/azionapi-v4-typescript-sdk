@@ -8,33 +8,53 @@ on:
         required: true
         type: string
 
+permissions: {}
+
 jobs:
   clean-directory:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # commits the directory removal to main
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Delete directory
+        env:
+          DIRECTORY_PATH: ${{ inputs.directory_path }}
         run: |
-          if [ -d "${{ inputs.directory_path }}" ]; then
-            rm -rf "${{ inputs.directory_path }}"
-            echo "Directory ${{ inputs.directory_path }} deleted successfully"
-          else
-            echo "Directory ${{ inputs.directory_path }} does not exist"
-            exit 1
-          fi
-      
+          set -euo pipefail
+
+          # The input is dispatch-controlled and this job pushes straight to
+          # main, so reject anything that is not a plain relative subdirectory
+          # before rm -rf ever runs.
+          case "$DIRECTORY_PATH" in
+            ''|'.'|'./'|'/'*|*'..'*|'~'*|'.git'|'.git/'*|'.github'|'.github/'*)
+              echo "::error::Invalid directory_path: '$DIRECTORY_PATH'"; exit 1 ;;
+          esac
+
+          # And confirm the resolved path stays strictly inside the workspace.
+          WORKSPACE=$(cd "$GITHUB_WORKSPACE" && pwd -P)
+          TARGET=$(cd "$GITHUB_WORKSPACE" && cd "$DIRECTORY_PATH" 2>/dev/null && pwd -P) || {
+            echo "::error::Directory $DIRECTORY_PATH does not exist"; exit 1; }
+          case "$TARGET" in
+            "$WORKSPACE"/?*) : ;;
+            *) echo "::error::Refusing to delete '$DIRECTORY_PATH' — resolves outside the workspace ($TARGET)"; exit 1 ;;
+          esac
+
+          rm -rf "$TARGET"
+          echo "Directory $DIRECTORY_PATH deleted successfully"
+
       - name: Commit and push changes
+        env:
+          DIRECTORY_PATH: ${{ inputs.directory_path }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "chore: clean SDK directory ${{ inputs.directory_path }}"
+          git commit -m "chore: clean SDK directory $DIRECTORY_PATH"
           git push origin main

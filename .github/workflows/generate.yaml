@@ -93,7 +93,7 @@ jobs:
           # Fetch all branches to make sure origin/main is available
           git fetch origin main
         
-          YAML_FILES=$(git diff --name-only origin/main HEAD | grep -E '\.yaml$' | grep -v '/api/openapi\.yaml$' || echo "")
+          YAML_FILES=$(git diff --name-only origin/main HEAD | grep -E '\.yaml$' | grep -v '^\.github/' | grep -v '/api/openapi\.yaml$' || echo "")
 
           if [ -z "$YAML_FILES" ]; then
             echo "::warning::No YAML files modified. Skipping SDK generation."

@@ -1,0 +1,51 @@
+# PublisherRequest
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Icon** | **string** |  | 
+
+## Methods
+
+### NewPublisherRequest
+
+`func NewPublisherRequest(icon string, ) *PublisherRequest`
+
+NewPublisherRequest instantiates a new PublisherRequest object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewPublisherRequestWithDefaults
+
+`func NewPublisherRequestWithDefaults() *PublisherRequest`
+
+NewPublisherRequestWithDefaults instantiates a new PublisherRequest object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetIcon
+
+`func (o *PublisherRequest) GetIcon() string`
+
+GetIcon returns the Icon field if non-nil, zero value otherwise.
+
+### GetIconOk
+
+`func (o *PublisherRequest) GetIconOk() (*string, bool)`
+
+GetIconOk returns a tuple with the Icon field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIcon
+
+`func (o *PublisherRequest) SetIcon(v string)`
+
+SetIcon sets Icon field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

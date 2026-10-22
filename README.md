@@ -1,0 +1,113 @@
+# Azion API v4 TypeScript SDK
+
+TypeScript client for the [Azion API v4](https://api.azion.com/), generated with
+[OpenAPI Generator](https://openapi-generator.tech/docs/generators/typescript/) from the
+`azion-api.yaml` spec in this repository.
+
+The generated SDK lives in [`azion-api/`](./azion-api) and is published to npm as
+`@aziontech/azion-api-v4-sdk`.
+
+## Repository layout
+
+| Path | Description |
+| --- | --- |
+| `azion-api.yaml` | OpenAPI spec for the Azion API v4 (source of truth for the SDK) |
+| `azion-api/` | Generated TypeScript SDK — do not edit by hand |
+| `openapitools.json` | Pins the OpenAPI Generator version used by `openapi-generator-cli` |
+| `OPENAPI_GENERATOR_NOTES.md` | Known issues when generating from `azion-api.yaml` |
+
+## Prerequisites
+
+- Node.js 22 or later
+- Java 11 or later (OpenAPI Generator runs on the JVM)
+- OpenAPI Generator CLI:
+
+  ```sh
+  npm install -g @openapitools/openapi-generator-cli
+  ```
+
+  The CLI reads `openapitools.json` and downloads the generator version pinned there
+  (currently `7.26.0`), so everyone generates with the same version.
+
+## Generating the SDK
+
+From the repository root, run:
+
+```sh
+openapi-generator-cli generate -i azion-api.yaml -g typescript -o ./azion-api \
+  --additional-properties=npmName=@aziontech/azion-api-v4-sdk,npmVersion=0.1.0,disallowAdditionalPropertiesIfNotPresent=false
+```
+
+What each option does:
+
+| Option | Purpose |
+| --- | --- |
+| `-i azion-api.yaml` | Input OpenAPI spec |
+| `-g typescript` | Use the `typescript` generator (fetch-based client) |
+| `-o ./azion-api` | Output directory for the generated SDK |
+| `npmName=@aziontech/azion-api-v4-sdk` | Package `name` in the generated `package.json` |
+| `npmVersion=0.1.0` | Package `version` in the generated `package.json` — set it to the version you are releasing |
+| `disallowAdditionalPropertiesIfNotPresent=false` | Allows extra properties on objects whose schema does not declare `additionalProperties`, so new fields returned by the API don't break the client |
+
+The generator overwrites the files it produces. Files listed in
+`azion-api/.openapi-generator-ignore` are left untouched.
+
+### Updating the spec
+
+1. Replace `azion-api.yaml` with the new spec.
+2. Check it for regex patterns the generator can't handle (see
+   [OPENAPI_GENERATOR_NOTES.md](./OPENAPI_GENERATOR_NOTES.md)):
+
+   ```sh
+   grep -nE "pattern: .+\^" azion-api.yaml
+   ```
+
+3. Bump `npmVersion` and regenerate with the command above.
+4. Review the diff in `azion-api/`, including files that were removed or added in
+   `azion-api/.openapi-generator/FILES`.
+
+## Building and testing locally
+
+```sh
+cd azion-api
+npm install
+npm run build
+```
+
+The compiled output is written to `azion-api/dist/`. To try the package in another project
+before publishing:
+
+```sh
+cd azion-api
+npm pack
+# then, in the other project:
+npm install /path/to/aziontech-azion-api-v4-sdk-0.1.0.tgz
+```
+
+## Usage
+
+```ts
+import { createConfiguration, AccountsInfoApi } from "@aziontech/azion-api-v4-sdk";
+
+const config = createConfiguration({
+  authMethods: {
+    TokenAuth: `Token ${process.env.AZION_TOKEN}`,
+  },
+});
+
+const accounts = new AccountsInfoApi(config);
+const info = await accounts.retrieveAccountInfoDetails(12345);
+```
+
+See [`azion-api/README.md`](./azion-api/README.md) and the per-API docs in
+[`azion-api/docs/`](./azion-api/docs) for the available APIs and models.
+
+## Troubleshooting
+
+- **`Before caret only new line is allowed!`** — a `pattern` in the spec has a `^` that
+  isn't at the start of the regex. See
+  [OPENAPI_GENERATOR_NOTES.md](./OPENAPI_GENERATOR_NOTES.md) for the cause and fix.
+
+## License
+
+See [LICENSE](./LICENSE).

@@ -2,7 +2,7 @@
   "name": "@aziontech/azion-api-v4-sdk",
   "version": "0.1.0",
   "description": "OpenAPI client for @aziontech/azion-api-v4-sdk",
-  "author": "OpenAPI-Generator Contributors",
+  "author": "aziontech",
   "repository": {
     "type": "git",
     "url": "https://github.com/aziontech/azionapi-v4-typescript-sdk.git"

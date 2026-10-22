@@ -13,6 +13,7 @@ The generated SDK lives in [`azion-api/`](./azion-api) and is published to npm a
 | --- | --- |
 | `azion-api.yaml` | OpenAPI spec for the Azion API v4 (source of truth for the SDK) |
 | `azion-api/` | Generated TypeScript SDK — do not edit by hand |
+| `templates/typescript/` | Overrides for the generator's built-in templates |
 | `openapitools.json` | Pins the OpenAPI Generator version used by `openapi-generator-cli` |
 | `OPENAPI_GENERATOR_NOTES.md` | Known issues when generating from `azion-api.yaml` |
 
@@ -35,6 +36,7 @@ From the repository root, run:
 
 ```sh
 openapi-generator-cli generate -i azion-api.yaml -g typescript -o ./azion-api \
+  -t templates/typescript \
   --git-user-id aziontech --git-repo-id azionapi-v4-typescript-sdk \
   --additional-properties=npmName=@aziontech/azion-api-v4-sdk,npmVersion=0.1.0,licenseName=MIT,disallowAdditionalPropertiesIfNotPresent=false
 ```
@@ -46,6 +48,7 @@ What each option does:
 | `-i azion-api.yaml` | Input OpenAPI spec |
 | `-g typescript` | Use the `typescript` generator (fetch-based client) |
 | `-o ./azion-api` | Output directory for the generated SDK |
+| `-t templates/typescript` | Template overrides (see [Custom templates](#custom-templates)) |
 | `--git-user-id` / `--git-repo-id` | Builds the `repository.url` in `package.json` (`https://github.com/aziontech/azionapi-v4-typescript-sdk.git`) |
 | `npmName=@aziontech/azion-api-v4-sdk` | Package `name` in the generated `package.json` |
 | `npmVersion=0.1.0` | Package `version` in the generated `package.json` — set it to the version you are releasing |
@@ -54,6 +57,26 @@ What each option does:
 
 The generator overwrites the files it produces. Files listed in
 `azion-api/.openapi-generator-ignore` are left untouched.
+
+### Custom templates
+
+`templates/typescript/` overrides templates from the `typescript` generator. Any file
+placed there replaces the built-in template of the same name; all other templates are
+used as shipped.
+
+| Template | Why it is overridden |
+| --- | --- |
+| `package.mustache` | Sets `"author": "aziontech"` — the built-in template hardcodes `OpenAPI-Generator Contributors` and has no option to change it |
+
+The override is a copy of the template from generator version `7.26.0`. When you bump the
+version in `openapitools.json`, refresh it from the new release so it picks up upstream
+changes, then re-apply the author change:
+
+```sh
+openapi-generator-cli author template -g typescript -o /tmp/ts-templates
+cp /tmp/ts-templates/package.mustache templates/typescript/package.mustache
+# edit "author" in templates/typescript/package.mustache
+```
 
 ### Updating the spec
 

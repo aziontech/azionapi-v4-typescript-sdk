@@ -38,7 +38,7 @@ From the repository root, run:
 openapi-generator-cli generate -i azion-api.yaml -g typescript -o ./azion-api \
   -t templates/typescript \
   --git-user-id aziontech --git-repo-id azionapi-v4-typescript-sdk \
-  --additional-properties=npmName=@aziontech/azion-api-v4-sdk,npmVersion=0.1.0,licenseName=MIT,disallowAdditionalPropertiesIfNotPresent=false
+  --additional-properties=npmName=@aziontech/azion-api-v4-sdk,npmVersion=0.0.1,licenseName=MIT,disallowAdditionalPropertiesIfNotPresent=false
 ```
 
 What each option does:

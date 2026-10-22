@@ -1,6 +1,6 @@
 {
   "name": "@aziontech/azion-api-v4-sdk",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "OpenAPI client for @aziontech/azion-api-v4-sdk",
   "author": "aziontech",
   "repository": {

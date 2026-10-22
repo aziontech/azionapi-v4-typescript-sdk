@@ -35,7 +35,8 @@ From the repository root, run:
 
 ```sh
 openapi-generator-cli generate -i azion-api.yaml -g typescript -o ./azion-api \
-  --additional-properties=npmName=@aziontech/azion-api-v4-sdk,npmVersion=0.1.0,disallowAdditionalPropertiesIfNotPresent=false
+  --git-user-id aziontech --git-repo-id azionapi-v4-typescript-sdk \
+  --additional-properties=npmName=@aziontech/azion-api-v4-sdk,npmVersion=0.1.0,licenseName=MIT,disallowAdditionalPropertiesIfNotPresent=false
 ```
 
 What each option does:
@@ -45,8 +46,10 @@ What each option does:
 | `-i azion-api.yaml` | Input OpenAPI spec |
 | `-g typescript` | Use the `typescript` generator (fetch-based client) |
 | `-o ./azion-api` | Output directory for the generated SDK |
+| `--git-user-id` / `--git-repo-id` | Builds the `repository.url` in `package.json` (`https://github.com/aziontech/azionapi-v4-typescript-sdk.git`) |
 | `npmName=@aziontech/azion-api-v4-sdk` | Package `name` in the generated `package.json` |
 | `npmVersion=0.1.0` | Package `version` in the generated `package.json` — set it to the version you are releasing |
+| `licenseName=MIT` | `license` in the generated `package.json` (matches [LICENSE](./LICENSE)) |
 | `disallowAdditionalPropertiesIfNotPresent=false` | Allows extra properties on objects whose schema does not declare `additionalProperties`, so new fields returned by the API don't break the client |
 
 The generator overwrites the files it produces. Files listed in

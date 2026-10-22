@@ -1,75 +1,85 @@
-# \DigitalCertificatesRequestACertificateAPI
+# .DigitalCertificatesRequestACertificateApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RequestCertificate**](DigitalCertificatesRequestACertificateAPI.md#RequestCertificate) | **Post** /workspace/tls/certificates/request | Request a certificate
+[**requestCertificate**](DigitalCertificatesRequestACertificateApi.md#requestCertificate) | **POST** /workspace/tls/certificates/request | Request a certificate
 
 
+# **requestCertificate**
+> CertificateResponse requestCertificate(certificateRequest)
 
-## RequestCertificate
-
-> CertificateResponse RequestCertificate(ctx).CertificateRequest(certificateRequest).Execute()
-
-Request a certificate
-
-
+Request a new certificate for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesRequestACertificateApi } from '';
+import type { DigitalCertificatesRequestACertificateApiRequestCertificateRequest } from '';
 
-func main() {
-	certificateRequest := *openapiclient.NewCertificateRequest("Name_example", "Challenge_example", "Authority_example", "CommonName_example") // CertificateRequest | 
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesRequestACertificateApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesRequestACertificateAPI.RequestCertificate(context.Background()).CertificateRequest(certificateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesRequestACertificateAPI.RequestCertificate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RequestCertificate`: CertificateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesRequestACertificateAPI.RequestCertificate`: %v\n", resp)
-}
+const request: DigitalCertificatesRequestACertificateApiRequestCertificateRequest = {
+  
+  certificateRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    certificate: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    privateKey: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "certificate",
+    challenge: "dns",
+    authority: "lets_encrypt",
+    keyAlgorithm: "ecc_384",
+    active: true,
+    commonName: "*.u.T",
+    alternativeNames: [
+      "*.u.T",
+    ],
+    sourceCertificate: 1,
+  },
+};
+
+const data = await apiInstance.requestCertificate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRequestCertificateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificateRequest** | [**CertificateRequest**](CertificateRequest.md) |  | 
+ **certificateRequest** | **CertificateRequest**|  |
+
 
 ### Return type
 
-[**CertificateResponse**](CertificateResponse.md)
+**CertificateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Certificate request submitted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

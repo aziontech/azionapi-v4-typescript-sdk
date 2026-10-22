@@ -1,227 +1,208 @@
-# \DNSDNSSECAPI
+# .DNSDNSSECApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PartialUpdateDnssec**](DNSDNSSECAPI.md#PartialUpdateDnssec) | **Patch** /workspace/dns/zones/{zone_id}/dnssec | Partially update a DNSSEC
-[**RetrieveDnssec**](DNSDNSSECAPI.md#RetrieveDnssec) | **Get** /workspace/dns/zones/{zone_id}/dnssec | Retrieve details of a DNSSEC
-[**UpdateDnssec**](DNSDNSSECAPI.md#UpdateDnssec) | **Put** /workspace/dns/zones/{zone_id}/dnssec | Update a DNSSEC
+[**partialUpdateDnssec**](DNSDNSSECApi.md#partialUpdateDnssec) | **PATCH** /workspace/dns/zones/{zone_id}/dnssec | Partially update a DNSSEC
+[**retrieveDnssec**](DNSDNSSECApi.md#retrieveDnssec) | **GET** /workspace/dns/zones/{zone_id}/dnssec | Retrieve details of a DNSSEC
+[**updateDnssec**](DNSDNSSECApi.md#updateDnssec) | **PUT** /workspace/dns/zones/{zone_id}/dnssec | Update a DNSSEC
 
 
+# **partialUpdateDnssec**
+> DNSSECResponse partialUpdateDnssec()
 
-## PartialUpdateDnssec
-
-> DNSSECResponse PartialUpdateDnssec(ctx, zoneId).PatchedDNSSECRequest(patchedDNSSECRequest).Execute()
-
-Partially update a DNSSEC
-
-
+Update one or more fields of an existing DNSSEC without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DNSDNSSECApi } from '';
+import type { DNSDNSSECApiPartialUpdateDnssecRequest } from '';
 
-func main() {
-	zoneId := int64(789) // int64 | A unique integer value identifying the DNS Zone.
-	patchedDNSSECRequest := *openapiclient.NewPatchedDNSSECRequest() // PatchedDNSSECRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new DNSDNSSECApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DNSDNSSECAPI.PartialUpdateDnssec(context.Background(), zoneId).PatchedDNSSECRequest(patchedDNSSECRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DNSDNSSECAPI.PartialUpdateDnssec``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateDnssec`: DNSSECResponse
-	fmt.Fprintf(os.Stdout, "Response from `DNSDNSSECAPI.PartialUpdateDnssec`: %v\n", resp)
-}
+const request: DNSDNSSECApiPartialUpdateDnssecRequest = {
+    // A unique integer value identifying the DNS Zone.
+  zoneId: 1,
+  
+  patchedDNSSECRequest: {
+    enabled: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateDnssec(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**zoneId** | **int64** | A unique integer value identifying the DNS Zone. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateDnssecRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedDNSSECRequest** | **PatchedDNSSECRequest**|  |
+ **zoneId** | [**number**] | A unique integer value identifying the DNS Zone. | defaults to undefined
 
- **patchedDNSSECRequest** | [**PatchedDNSSECRequest**](PatchedDNSSECRequest.md) |  | 
 
 ### Return type
 
-[**DNSSECResponse**](DNSSECResponse.md)
+**DNSSECResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveDnssec
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | DNSSEC partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DNSSECResponse RetrieveDnssec(ctx, zoneId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of a DNSSEC
+# **retrieveDnssec**
+> DNSSECResponse retrieveDnssec()
 
-
+Retrieve details of a specific DNSSEC from a DNS Zone in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DNSDNSSECApi } from '';
+import type { DNSDNSSECApiRetrieveDnssecRequest } from '';
 
-func main() {
-	zoneId := int64(789) // int64 | A unique integer value identifying the DNS Zone.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new DNSDNSSECApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DNSDNSSECAPI.RetrieveDnssec(context.Background(), zoneId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DNSDNSSECAPI.RetrieveDnssec``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveDnssec`: DNSSECResponse
-	fmt.Fprintf(os.Stdout, "Response from `DNSDNSSECAPI.RetrieveDnssec`: %v\n", resp)
-}
+const request: DNSDNSSECApiRetrieveDnssecRequest = {
+    // A unique integer value identifying the DNS Zone.
+  zoneId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveDnssec(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**zoneId** | **int64** | A unique integer value identifying the DNS Zone. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveDnssecRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **zoneId** | [**number**] | A unique integer value identifying the DNS Zone. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**DNSSECResponse**](DNSSECResponse.md)
+**DNSSECResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateDnssec
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | DNSSEC details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DNSSECResponse UpdateDnssec(ctx, zoneId).DNSSECRequest(dNSSECRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a DNSSEC
+# **updateDnssec**
+> DNSSECResponse updateDnssec(dNSSECRequest)
 
-
+Update an existing a DNSSEC. This replaces the entire DNSSEC with the new data provided.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DNSDNSSECApi } from '';
+import type { DNSDNSSECApiUpdateDnssecRequest } from '';
 
-func main() {
-	zoneId := int64(789) // int64 | A unique integer value identifying the DNS Zone.
-	dNSSECRequest := *openapiclient.NewDNSSECRequest(false) // DNSSECRequest | 
+const configuration = createConfiguration();
+const apiInstance = new DNSDNSSECApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DNSDNSSECAPI.UpdateDnssec(context.Background(), zoneId).DNSSECRequest(dNSSECRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DNSDNSSECAPI.UpdateDnssec``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateDnssec`: DNSSECResponse
-	fmt.Fprintf(os.Stdout, "Response from `DNSDNSSECAPI.UpdateDnssec`: %v\n", resp)
-}
+const request: DNSDNSSECApiUpdateDnssecRequest = {
+    // A unique integer value identifying the DNS Zone.
+  zoneId: 1,
+  
+  dNSSECRequest: {
+    enabled: true,
+  },
+};
+
+const data = await apiInstance.updateDnssec(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**zoneId** | **int64** | A unique integer value identifying the DNS Zone. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateDnssecRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dNSSECRequest** | **DNSSECRequest**|  |
+ **zoneId** | [**number**] | A unique integer value identifying the DNS Zone. | defaults to undefined
 
- **dNSSECRequest** | [**DNSSECRequest**](DNSSECRequest.md) |  | 
 
 ### Return type
 
-[**DNSSECResponse**](DNSSECResponse.md)
+**DNSSECResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | DNSSEC updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

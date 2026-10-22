@@ -1,465 +1,453 @@
-# \DigitalCertificatesCertificatesAPI
+# .DigitalCertificatesCertificatesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCertificate**](DigitalCertificatesCertificatesAPI.md#CreateCertificate) | **Post** /workspace/tls/certificates | Create a certificate
-[**DeleteCertificate**](DigitalCertificatesCertificatesAPI.md#DeleteCertificate) | **Delete** /workspace/tls/certificates/{certificate_id} | Delete a certificate
-[**ListCertificates**](DigitalCertificatesCertificatesAPI.md#ListCertificates) | **Get** /workspace/tls/certificates | List certificates
-[**PartialUpdateCertificate**](DigitalCertificatesCertificatesAPI.md#PartialUpdateCertificate) | **Patch** /workspace/tls/certificates/{certificate_id} | Partially update a certificate
-[**RetrieveCertificate**](DigitalCertificatesCertificatesAPI.md#RetrieveCertificate) | **Get** /workspace/tls/certificates/{certificate_id} | Retrieve details from a certificate
-[**UpdateCertificate**](DigitalCertificatesCertificatesAPI.md#UpdateCertificate) | **Put** /workspace/tls/certificates/{certificate_id} | Update a certificate
+[**createCertificate**](DigitalCertificatesCertificatesApi.md#createCertificate) | **POST** /workspace/tls/certificates | Create a certificate
+[**deleteCertificate**](DigitalCertificatesCertificatesApi.md#deleteCertificate) | **DELETE** /workspace/tls/certificates/{certificate_id} | Delete a certificate
+[**listCertificates**](DigitalCertificatesCertificatesApi.md#listCertificates) | **GET** /workspace/tls/certificates | List certificates
+[**partialUpdateCertificate**](DigitalCertificatesCertificatesApi.md#partialUpdateCertificate) | **PATCH** /workspace/tls/certificates/{certificate_id} | Partially update a certificate
+[**retrieveCertificate**](DigitalCertificatesCertificatesApi.md#retrieveCertificate) | **GET** /workspace/tls/certificates/{certificate_id} | Retrieve details from a certificate
+[**updateCertificate**](DigitalCertificatesCertificatesApi.md#updateCertificate) | **PUT** /workspace/tls/certificates/{certificate_id} | Update a certificate
 
 
+# **createCertificate**
+> CertificateResponse createCertificate(certificate)
 
-## CreateCertificate
-
-> CertificateResponse CreateCertificate(ctx).Certificate(certificate).Execute()
-
-Create a certificate
-
-
+Create a new certificate for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificatesApi } from '';
+import type { DigitalCertificatesCertificatesApiCreateCertificateRequest } from '';
 
-func main() {
-	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now(), time.Now()) // Certificate | 
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.CreateCertificate(context.Background()).Certificate(certificate).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.CreateCertificate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateCertificate`: CertificateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.CreateCertificate`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificatesApiCreateCertificateRequest = {
+  
+  certificate: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    certificate: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    privateKey: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "certificate",
+    active: true,
+  },
+};
+
+const data = await apiInstance.createCertificate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCertificateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificate** | [**Certificate**](Certificate.md) |  | 
-
-### Return type
-
-[**CertificateResponse**](CertificateResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteCertificate
-
-> DeleteResponse DeleteCertificate(ctx, certificateId).Execute()
-
-Delete a certificate
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	certificateId := int64(789) // int64 | The unique identifier of the certificate
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.DeleteCertificate(context.Background(), certificateId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.DeleteCertificate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteCertificate`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.DeleteCertificate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**certificateId** | **int64** | The unique identifier of the certificate | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCertificateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **certificate** | **Certificate**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**CertificateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListCertificates
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Certificate created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedCertificateList ListCertificates(ctx).CertificateType(certificateType).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Managed(managed).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).RenewedAt(renewedAt).RenewedAtGte(renewedAtGte).RenewedAtLte(renewedAtLte).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List certificates
+# **deleteCertificate**
+> DeleteResponse deleteCertificate()
 
-
+Delete a specific certificate in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificatesApi } from '';
+import type { DigitalCertificatesCertificatesApiDeleteCertificateRequest } from '';
 
-func main() {
-	certificateType := "certificateType_example" // string | Filter by certificate type (accepts comma-separated values). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by certificate ID (accepts comma-separated values). (optional)
-	issuer := "issuer_example" // string | Filter by issuer (case-insensitive, partial match). (optional)
-	lastModified := time.Now() // time.Time | Filter by exact last modified date and time. (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	managed := true // bool | Filter by managed status. (optional)
-	name := "name_example" // string | Filter by certificate name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	renewedAt := time.Now() // time.Time | Filter by exact renewed date and time. (optional)
-	renewedAtGte := time.Now() // time.Time | Filter by renewed date (greater than or equal). (optional)
-	renewedAtLte := time.Now() // time.Time | Filter by renewed date (less than or equal). (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.ListCertificates(context.Background()).CertificateType(certificateType).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Managed(managed).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).RenewedAt(renewedAt).RenewedAtGte(renewedAtGte).RenewedAtLte(renewedAtLte).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.ListCertificates``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListCertificates`: PaginatedCertificateList
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.ListCertificates`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificatesApiDeleteCertificateRequest = {
+    // The unique identifier of the certificate
+  certificateId: 1,
+};
+
+const data = await apiInstance.deleteCertificate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListCertificatesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificateType** | **string** | Filter by certificate type (accepts comma-separated values). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by certificate ID (accepts comma-separated values). | 
- **issuer** | **string** | Filter by issuer (case-insensitive, partial match). | 
- **lastModified** | **time.Time** | Filter by exact last modified date and time. | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **managed** | **bool** | Filter by managed status. | 
- **name** | **string** | Filter by certificate name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **renewedAt** | **time.Time** | Filter by exact renewed date and time. | 
- **renewedAtGte** | **time.Time** | Filter by renewed date (greater than or equal). | 
- **renewedAtLte** | **time.Time** | Filter by renewed date (less than or equal). | 
- **search** | **string** | A search term. | 
+ **certificateId** | [**number**] | The unique identifier of the certificate | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedCertificateList**](PaginatedCertificateList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateCertificate
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Certificate deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CertificateResponse PartialUpdateCertificate(ctx, certificateId).PatchedCertificate(patchedCertificate).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a certificate
+# **listCertificates**
+> PaginatedCertificateList listCertificates()
 
-
+List all certificates owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificatesApi } from '';
+import type { DigitalCertificatesCertificatesApiListCertificatesRequest } from '';
 
-func main() {
-	certificateId := int64(789) // int64 | The unique identifier of the certificate
-	patchedCertificate := *openapiclient.NewPatchedCertificate() // PatchedCertificate |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.PartialUpdateCertificate(context.Background(), certificateId).PatchedCertificate(patchedCertificate).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.PartialUpdateCertificate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateCertificate`: CertificateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.PartialUpdateCertificate`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificatesApiListCertificatesRequest = {
+    // Filter by certificate type (accepts comma-separated values). (optional)
+  certificateType: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by certificate ID (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by issuer (case-insensitive, partial match). (optional)
+  issuer: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by exact last modified date and time. (optional)
+  lastModified: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by managed status. (optional)
+  managed: true,
+    // Filter by certificate name (case-insensitive, partial match). (optional)
+  name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // Filter by exact renewed date and time. (optional)
+  renewedAt: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by renewed date (greater than or equal). (optional)
+  renewedAtGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by renewed date (less than or equal). (optional)
+  renewedAtLte: new Date('1970-01-01T00:00:00.00Z'),
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listCertificates(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**certificateId** | **int64** | The unique identifier of the certificate | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateCertificateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **certificateType** | [**string**] | Filter by certificate type (accepts comma-separated values). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by certificate ID (accepts comma-separated values). | (optional) defaults to undefined
+ **issuer** | [**string**] | Filter by issuer (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModified** | [**Date**] | Filter by exact last modified date and time. | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **managed** | [**boolean**] | Filter by managed status. | (optional) defaults to undefined
+ **name** | [**string**] | Filter by certificate name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **renewedAt** | [**Date**] | Filter by exact renewed date and time. | (optional) defaults to undefined
+ **renewedAtGte** | [**Date**] | Filter by renewed date (greater than or equal). | (optional) defaults to undefined
+ **renewedAtLte** | [**Date**] | Filter by renewed date (less than or equal). | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedCertificate** | [**PatchedCertificate**](PatchedCertificate.md) |  | 
 
 ### Return type
 
-[**CertificateResponse**](CertificateResponse.md)
+**PaginatedCertificateList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveCertificate
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of certificates retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CertificateResponse RetrieveCertificate(ctx, certificateId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a certificate
+# **partialUpdateCertificate**
+> CertificateResponse partialUpdateCertificate()
 
-
+Update one or more fields of an existing certificate without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificatesApi } from '';
+import type { DigitalCertificatesCertificatesApiPartialUpdateCertificateRequest } from '';
 
-func main() {
-	certificateId := int64(789) // int64 | The unique identifier of the certificate
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.RetrieveCertificate(context.Background(), certificateId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.RetrieveCertificate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveCertificate`: CertificateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.RetrieveCertificate`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificatesApiPartialUpdateCertificateRequest = {
+    // The unique identifier of the certificate
+  certificateId: 1,
+  
+  patchedCertificate: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    certificate: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    privateKey: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "certificate",
+    active: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateCertificate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**certificateId** | **int64** | The unique identifier of the certificate | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveCertificateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedCertificate** | **PatchedCertificate**|  |
+ **certificateId** | [**number**] | The unique identifier of the certificate | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**CertificateResponse**](CertificateResponse.md)
+**CertificateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateCertificate
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> CertificateResponse UpdateCertificate(ctx, certificateId).Certificate(certificate).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a certificate
+# **retrieveCertificate**
+> CertificateResponse retrieveCertificate()
 
-
+Retrieve details from a specific certificate in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificatesApi } from '';
+import type { DigitalCertificatesCertificatesApiRetrieveCertificateRequest } from '';
 
-func main() {
-	certificateId := int64(789) // int64 | The unique identifier of the certificate
-	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now(), time.Now()) // Certificate | 
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.UpdateCertificate(context.Background(), certificateId).Certificate(certificate).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.UpdateCertificate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateCertificate`: CertificateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.UpdateCertificate`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificatesApiRetrieveCertificateRequest = {
+    // The unique identifier of the certificate
+  certificateId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveCertificate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**certificateId** | **int64** | The unique identifier of the certificate | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateCertificateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **certificateId** | [**number**] | The unique identifier of the certificate | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **certificate** | [**Certificate**](Certificate.md) |  | 
 
 ### Return type
 
-[**CertificateResponse**](CertificateResponse.md)
+**CertificateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Certificate details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateCertificate**
+> CertificateResponse updateCertificate(certificate)
+
+Update an existing certificate. This replaces the entire certificate with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, DigitalCertificatesCertificatesApi } from '';
+import type { DigitalCertificatesCertificatesApiUpdateCertificateRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificatesApi(configuration);
+
+const request: DigitalCertificatesCertificatesApiUpdateCertificateRequest = {
+    // The unique identifier of the certificate
+  certificateId: 1,
+  
+  certificate: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    certificate: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    privateKey: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "certificate",
+    active: true,
+  },
+};
+
+const data = await apiInstance.updateCertificate(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **certificate** | **Certificate**|  |
+ **certificateId** | [**number**] | The unique identifier of the certificate | defaults to undefined
+
+
+### Return type
+
+**CertificateResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

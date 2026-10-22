@@ -1,227 +1,220 @@
-# \FavoritesAPI
+# .FavoritesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFavorite**](FavoritesAPI.md#CreateFavorite) | **Post** /identity/user/favorites | Create a new favorite
-[**DeleteFavorite**](FavoritesAPI.md#DeleteFavorite) | **Delete** /identity/user/favorites/{favorite_id} | Delete a favorite
-[**ListFavorites**](FavoritesAPI.md#ListFavorites) | **Get** /identity/user/favorites | List of the favorites
+[**createFavorite**](FavoritesApi.md#createFavorite) | **POST** /identity/user/favorites | Create a new favorite
+[**deleteFavorite**](FavoritesApi.md#deleteFavorite) | **DELETE** /identity/user/favorites/{favorite_id} | Delete a favorite
+[**listFavorites**](FavoritesApi.md#listFavorites) | **GET** /identity/user/favorites | List of the favorites
 
 
+# **createFavorite**
+> ResponseFavorite createFavorite(favoriteRequest)
 
-## CreateFavorite
-
-> ResponseFavorite CreateFavorite(ctx).FavoriteRequest(favoriteRequest).Execute()
-
-Create a new favorite
-
-
+Create a new favorite for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FavoritesApi } from '';
+import type { FavoritesApiCreateFavoriteRequest } from '';
 
-func main() {
-	favoriteRequest := *openapiclient.NewFavoriteRequest("Uri_example") // FavoriteRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FavoritesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FavoritesAPI.CreateFavorite(context.Background()).FavoriteRequest(favoriteRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FavoritesAPI.CreateFavorite``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateFavorite`: ResponseFavorite
-	fmt.Fprintf(os.Stdout, "Response from `FavoritesAPI.CreateFavorite`: %v\n", resp)
-}
+const request: FavoritesApiCreateFavoriteRequest = {
+  
+  favoriteRequest: {
+    uri: "/v0/BAMDT/",
+  },
+};
+
+const data = await apiInstance.createFavorite(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFavoriteRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **favoriteRequest** | [**FavoriteRequest**](FavoriteRequest.md) |  | 
-
-### Return type
-
-[**ResponseFavorite**](ResponseFavorite.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteFavorite
-
-> ResponseDeleteFavorite DeleteFavorite(ctx, favoriteId).Execute()
-
-Delete a favorite
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	favoriteId := int64(789) // int64 | A unique integer value identifying this Favorite.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FavoritesAPI.DeleteFavorite(context.Background(), favoriteId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FavoritesAPI.DeleteFavorite``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteFavorite`: ResponseDeleteFavorite
-	fmt.Fprintf(os.Stdout, "Response from `FavoritesAPI.DeleteFavorite`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**favoriteId** | **int64** | A unique integer value identifying this Favorite. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFavoriteRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **favoriteRequest** | **FavoriteRequest**|  |
 
 
 ### Return type
 
-[**ResponseDeleteFavorite**](ResponseDeleteFavorite.md)
+**ResponseFavorite**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListFavorites
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFavoriteList ListFavorites(ctx).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Uri(uri).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List of the favorites
+# **deleteFavorite**
+> ResponseDeleteFavorite deleteFavorite()
 
-
+Delete a specific favorite in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FavoritesApi } from '';
+import type { FavoritesApiDeleteFavoriteRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 |  (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	type_ := "type__example" // string |  (optional)
-	uri := "uri_example" // string |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FavoritesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FavoritesAPI.ListFavorites(context.Background()).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Uri(uri).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FavoritesAPI.ListFavorites``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListFavorites`: PaginatedFavoriteList
-	fmt.Fprintf(os.Stdout, "Response from `FavoritesAPI.ListFavorites`: %v\n", resp)
-}
+const request: FavoritesApiDeleteFavoriteRequest = {
+    // A unique integer value identifying this Favorite.
+  favoriteId: 1,
+};
+
+const data = await apiInstance.deleteFavorite(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListFavoritesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** |  | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **type_** | **string** |  | 
- **uri** | **string** |  | 
+ **favoriteId** | [**number**] | A unique integer value identifying this Favorite. | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedFavoriteList**](PaginatedFavoriteList.md)
+**ResponseDeleteFavorite**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** | Accepted |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listFavorites**
+> PaginatedFavoriteList listFavorites()
+
+List all favorites by your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FavoritesApi } from '';
+import type { FavoritesApiListFavoritesRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FavoritesApi(configuration);
+
+const request: FavoritesApiListFavoritesRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+  
+  id: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+  
+  type: "type_example",
+  
+  uri: "uri_example",
+};
+
+const data = await apiInstance.listFavorites(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] |  | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **type** | [**string**] |  | (optional) defaults to undefined
+ **uri** | [**string**] |  | (optional) defaults to undefined
+
+
+### Return type
+
+**PaginatedFavoriteList**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

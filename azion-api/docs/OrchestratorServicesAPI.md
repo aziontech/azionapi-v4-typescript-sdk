@@ -1,440 +1,421 @@
-# \OrchestratorServicesAPI
+# .OrchestratorServicesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateService**](OrchestratorServicesAPI.md#CreateService) | **Post** /orchestrator/services | Create Service
-[**DestroyService**](OrchestratorServicesAPI.md#DestroyService) | **Delete** /orchestrator/services/{service_id} | Destroy an Service
-[**ListServices**](OrchestratorServicesAPI.md#ListServices) | **Get** /orchestrator/services | List Services
-[**PartialUpdateService**](OrchestratorServicesAPI.md#PartialUpdateService) | **Patch** /orchestrator/services/{service_id} | Partially update an Service
-[**RetrieveService**](OrchestratorServicesAPI.md#RetrieveService) | **Get** /orchestrator/services/{service_id} | Retrieve details of an Service
-[**UpdateService**](OrchestratorServicesAPI.md#UpdateService) | **Put** /orchestrator/services/{service_id} | Update an Service
+[**createService**](OrchestratorServicesApi.md#createService) | **POST** /orchestrator/services | Create Service
+[**destroyService**](OrchestratorServicesApi.md#destroyService) | **DELETE** /orchestrator/services/{service_id} | Destroy an Service
+[**listServices**](OrchestratorServicesApi.md#listServices) | **GET** /orchestrator/services | List Services
+[**partialUpdateService**](OrchestratorServicesApi.md#partialUpdateService) | **PATCH** /orchestrator/services/{service_id} | Partially update an Service
+[**retrieveService**](OrchestratorServicesApi.md#retrieveService) | **GET** /orchestrator/services/{service_id} | Retrieve details of an Service
+[**updateService**](OrchestratorServicesApi.md#updateService) | **PUT** /orchestrator/services/{service_id} | Update an Service
 
 
+# **createService**
+> ResponseAsyncServices createService()
 
-## CreateService
-
-> ResponseAsyncServices CreateService(ctx).ServicesRequest(servicesRequest).Execute()
-
-Create Service
-
-
+Create an Service.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorServicesApi } from '';
+import type { OrchestratorServicesApiCreateServiceRequest } from '';
 
-func main() {
-	servicesRequest := *openapiclient.NewServicesRequest() // ServicesRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorServicesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorServicesAPI.CreateService(context.Background()).ServicesRequest(servicesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorServicesAPI.CreateService``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateService`: ResponseAsyncServices
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorServicesAPI.CreateService`: %v\n", resp)
-}
+const request: OrchestratorServicesApiCreateServiceRequest = {
+  
+  servicesRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    minVersion: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    permissions: 1,
+  },
+};
+
+const data = await apiInstance.createService(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateServiceRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **servicesRequest** | [**ServicesRequest**](ServicesRequest.md) |  | 
-
-### Return type
-
-[**ResponseAsyncServices**](ResponseAsyncServices.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DestroyService
-
-> ResponseAsyncDeleteServices DestroyService(ctx, serviceId).Execute()
-
-Destroy an Service
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	serviceId := int64(789) // int64 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorServicesAPI.DestroyService(context.Background(), serviceId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorServicesAPI.DestroyService``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DestroyService`: ResponseAsyncDeleteServices
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorServicesAPI.DestroyService`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDestroyServiceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **servicesRequest** | **ServicesRequest**|  |
 
 
 ### Return type
 
-[**ResponseAsyncDeleteServices**](ResponseAsyncDeleteServices.md)
+**ResponseAsyncServices**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListServices
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedServicesList ListServices(ctx).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Services
+# **destroyService**
+> ResponseAsyncDeleteServices destroyService()
 
-
+Destruction of a specific Service in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorServicesApi } from '';
+import type { OrchestratorServicesApiDestroyServiceRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	name := "name_example" // string | Search by name (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorServicesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorServicesAPI.ListServices(context.Background()).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorServicesAPI.ListServices``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListServices`: PaginatedServicesList
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorServicesAPI.ListServices`: %v\n", resp)
-}
+const request: OrchestratorServicesApiDestroyServiceRequest = {
+  
+  serviceId: 1,
+};
+
+const data = await apiInstance.destroyService(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListServicesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **name** | **string** | Search by name | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **serviceId** | [**number**] |  | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedServicesList**](PaginatedServicesList.md)
+**ResponseAsyncDeleteServices**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateService
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** | Accepted |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAsyncServices PartialUpdateService(ctx, serviceId).PatchedServicesRequest(patchedServicesRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Service
+# **listServices**
+> PaginatedServicesList listServices()
 
-
+Get the list of Services of your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorServicesApi } from '';
+import type { OrchestratorServicesApiListServicesRequest } from '';
 
-func main() {
-	serviceId := int64(789) // int64 | 
-	patchedServicesRequest := *openapiclient.NewPatchedServicesRequest() // PatchedServicesRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorServicesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorServicesAPI.PartialUpdateService(context.Background(), serviceId).PatchedServicesRequest(patchedServicesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorServicesAPI.PartialUpdateService``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateService`: ResponseAsyncServices
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorServicesAPI.PartialUpdateService`: %v\n", resp)
-}
+const request: OrchestratorServicesApiListServicesRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Search by name (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+};
+
+const data = await apiInstance.listServices(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateServiceRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **name** | [**string**] | Search by name | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
 
- **patchedServicesRequest** | [**PatchedServicesRequest**](PatchedServicesRequest.md) |  | 
 
 ### Return type
 
-[**ResponseAsyncServices**](ResponseAsyncServices.md)
+**PaginatedServicesList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveService
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseRetrieveServices RetrieveService(ctx, serviceId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Service
+# **partialUpdateService**
+> ResponseAsyncServices partialUpdateService()
 
-
+Update one or more fields of an existing Service without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorServicesApi } from '';
+import type { OrchestratorServicesApiPartialUpdateServiceRequest } from '';
 
-func main() {
-	serviceId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorServicesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorServicesAPI.RetrieveService(context.Background(), serviceId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorServicesAPI.RetrieveService``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveService`: ResponseRetrieveServices
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorServicesAPI.RetrieveService`: %v\n", resp)
-}
+const request: OrchestratorServicesApiPartialUpdateServiceRequest = {
+  
+  serviceId: 1,
+  
+  patchedServicesRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    minVersion: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    permissions: 1,
+  },
+};
+
+const data = await apiInstance.partialUpdateService(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveServiceRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedServicesRequest** | **PatchedServicesRequest**|  |
+ **serviceId** | [**number**] |  | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponseRetrieveServices**](ResponseRetrieveServices.md)
+**ResponseAsyncServices**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateService
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAsyncServices UpdateService(ctx, serviceId).ServicesRequest(servicesRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Service
+# **retrieveService**
+> ResponseRetrieveServices retrieveService()
 
-
+Retrieve details of a specific Service in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorServicesApi } from '';
+import type { OrchestratorServicesApiRetrieveServiceRequest } from '';
 
-func main() {
-	serviceId := "serviceId_example" // string | 
-	servicesRequest := *openapiclient.NewServicesRequest() // ServicesRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorServicesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorServicesAPI.UpdateService(context.Background(), serviceId).ServicesRequest(servicesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorServicesAPI.UpdateService``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateService`: ResponseAsyncServices
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorServicesAPI.UpdateService`: %v\n", resp)
-}
+const request: OrchestratorServicesApiRetrieveServiceRequest = {
+  
+  serviceId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveService(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serviceId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateServiceRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **serviceId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **servicesRequest** | [**ServicesRequest**](ServicesRequest.md) |  | 
 
 ### Return type
 
-[**ResponseAsyncServices**](ResponseAsyncServices.md)
+**ResponseRetrieveServices**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateService**
+> ResponseAsyncServices updateService()
+
+Update an existing Service replacing all fields.
+
+### Example
+
+
+```typescript
+import { createConfiguration, OrchestratorServicesApi } from '';
+import type { OrchestratorServicesApiUpdateServiceRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorServicesApi(configuration);
+
+const request: OrchestratorServicesApiUpdateServiceRequest = {
+  
+  serviceId: "service_id_example",
+  
+  servicesRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    minVersion: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    permissions: 1,
+  },
+};
+
+const data = await apiInstance.updateService(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **servicesRequest** | **ServicesRequest**|  |
+ **serviceId** | [**string**] |  | defaults to undefined
+
+
+### Return type
+
+**ResponseAsyncServices**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

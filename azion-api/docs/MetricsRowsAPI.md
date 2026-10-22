@@ -1,483 +1,443 @@
-# \MetricsRowsAPI
+# .MetricsRowsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateRow**](MetricsRowsAPI.md#CreateRow) | **Post** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows | Create a new row
-[**DeleteRow**](MetricsRowsAPI.md#DeleteRow) | **Delete** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Delete a row
-[**ListRows**](MetricsRowsAPI.md#ListRows) | **Get** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows | List of the rows
-[**OrderingRow**](MetricsRowsAPI.md#OrderingRow) | **Put** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/order | Ordering rows in dashboard
-[**RetrieveRow**](MetricsRowsAPI.md#RetrieveRow) | **Get** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Retrieve details from a row
-[**UpdateRow**](MetricsRowsAPI.md#UpdateRow) | **Put** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Update a row
+[**createRow**](MetricsRowsApi.md#createRow) | **POST** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows | Create a new row
+[**deleteRow**](MetricsRowsApi.md#deleteRow) | **DELETE** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Delete a row
+[**listRows**](MetricsRowsApi.md#listRows) | **GET** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows | List of the rows
+[**orderingRow**](MetricsRowsApi.md#orderingRow) | **PUT** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/order | Ordering rows in dashboard
+[**retrieveRow**](MetricsRowsApi.md#retrieveRow) | **GET** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Retrieve details from a row
+[**updateRow**](MetricsRowsApi.md#updateRow) | **PUT** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Update a row
 
 
+# **createRow**
+> RowResponse createRow(rowRequest)
 
-## CreateRow
-
-> RowResponse CreateRow(ctx, dashboardId, folderId).RowRequest(rowRequest).Execute()
-
-Create a new row
-
-
+Create a new row in dashboard.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsRowsApi } from '';
+import type { MetricsRowsApiCreateRowRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	rowRequest := *openapiclient.NewRowRequest("Title_example") // RowRequest | 
+const configuration = createConfiguration();
+const apiInstance = new MetricsRowsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.CreateRow(context.Background(), dashboardId, folderId).RowRequest(rowRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.CreateRow``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateRow`: RowResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.CreateRow`: %v\n", resp)
-}
+const request: MetricsRowsApiCreateRowRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+  
+  rowRequest: {
+    title: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createRow(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateRowRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
- **rowRequest** | [**RowRequest**](RowRequest.md) |  | 
-
-### Return type
-
-[**RowResponse**](RowResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteRow
-
-> DeleteResponse DeleteRow(ctx, dashboardId, folderId, rowId).Execute()
-
-Delete a row
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	rowId := int64(789) // int64 | The unique identifier of the row
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.DeleteRow(context.Background(), dashboardId, folderId, rowId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.DeleteRow``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteRow`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.DeleteRow`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteRowRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
+ **rowRequest** | **RowRequest**|  |
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**RowResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListRows
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedRowListResponseList ListRows(ctx, dashboardId, folderId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List of the rows
+# **deleteRow**
+> DeleteResponse deleteRow()
 
-
+Delete a specific row.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsRowsApi } from '';
+import type { MetricsRowsApiDeleteRowRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	title := "title_example" // string | Filter by title (case-insensitive, partial match). (optional)
+const configuration = createConfiguration();
+const apiInstance = new MetricsRowsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.ListRows(context.Background(), dashboardId, folderId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.ListRows``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListRows`: PaginatedRowListResponseList
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.ListRows`: %v\n", resp)
-}
+const request: MetricsRowsApiDeleteRowRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+};
+
+const data = await apiInstance.deleteRow(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListRowsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **title** | **string** | Filter by title (case-insensitive, partial match). | 
 
 ### Return type
 
-[**PaginatedRowListResponseList**](PaginatedRowListResponseList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## OrderingRow
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful deletion |  -  |
+**500** | Internal Server Error |  -  |
 
-> OrderResponse OrderingRow(ctx, dashboardId, folderId).OrderRequest(orderRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Ordering rows in dashboard
+# **listRows**
+> PaginatedRowListResponseList listRows()
 
-
+List all rows in dashboards.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsRowsApi } from '';
+import type { MetricsRowsApiListRowsRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	orderRequest := *openapiclient.NewOrderRequest([]int64{int64(123)}) // OrderRequest | 
+const configuration = createConfiguration();
+const apiInstance = new MetricsRowsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.OrderingRow(context.Background(), dashboardId, folderId).OrderRequest(orderRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.OrderingRow``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `OrderingRow`: OrderResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.OrderingRow`: %v\n", resp)
-}
+const request: MetricsRowsApiListRowsRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+    // Filter by title (case-insensitive, partial match). (optional)
+  title: "jUR,rZ#UM/?R,Fp^l6$ARj",
+};
+
+const data = await apiInstance.listRows(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrderingRowRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **title** | [**string**] | Filter by title (case-insensitive, partial match). | (optional) defaults to undefined
 
-
- **orderRequest** | [**OrderRequest**](OrderRequest.md) |  | 
 
 ### Return type
 
-[**OrderResponse**](OrderResponse.md)
+**PaginatedRowListResponseList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveRow
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> RowResponse RetrieveRow(ctx, dashboardId, folderId, rowId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a row
+# **orderingRow**
+> OrderResponse orderingRow(orderRequest)
 
-
+Reorder all rows for a specific Dahsboard.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsRowsApi } from '';
+import type { MetricsRowsApiOrderingRowRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	rowId := int64(789) // int64 | The unique identifier of the row
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new MetricsRowsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.RetrieveRow(context.Background(), dashboardId, folderId, rowId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.RetrieveRow``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveRow`: RowResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.RetrieveRow`: %v\n", resp)
-}
+const request: MetricsRowsApiOrderingRowRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+  
+  orderRequest: {
+    order: [
+      1,
+    ],
+  },
+};
+
+const data = await apiInstance.orderingRow(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveRowRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **orderRequest** | **OrderRequest**|  |
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
 
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**RowResponse**](RowResponse.md)
+**OrderResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateRow
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** |  |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> RowResponse UpdateRow(ctx, dashboardId, folderId, rowId).RowRequest(rowRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a row
+# **retrieveRow**
+> RowResponse retrieveRow()
 
-
+Retrieve details from a specific row.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsRowsApi } from '';
+import type { MetricsRowsApiRetrieveRowRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	rowId := int64(789) // int64 | The unique identifier of the row
-	rowRequest := *openapiclient.NewRowRequest("Title_example") // RowRequest | 
+const configuration = createConfiguration();
+const apiInstance = new MetricsRowsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.UpdateRow(context.Background(), dashboardId, folderId, rowId).RowRequest(rowRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.UpdateRow``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateRow`: RowResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.UpdateRow`: %v\n", resp)
-}
+const request: MetricsRowsApiRetrieveRowRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveRow(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateRowRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
-
- **rowRequest** | [**RowRequest**](RowRequest.md) |  | 
 
 ### Return type
 
-[**RowResponse**](RowResponse.md)
+**RowResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateRow**
+> RowResponse updateRow(rowRequest)
+
+Update an existing row. 
+
+### Example
+
+
+```typescript
+import { createConfiguration, MetricsRowsApi } from '';
+import type { MetricsRowsApiUpdateRowRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new MetricsRowsApi(configuration);
+
+const request: MetricsRowsApiUpdateRowRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+  
+  rowRequest: {
+    title: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateRow(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rowRequest** | **RowRequest**|  |
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
+
+
+### Return type
+
+**RowResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

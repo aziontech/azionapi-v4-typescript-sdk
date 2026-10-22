@@ -1,209 +1,197 @@
-# \AccountsLoggedInAPI
+# .AccountsLoggedInApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PartialUpdateLoggedAccount**](AccountsLoggedInAPI.md#PartialUpdateLoggedAccount) | **Patch** /account/account | Partially update logged account details
-[**RetrieveLoggedAccountDetails**](AccountsLoggedInAPI.md#RetrieveLoggedAccountDetails) | **Get** /account/account | Retrieve logged account details
-[**UpdateLoggedAccount**](AccountsLoggedInAPI.md#UpdateLoggedAccount) | **Put** /account/account | Update logged account details
+[**partialUpdateLoggedAccount**](AccountsLoggedInApi.md#partialUpdateLoggedAccount) | **PATCH** /account/account | Partially update logged account details
+[**retrieveLoggedAccountDetails**](AccountsLoggedInApi.md#retrieveLoggedAccountDetails) | **GET** /account/account | Retrieve logged account details
+[**updateLoggedAccount**](AccountsLoggedInApi.md#updateLoggedAccount) | **PUT** /account/account | Update logged account details
 
 
+# **partialUpdateLoggedAccount**
+> ResponseAccount | ResponseAsyncAccount partialUpdateLoggedAccount()
 
-## PartialUpdateLoggedAccount
-
-> ResponseAccount PartialUpdateLoggedAccount(ctx).PatchedAccountRequest(patchedAccountRequest).Execute()
-
-Partially update logged account details
-
-
+Partially update specific fields of the currently logged-in user\'s account. Only editable fields, such as `name`, can be updated with this operation.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AccountsLoggedInApi } from '';
+import type { AccountsLoggedInApiPartialUpdateLoggedAccountRequest } from '';
 
-func main() {
-	patchedAccountRequest := openapiclient.PatchedAccountRequest{PatchedBrandRequest: openapiclient.NewPatchedBrandRequest("Type_example")} // PatchedAccountRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new AccountsLoggedInApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsLoggedInAPI.PartialUpdateLoggedAccount(context.Background()).PatchedAccountRequest(patchedAccountRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountsLoggedInAPI.PartialUpdateLoggedAccount``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateLoggedAccount`: ResponseAccount
-	fmt.Fprintf(os.Stdout, "Response from `AccountsLoggedInAPI.PartialUpdateLoggedAccount`: %v\n", resp)
-}
+const request: AccountsLoggedInApiPartialUpdateLoggedAccountRequest = {
+  
+  patchedAccountRequest: null,
+};
+
+const data = await apiInstance.partialUpdateLoggedAccount(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateLoggedAccountRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **patchedAccountRequest** | [**PatchedAccountRequest**](PatchedAccountRequest.md) |  | 
+ **patchedAccountRequest** | **PatchedAccountRequest**|  |
+
 
 ### Return type
 
-[**ResponseAccount**](ResponseAccount.md)
+**ResponseAccount | ResponseAsyncAccount**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveLoggedAccountDetails
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseRetrieveAccount RetrieveLoggedAccountDetails(ctx).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve logged account details
+# **retrieveLoggedAccountDetails**
+> ResponseRetrieveAccount retrieveLoggedAccountDetails()
 
-
+Retrieve detailed information about the currently logged-in user\'s account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AccountsLoggedInApi } from '';
+import type { AccountsLoggedInApiRetrieveLoggedAccountDetailsRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new AccountsLoggedInApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsLoggedInAPI.RetrieveLoggedAccountDetails(context.Background()).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountsLoggedInAPI.RetrieveLoggedAccountDetails``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveLoggedAccountDetails`: ResponseRetrieveAccount
-	fmt.Fprintf(os.Stdout, "Response from `AccountsLoggedInAPI.RetrieveLoggedAccountDetails`: %v\n", resp)
-}
+const request: AccountsLoggedInApiRetrieveLoggedAccountDetailsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveLoggedAccountDetails(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveLoggedAccountDetailsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
 
 ### Return type
 
-[**ResponseRetrieveAccount**](ResponseRetrieveAccount.md)
+**ResponseRetrieveAccount**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateLoggedAccount
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAccount UpdateLoggedAccount(ctx).AccountRequest(accountRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update logged account details
+# **updateLoggedAccount**
+> ResponseAccount | ResponseAsyncAccount updateLoggedAccount()
 
-
+Update the details of the currently logged-in user\'s account. This operation allows replacing the entire account data with new values.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AccountsLoggedInApi } from '';
+import type { AccountsLoggedInApiUpdateLoggedAccountRequest } from '';
 
-func main() {
-	accountRequest := openapiclient.AccountRequest{BrandRequest: openapiclient.NewBrandRequest("Name_example", "Type_example")} // AccountRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new AccountsLoggedInApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsLoggedInAPI.UpdateLoggedAccount(context.Background()).AccountRequest(accountRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountsLoggedInAPI.UpdateLoggedAccount``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateLoggedAccount`: ResponseAccount
-	fmt.Fprintf(os.Stdout, "Response from `AccountsLoggedInAPI.UpdateLoggedAccount`: %v\n", resp)
-}
+const request: AccountsLoggedInApiUpdateLoggedAccountRequest = {
+  
+  accountRequest: null,
+};
+
+const data = await apiInstance.updateLoggedAccount(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLoggedAccountRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountRequest** | [**AccountRequest**](AccountRequest.md) |  | 
+ **accountRequest** | **AccountRequest**|  |
+
 
 ### Return type
 
-[**ResponseAccount**](ResponseAccount.md)
+**ResponseAccount | ResponseAsyncAccount**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

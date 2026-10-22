@@ -1,528 +1,517 @@
-# \FirewallsAPI
+# .FirewallsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CloneFirewall**](FirewallsAPI.md#CloneFirewall) | **Post** /workspace/firewalls/{firewall_id}/clone | Clone a Firewall
-[**CreateFirewall**](FirewallsAPI.md#CreateFirewall) | **Post** /workspace/firewalls | Create a Firewall
-[**DeleteFirewall**](FirewallsAPI.md#DeleteFirewall) | **Delete** /workspace/firewalls/{firewall_id} | Delete a Firewall
-[**ListFirewalls**](FirewallsAPI.md#ListFirewalls) | **Get** /workspace/firewalls | List Firewalls
-[**PartialUpdateFirewall**](FirewallsAPI.md#PartialUpdateFirewall) | **Patch** /workspace/firewalls/{firewall_id} | Partially update a Firewall
-[**RetrieveFirewall**](FirewallsAPI.md#RetrieveFirewall) | **Get** /workspace/firewalls/{firewall_id} | Retrieve details from a Firewall
-[**UpdateFirewall**](FirewallsAPI.md#UpdateFirewall) | **Put** /workspace/firewalls/{firewall_id} | Update a Firewall
+[**cloneFirewall**](FirewallsApi.md#cloneFirewall) | **POST** /workspace/firewalls/{firewall_id}/clone | Clone a Firewall
+[**createFirewall**](FirewallsApi.md#createFirewall) | **POST** /workspace/firewalls | Create a Firewall
+[**deleteFirewall**](FirewallsApi.md#deleteFirewall) | **DELETE** /workspace/firewalls/{firewall_id} | Delete a Firewall
+[**listFirewalls**](FirewallsApi.md#listFirewalls) | **GET** /workspace/firewalls | List Firewalls
+[**partialUpdateFirewall**](FirewallsApi.md#partialUpdateFirewall) | **PATCH** /workspace/firewalls/{firewall_id} | Partially update a Firewall
+[**retrieveFirewall**](FirewallsApi.md#retrieveFirewall) | **GET** /workspace/firewalls/{firewall_id} | Retrieve details from a Firewall
+[**updateFirewall**](FirewallsApi.md#updateFirewall) | **PUT** /workspace/firewalls/{firewall_id} | Update a Firewall
 
 
+# **cloneFirewall**
+> FirewallResponse cloneFirewall(cloneFirewallRequest)
 
-## CloneFirewall
-
-> FirewallResponse CloneFirewall(ctx, firewallId).CloneFirewallRequest(cloneFirewallRequest).Execute()
-
-Clone a Firewall
-
-
+Create a new Firewall by performing a deep copy of an existing Firewall, including its Function Instances and Rules Engine.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsApi } from '';
+import type { FirewallsApiCloneFirewallRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	cloneFirewallRequest := *openapiclient.NewCloneFirewallRequest("Name_example") // CloneFirewallRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.CloneFirewall(context.Background(), firewallId).CloneFirewallRequest(cloneFirewallRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.CloneFirewall``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CloneFirewall`: FirewallResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.CloneFirewall`: %v\n", resp)
-}
+const request: FirewallsApiCloneFirewallRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+  
+  cloneFirewallRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.cloneFirewall(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCloneFirewallRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **cloneFirewallRequest** | [**CloneFirewallRequest**](CloneFirewallRequest.md) |  | 
-
-### Return type
-
-[**FirewallResponse**](FirewallResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateFirewall
-
-> FirewallResponse CreateFirewall(ctx).FirewallRequest(firewallRequest).Execute()
-
-Create a Firewall
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	firewallRequest := *openapiclient.NewFirewallRequest("Name_example") // FirewallRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.CreateFirewall(context.Background()).FirewallRequest(firewallRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.CreateFirewall``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateFirewall`: FirewallResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.CreateFirewall`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFirewallRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **firewallRequest** | [**FirewallRequest**](FirewallRequest.md) |  | 
-
-### Return type
-
-[**FirewallResponse**](FirewallResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteFirewall
-
-> DeleteResponse DeleteFirewall(ctx, firewallId).Execute()
-
-Delete a Firewall
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.DeleteFirewall(context.Background(), firewallId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.DeleteFirewall``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteFirewall`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.DeleteFirewall`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFirewallRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **cloneFirewallRequest** | **CloneFirewallRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**FirewallResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListFirewalls
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Firewall cloned successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFirewallList ListFirewalls(ctx).Active(active).Debug(debug).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Firewalls
+# **createFirewall**
+> FirewallResponse createFirewall(firewallRequest)
 
-
+Create a new Firewall for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsApi } from '';
+import type { FirewallsApiCreateFirewallRequest } from '';
 
-func main() {
-	active := true // bool | Filter by active status. (optional)
-	debug := true // bool | Filter by debug rules status. (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.ListFirewalls(context.Background()).Active(active).Debug(debug).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.ListFirewalls``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListFirewalls`: PaginatedFirewallList
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.ListFirewalls`: %v\n", resp)
-}
+const request: FirewallsApiCreateFirewallRequest = {
+  
+  firewallRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    modules: {
+      functions: null,
+      networkProtection: null,
+      waf: null,
+    },
+    debug: false,
+    active: true,
+  },
+};
+
+const data = await apiInstance.createFirewall(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListFirewallsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** | Filter by active status. | 
- **debug** | **bool** | Filter by debug rules status. | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **firewallRequest** | **FirewallRequest**|  |
+
 
 ### Return type
 
-[**PaginatedFirewallList**](PaginatedFirewallList.md)
+**FirewallResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateFirewall
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Firewall created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallResponse PartialUpdateFirewall(ctx, firewallId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Firewall
+# **deleteFirewall**
+> DeleteResponse deleteFirewall()
 
-
+Delete a specific Firewall in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsApi } from '';
+import type { FirewallsApiDeleteFirewallRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	patchedFirewallRequest := *openapiclient.NewPatchedFirewallRequest() // PatchedFirewallRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.PartialUpdateFirewall(context.Background(), firewallId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.PartialUpdateFirewall``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateFirewall`: FirewallResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.PartialUpdateFirewall`: %v\n", resp)
-}
+const request: FirewallsApiDeleteFirewallRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+};
+
+const data = await apiInstance.deleteFirewall(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateFirewallRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
 
- **patchedFirewallRequest** | [**PatchedFirewallRequest**](PatchedFirewallRequest.md) |  | 
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveFirewall
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallResponse RetrieveFirewall(ctx, firewallId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a Firewall
+# **listFirewalls**
+> PaginatedFirewallList listFirewalls()
 
-
+List all Firewalls owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsApi } from '';
+import type { FirewallsApiListFirewallsRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.RetrieveFirewall(context.Background(), firewallId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.RetrieveFirewall``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveFirewall`: FirewallResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.RetrieveFirewall`: %v\n", resp)
-}
+const request: FirewallsApiListFirewallsRequest = {
+    // Filter by active status. (optional)
+  active: true,
+    // Filter by debug rules status. (optional)
+  debug: true,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listFirewalls(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveFirewallRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | [**boolean**] | Filter by active status. | (optional) defaults to undefined
+ **debug** | [**boolean**] | Filter by debug rules status. | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+**PaginatedFirewallList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateFirewall
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of firewalls retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallResponse UpdateFirewall(ctx, firewallId).FirewallRequest(firewallRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Firewall
+# **partialUpdateFirewall**
+> FirewallResponse partialUpdateFirewall()
 
-
+Update one or more fields of an existing Firewall without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsApi } from '';
+import type { FirewallsApiPartialUpdateFirewallRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	firewallRequest := *openapiclient.NewFirewallRequest("Name_example") // FirewallRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.UpdateFirewall(context.Background(), firewallId).FirewallRequest(firewallRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.UpdateFirewall``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateFirewall`: FirewallResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.UpdateFirewall`: %v\n", resp)
-}
+const request: FirewallsApiPartialUpdateFirewallRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+  
+  patchedFirewallRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    modules: {
+      functions: null,
+      networkProtection: null,
+      waf: null,
+    },
+    debug: false,
+    active: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateFirewall(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFirewallRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedFirewallRequest** | **PatchedFirewallRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
 
- **firewallRequest** | [**FirewallRequest**](FirewallRequest.md) |  | 
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+**FirewallResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveFirewall**
+> FirewallResponse retrieveFirewall()
+
+Retrieve details from a specific Firewall in your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FirewallsApi } from '';
+import type { FirewallsApiRetrieveFirewallRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FirewallsApi(configuration);
+
+const request: FirewallsApiRetrieveFirewallRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveFirewall(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**FirewallResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateFirewall**
+> FirewallResponse updateFirewall(firewallRequest)
+
+Update an existing Firewall. This replaces the entire Firewall with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FirewallsApi } from '';
+import type { FirewallsApiUpdateFirewallRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FirewallsApi(configuration);
+
+const request: FirewallsApiUpdateFirewallRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+  
+  firewallRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    modules: {
+      functions: null,
+      networkProtection: null,
+      waf: null,
+    },
+    debug: false,
+    active: true,
+  },
+};
+
+const data = await apiInstance.updateFirewall(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **firewallRequest** | **FirewallRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+
+
+### Return type
+
+**FirewallResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

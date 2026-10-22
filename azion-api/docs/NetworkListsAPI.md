@@ -1,457 +1,447 @@
-# \NetworkListsAPI
+# .NetworkListsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateNetworkList**](NetworkListsAPI.md#CreateNetworkList) | **Post** /workspace/network_lists | Create a Network List
-[**DeleteNetworkList**](NetworkListsAPI.md#DeleteNetworkList) | **Delete** /workspace/network_lists/{network_list_id} | Delete a Network List
-[**ListNetworkLists**](NetworkListsAPI.md#ListNetworkLists) | **Get** /workspace/network_lists | List Network Lists
-[**PartialUpdateNetworkList**](NetworkListsAPI.md#PartialUpdateNetworkList) | **Patch** /workspace/network_lists/{network_list_id} | Partially update a Network List
-[**RetrieveNetworkList**](NetworkListsAPI.md#RetrieveNetworkList) | **Get** /workspace/network_lists/{network_list_id} | Retrieve details of a Network List
-[**UpdateNetworkList**](NetworkListsAPI.md#UpdateNetworkList) | **Put** /workspace/network_lists/{network_list_id} | Update a Network List
+[**createNetworkList**](NetworkListsApi.md#createNetworkList) | **POST** /workspace/network_lists | Create a Network List
+[**deleteNetworkList**](NetworkListsApi.md#deleteNetworkList) | **DELETE** /workspace/network_lists/{network_list_id} | Delete a Network List
+[**listNetworkLists**](NetworkListsApi.md#listNetworkLists) | **GET** /workspace/network_lists | List Network Lists
+[**partialUpdateNetworkList**](NetworkListsApi.md#partialUpdateNetworkList) | **PATCH** /workspace/network_lists/{network_list_id} | Partially update a Network List
+[**retrieveNetworkList**](NetworkListsApi.md#retrieveNetworkList) | **GET** /workspace/network_lists/{network_list_id} | Retrieve details of a Network List
+[**updateNetworkList**](NetworkListsApi.md#updateNetworkList) | **PUT** /workspace/network_lists/{network_list_id} | Update a Network List
 
 
+# **createNetworkList**
+> NetworkListResponse createNetworkList(networkListRequest)
 
-## CreateNetworkList
-
-> NetworkListResponse CreateNetworkList(ctx).NetworkListRequest(networkListRequest).Execute()
-
-Create a Network List
-
-
+Create a new Network List in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListsApi } from '';
+import type { NetworkListsApiCreateNetworkListRequest } from '';
 
-func main() {
-	networkListRequest := *openapiclient.NewNetworkListRequest("Name_example", openapiclient.NetworkListTypeEnum("asn"), []string{"Items_example"}) // NetworkListRequest | 
+const configuration = createConfiguration();
+const apiInstance = new NetworkListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.CreateNetworkList(context.Background()).NetworkListRequest(networkListRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.CreateNetworkList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateNetworkList`: NetworkListResponse
-	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.CreateNetworkList`: %v\n", resp)
-}
+const request: NetworkListsApiCreateNetworkListRequest = {
+  
+  networkListRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "asn",
+    items: [
+      "jUR,rZ#UM/?R,Fp^l6$ARj",
+    ],
+    active: true,
+  },
+};
+
+const data = await apiInstance.createNetworkList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateNetworkListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **networkListRequest** | [**NetworkListRequest**](NetworkListRequest.md) |  | 
-
-### Return type
-
-[**NetworkListResponse**](NetworkListResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteNetworkList
-
-> DeleteResponse DeleteNetworkList(ctx, networkListId).Execute()
-
-Delete a Network List
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.DeleteNetworkList(context.Background(), networkListId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.DeleteNetworkList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteNetworkList`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.DeleteNetworkList`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | A unique integer value identifying the network list. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteNetworkListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **networkListRequest** | **NetworkListRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**NetworkListResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListNetworkLists
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Network list created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedNetworkListSummaryList ListNetworkLists(ctx).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Network Lists
+# **deleteNetworkList**
+> DeleteResponse deleteNetworkList()
 
-
+Delete a specific Network List in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListsApi } from '';
+import type { NetworkListsApiDeleteNetworkListRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	listTypeIn := "listTypeIn_example" // string | Filter by list type (accepts comma-separated values). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.ListNetworkLists(context.Background()).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.ListNetworkLists``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListNetworkLists`: PaginatedNetworkListSummaryList
-	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.ListNetworkLists`: %v\n", resp)
-}
+const request: NetworkListsApiDeleteNetworkListRequest = {
+    // A unique integer value identifying the network list.
+  networkListId: 1,
+};
+
+const data = await apiInstance.deleteNetworkList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListNetworkListsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **listTypeIn** | **string** | Filter by list type (accepts comma-separated values). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **networkListId** | [**number**] | A unique integer value identifying the network list. | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedNetworkListSummaryList**](PaginatedNetworkListSummaryList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateNetworkList
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Network list deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> NetworkListResponse PartialUpdateNetworkList(ctx, networkListId).PatchedNetworkListRequest(patchedNetworkListRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Network List
+# **listNetworkLists**
+> PaginatedNetworkListSummaryList listNetworkLists()
 
-
+List all Network Lists owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListsApi } from '';
+import type { NetworkListsApiListNetworkListsRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
-	patchedNetworkListRequest := *openapiclient.NewPatchedNetworkListRequest() // PatchedNetworkListRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.PartialUpdateNetworkList(context.Background(), networkListId).PatchedNetworkListRequest(patchedNetworkListRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.PartialUpdateNetworkList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateNetworkList`: NetworkListResponse
-	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.PartialUpdateNetworkList`: %v\n", resp)
-}
+const request: NetworkListsApiListNetworkListsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by list type (accepts comma-separated values). (optional)
+  listTypeIn: "list_type__in_example",
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listNetworkLists(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | A unique integer value identifying the network list. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateNetworkListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **listTypeIn** | [**string**] | Filter by list type (accepts comma-separated values). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedNetworkListRequest** | [**PatchedNetworkListRequest**](PatchedNetworkListRequest.md) |  | 
 
 ### Return type
 
-[**NetworkListResponse**](NetworkListResponse.md)
+**PaginatedNetworkListSummaryList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveNetworkList
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of network lists retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> NetworkListResponse RetrieveNetworkList(ctx, networkListId).Fields(fields).Ipv4(ipv4).Ipv6(ipv6).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of a Network List
+# **partialUpdateNetworkList**
+> NetworkListResponse partialUpdateNetworkList()
 
-
+Update one or more fields of an existing Network List without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListsApi } from '';
+import type { NetworkListsApiPartialUpdateNetworkListRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ipv4 := true // bool | Filter by IPv4. Only applicable for network lists of type 'ip_cidr'. (optional)
-	ipv6 := true // bool | Filter by IPv6. Only applicable for network lists of type 'ip_cidr'. (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.RetrieveNetworkList(context.Background(), networkListId).Fields(fields).Ipv4(ipv4).Ipv6(ipv6).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.RetrieveNetworkList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveNetworkList`: NetworkListResponse
-	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.RetrieveNetworkList`: %v\n", resp)
-}
+const request: NetworkListsApiPartialUpdateNetworkListRequest = {
+    // A unique integer value identifying the network list.
+  networkListId: 1,
+  
+  patchedNetworkListRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "asn",
+    items: [
+      "jUR,rZ#UM/?R,Fp^l6$ARj",
+    ],
+    active: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateNetworkList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | A unique integer value identifying the network list. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveNetworkListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedNetworkListRequest** | **PatchedNetworkListRequest**|  |
+ **networkListId** | [**number**] | A unique integer value identifying the network list. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ipv4** | **bool** | Filter by IPv4. Only applicable for network lists of type &#39;ip_cidr&#39;. | 
- **ipv6** | **bool** | Filter by IPv6. Only applicable for network lists of type &#39;ip_cidr&#39;. | 
 
 ### Return type
 
-[**NetworkListResponse**](NetworkListResponse.md)
+**NetworkListResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateNetworkList
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Network list partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> NetworkListResponse UpdateNetworkList(ctx, networkListId).NetworkListRequest(networkListRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Network List
+# **retrieveNetworkList**
+> NetworkListResponse retrieveNetworkList()
 
-
+Retrieve details of a specific Network List in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListsApi } from '';
+import type { NetworkListsApiRetrieveNetworkListRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
-	networkListRequest := *openapiclient.NewNetworkListRequest("Name_example", openapiclient.NetworkListTypeEnum("asn"), []string{"Items_example"}) // NetworkListRequest | 
+const configuration = createConfiguration();
+const apiInstance = new NetworkListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.UpdateNetworkList(context.Background(), networkListId).NetworkListRequest(networkListRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.UpdateNetworkList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateNetworkList`: NetworkListResponse
-	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.UpdateNetworkList`: %v\n", resp)
-}
+const request: NetworkListsApiRetrieveNetworkListRequest = {
+    // A unique integer value identifying the network list.
+  networkListId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by IPv4. Only applicable for network lists of type \'ip_cidr\'. (optional)
+  ipv4: true,
+    // Filter by IPv6. Only applicable for network lists of type \'ip_cidr\'. (optional)
+  ipv6: true,
+};
+
+const data = await apiInstance.retrieveNetworkList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | A unique integer value identifying the network list. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateNetworkListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **networkListId** | [**number**] | A unique integer value identifying the network list. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ipv4** | [**boolean**] | Filter by IPv4. Only applicable for network lists of type \&#39;ip_cidr\&#39;. | (optional) defaults to undefined
+ **ipv6** | [**boolean**] | Filter by IPv6. Only applicable for network lists of type \&#39;ip_cidr\&#39;. | (optional) defaults to undefined
 
- **networkListRequest** | [**NetworkListRequest**](NetworkListRequest.md) |  | 
 
 ### Return type
 
-[**NetworkListResponse**](NetworkListResponse.md)
+**NetworkListResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Network list details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateNetworkList**
+> NetworkListResponse updateNetworkList(networkListRequest)
+
+Update an existing Network List. This replaces the entire Network List with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, NetworkListsApi } from '';
+import type { NetworkListsApiUpdateNetworkListRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new NetworkListsApi(configuration);
+
+const request: NetworkListsApiUpdateNetworkListRequest = {
+    // A unique integer value identifying the network list.
+  networkListId: 1,
+  
+  networkListRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "asn",
+    items: [
+      "jUR,rZ#UM/?R,Fp^l6$ARj",
+    ],
+    active: true,
+  },
+};
+
+const data = await apiInstance.updateNetworkList(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **networkListRequest** | **NetworkListRequest**|  |
+ **networkListId** | [**number**] | A unique integer value identifying the network list. | defaults to undefined
+
+
+### Return type
+
+**NetworkListResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Network list updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

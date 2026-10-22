@@ -1,142 +1,136 @@
-# \PolicySessionTimeoutPolicyAPI
+# .PolicySessionTimeoutPolicyApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveSessionTimeoutPolicy**](PolicySessionTimeoutPolicyAPI.md#RetrieveSessionTimeoutPolicy) | **Get** /auth/policies/session | Get Session Timeout Policy
-[**UpdateSessionTimeoutPolicy**](PolicySessionTimeoutPolicyAPI.md#UpdateSessionTimeoutPolicy) | **Put** /auth/policies/session | Put Session Timeout Policy
+[**retrieveSessionTimeoutPolicy**](PolicySessionTimeoutPolicyApi.md#retrieveSessionTimeoutPolicy) | **GET** /auth/policies/session | Get Session Timeout Policy
+[**updateSessionTimeoutPolicy**](PolicySessionTimeoutPolicyApi.md#updateSessionTimeoutPolicy) | **PUT** /auth/policies/session | Put Session Timeout Policy
 
 
+# **retrieveSessionTimeoutPolicy**
+> SessionTimeoutPolicyResponse retrieveSessionTimeoutPolicy()
 
-## RetrieveSessionTimeoutPolicy
-
-> SessionTimeoutPolicyResponse RetrieveSessionTimeoutPolicy(ctx).Fields(fields).Execute()
-
-Get Session Timeout Policy
-
-
+Get Session Timeout Policy for the current account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicySessionTimeoutPolicyApi } from '';
+import type { PolicySessionTimeoutPolicyApiRetrieveSessionTimeoutPolicyRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new PolicySessionTimeoutPolicyApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicySessionTimeoutPolicyAPI.RetrieveSessionTimeoutPolicy(context.Background()).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicySessionTimeoutPolicyAPI.RetrieveSessionTimeoutPolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveSessionTimeoutPolicy`: SessionTimeoutPolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicySessionTimeoutPolicyAPI.RetrieveSessionTimeoutPolicy`: %v\n", resp)
-}
+const request: PolicySessionTimeoutPolicyApiRetrieveSessionTimeoutPolicyRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveSessionTimeoutPolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveSessionTimeoutPolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
 
 ### Return type
 
-[**SessionTimeoutPolicyResponse**](SessionTimeoutPolicyResponse.md)
+**SessionTimeoutPolicyResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateSessionTimeoutPolicy
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Session timeout policy details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> SessionTimeoutPolicyResponse UpdateSessionTimeoutPolicy(ctx).SessionTimeoutPolicyRequest(sessionTimeoutPolicyRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Put Session Timeout Policy
+# **updateSessionTimeoutPolicy**
+> SessionTimeoutPolicyResponse updateSessionTimeoutPolicy(sessionTimeoutPolicyRequest)
 
-
+Put Session Timeout Policy for the current account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicySessionTimeoutPolicyApi } from '';
+import type { PolicySessionTimeoutPolicyApiUpdateSessionTimeoutPolicyRequest } from '';
 
-func main() {
-	sessionTimeoutPolicyRequest := *openapiclient.NewSessionTimeoutPolicyRequest(int64(123), int64(123)) // SessionTimeoutPolicyRequest | 
+const configuration = createConfiguration();
+const apiInstance = new PolicySessionTimeoutPolicyApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicySessionTimeoutPolicyAPI.UpdateSessionTimeoutPolicy(context.Background()).SessionTimeoutPolicyRequest(sessionTimeoutPolicyRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicySessionTimeoutPolicyAPI.UpdateSessionTimeoutPolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateSessionTimeoutPolicy`: SessionTimeoutPolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicySessionTimeoutPolicyAPI.UpdateSessionTimeoutPolicy`: %v\n", resp)
-}
+const request: PolicySessionTimeoutPolicyApiUpdateSessionTimeoutPolicyRequest = {
+  
+  sessionTimeoutPolicyRequest: {
+    maxIdleTime: 1,
+    maxSessionTime: 5,
+  },
+};
+
+const data = await apiInstance.updateSessionTimeoutPolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateSessionTimeoutPolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sessionTimeoutPolicyRequest** | [**SessionTimeoutPolicyRequest**](SessionTimeoutPolicyRequest.md) |  | 
+ **sessionTimeoutPolicyRequest** | **SessionTimeoutPolicyRequest**|  |
+
 
 ### Return type
 
-[**SessionTimeoutPolicyResponse**](SessionTimeoutPolicyResponse.md)
+**SessionTimeoutPolicyResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Session timeout policy updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

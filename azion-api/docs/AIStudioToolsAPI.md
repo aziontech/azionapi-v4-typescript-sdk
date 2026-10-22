@@ -1,666 +1,645 @@
-# \AIStudioToolsAPI
+# .AIStudioToolsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddKnowledgeBaseToATool**](AIStudioToolsAPI.md#AddKnowledgeBaseToATool) | **Post** /workspace/ai/tools/{tool_id}/kbs | Add a knowledge base to a tool
-[**CreateTool**](AIStudioToolsAPI.md#CreateTool) | **Post** /workspace/ai/tools | Create a tool
-[**DestroyATool**](AIStudioToolsAPI.md#DestroyATool) | **Delete** /workspace/ai/tools/{tool_id} | Destroy a tool
-[**ListKnowledgeBasesLinkedToATool**](AIStudioToolsAPI.md#ListKnowledgeBasesLinkedToATool) | **Get** /workspace/ai/tools/{tool_id}/kbs | List knowledge bases linked to a tool
-[**ListTools**](AIStudioToolsAPI.md#ListTools) | **Get** /workspace/ai/tools | List tools
-[**PartialUpdateTool**](AIStudioToolsAPI.md#PartialUpdateTool) | **Patch** /workspace/ai/tools/{tool_id} | Partially update a tool
-[**RemoveKnowledgeBaseFromATool**](AIStudioToolsAPI.md#RemoveKnowledgeBaseFromATool) | **Delete** /workspace/ai/tools/{tool_id}/kbs/{kb_id} | Remove a knowledge base from a tool
-[**RetriveTool**](AIStudioToolsAPI.md#RetriveTool) | **Get** /workspace/ai/tools/{tool_id} | Retrieve details from a tool
-[**UpdateTool**](AIStudioToolsAPI.md#UpdateTool) | **Put** /workspace/ai/tools/{tool_id} | Update a tool
+[**addKnowledgeBaseToATool**](AIStudioToolsApi.md#addKnowledgeBaseToATool) | **POST** /workspace/ai/tools/{tool_id}/kbs | Add a knowledge base to a tool
+[**createTool**](AIStudioToolsApi.md#createTool) | **POST** /workspace/ai/tools | Create a tool
+[**destroyATool**](AIStudioToolsApi.md#destroyATool) | **DELETE** /workspace/ai/tools/{tool_id} | Destroy a tool
+[**listKnowledgeBasesLinkedToATool**](AIStudioToolsApi.md#listKnowledgeBasesLinkedToATool) | **GET** /workspace/ai/tools/{tool_id}/kbs | List knowledge bases linked to a tool
+[**listTools**](AIStudioToolsApi.md#listTools) | **GET** /workspace/ai/tools | List tools
+[**partialUpdateTool**](AIStudioToolsApi.md#partialUpdateTool) | **PATCH** /workspace/ai/tools/{tool_id} | Partially update a tool
+[**removeKnowledgeBaseFromATool**](AIStudioToolsApi.md#removeKnowledgeBaseFromATool) | **DELETE** /workspace/ai/tools/{tool_id}/kbs/{kb_id} | Remove a knowledge base from a tool
+[**retriveTool**](AIStudioToolsApi.md#retriveTool) | **GET** /workspace/ai/tools/{tool_id} | Retrieve details from a tool
+[**updateTool**](AIStudioToolsApi.md#updateTool) | **PUT** /workspace/ai/tools/{tool_id} | Update a tool
 
 
+# **addKnowledgeBaseToATool**
+> ToolKBLink addKnowledgeBaseToATool(toolRequest)
 
-## AddKnowledgeBaseToATool
-
-> ToolKBLink AddKnowledgeBaseToATool(ctx, toolId).ToolRequest(toolRequest).Execute()
-
-Add a knowledge base to a tool
-
-
+Add a new knowledge base to a specific tool for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiAddKnowledgeBaseToAToolRequest } from '';
 
-func main() {
-	toolId := int64(789) // int64 | 
-	toolRequest := *openapiclient.NewToolRequest("Name_example", "Type_example") // ToolRequest | 
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.AddKnowledgeBaseToATool(context.Background(), toolId).ToolRequest(toolRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.AddKnowledgeBaseToATool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `AddKnowledgeBaseToATool`: ToolKBLink
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.AddKnowledgeBaseToATool`: %v\n", resp)
-}
+const request: AIStudioToolsApiAddKnowledgeBaseToAToolRequest = {
+  
+  toolId: 1,
+  
+  toolRequest: {
+    name: "name_example",
+    description: "description_example",
+    type: "type_example",
+    jsonSchema: {
+      "key": null,
+    },
+    active: true,
+  },
+};
+
+const data = await apiInstance.addKnowledgeBaseToATool(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddKnowledgeBaseToAToolRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **toolRequest** | [**ToolRequest**](ToolRequest.md) |  | 
-
-### Return type
-
-[**ToolKBLink**](ToolKBLink.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateTool
-
-> ResponseTool CreateTool(ctx).ToolRequest(toolRequest).Execute()
-
-Create a tool
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	toolRequest := *openapiclient.NewToolRequest("Name_example", "Type_example") // ToolRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.CreateTool(context.Background()).ToolRequest(toolRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.CreateTool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateTool`: ResponseTool
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.CreateTool`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateToolRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **toolRequest** | [**ToolRequest**](ToolRequest.md) |  | 
-
-### Return type
-
-[**ResponseTool**](ResponseTool.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DestroyATool
-
-> ResponseDeleteTool DestroyATool(ctx, toolId).Execute()
-
-Destroy a tool
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	toolId := int64(789) // int64 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.DestroyATool(context.Background(), toolId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.DestroyATool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DestroyATool`: ResponseDeleteTool
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.DestroyATool`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDestroyAToolRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **toolRequest** | **ToolRequest**|  |
+ **toolId** | [**number**] |  | defaults to undefined
 
 
 ### Return type
 
-[**ResponseDeleteTool**](ResponseDeleteTool.md)
+**ToolKBLink**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListKnowledgeBasesLinkedToATool
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedKnowledgeBaseList ListKnowledgeBasesLinkedToATool(ctx, toolId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List knowledge bases linked to a tool
+# **createTool**
+> ResponseAsyncTool | ResponseTool createTool(toolRequest)
 
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	toolId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.ListKnowledgeBasesLinkedToATool(context.Background(), toolId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.ListKnowledgeBasesLinkedToATool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListKnowledgeBasesLinkedToATool`: PaginatedKnowledgeBaseList
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.ListKnowledgeBasesLinkedToATool`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListKnowledgeBasesLinkedToAToolRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
-
-### Return type
-
-[**PaginatedKnowledgeBaseList**](PaginatedKnowledgeBaseList.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListTools
-
-> PaginatedToolList ListTools(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-
-List tools
-
-
+Create a new tool for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiCreateToolRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.ListTools(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.ListTools``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListTools`: PaginatedToolList
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.ListTools`: %v\n", resp)
-}
+const request: AIStudioToolsApiCreateToolRequest = {
+  
+  toolRequest: {
+    name: "name_example",
+    description: "description_example",
+    type: "type_example",
+    jsonSchema: {
+      "key": null,
+    },
+    active: true,
+  },
+};
+
+const data = await apiInstance.createTool(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListToolsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
-
-### Return type
-
-[**PaginatedToolList**](PaginatedToolList.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PartialUpdateTool
-
-> ResponseTool PartialUpdateTool(ctx, toolId).PatchedToolRequest(patchedToolRequest).Execute()
-
-Partially update a tool
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	toolId := int64(789) // int64 | 
-	patchedToolRequest := *openapiclient.NewPatchedToolRequest() // PatchedToolRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.PartialUpdateTool(context.Background(), toolId).PatchedToolRequest(patchedToolRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.PartialUpdateTool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateTool`: ResponseTool
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.PartialUpdateTool`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateToolRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **patchedToolRequest** | [**PatchedToolRequest**](PatchedToolRequest.md) |  | 
-
-### Return type
-
-[**ResponseTool**](ResponseTool.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## RemoveKnowledgeBaseFromATool
-
-> RemoveKnowledgeBaseFromATool(ctx, kbId, toolId).Execute()
-
-Remove a knowledge base from a tool
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	kbId := int64(789) // int64 | 
-	toolId := int64(789) // int64 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.AIStudioToolsAPI.RemoveKnowledgeBaseFromATool(context.Background(), kbId, toolId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.RemoveKnowledgeBaseFromATool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kbId** | **int64** |  | 
-**toolId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRemoveKnowledgeBaseFromAToolRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **toolRequest** | **ToolRequest**|  |
 
 
 ### Return type
 
- (empty response body)
+**ResponseAsyncTool | ResponseTool**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetriveTool
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**202** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseRetrieveTool RetriveTool(ctx, toolId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a tool
+# **destroyATool**
+> ResponseAsyncDeleteTool | ResponseDeleteTool destroyATool()
 
-
+Destruction of a specific tool in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiDestroyAToolRequest } from '';
 
-func main() {
-	toolId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.RetriveTool(context.Background(), toolId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.RetriveTool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetriveTool`: ResponseRetrieveTool
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.RetriveTool`: %v\n", resp)
-}
+const request: AIStudioToolsApiDestroyAToolRequest = {
+  
+  toolId: 1,
+};
+
+const data = await apiInstance.destroyATool(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetriveToolRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **toolId** | [**number**] |  | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponseRetrieveTool**](ResponseRetrieveTool.md)
+**ResponseAsyncDeleteTool | ResponseDeleteTool**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateTool
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseTool UpdateTool(ctx, toolId).ToolRequest(toolRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a tool
+# **listKnowledgeBasesLinkedToATool**
+> PaginatedKnowledgeBaseList listKnowledgeBasesLinkedToATool()
 
-
+List all knowledge bases linked to a specific tool in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiListKnowledgeBasesLinkedToAToolRequest } from '';
 
-func main() {
-	toolId := int64(789) // int64 | 
-	toolRequest := *openapiclient.NewToolRequest("Name_example", "Type_example") // ToolRequest | 
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioToolsAPI.UpdateTool(context.Background(), toolId).ToolRequest(toolRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioToolsAPI.UpdateTool``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateTool`: ResponseTool
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioToolsAPI.UpdateTool`: %v\n", resp)
-}
+const request: AIStudioToolsApiListKnowledgeBasesLinkedToAToolRequest = {
+  
+  toolId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listKnowledgeBasesLinkedToATool(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateToolRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **toolId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **toolRequest** | [**ToolRequest**](ToolRequest.md) |  | 
 
 ### Return type
 
-[**ResponseTool**](ResponseTool.md)
+**PaginatedKnowledgeBaseList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listTools**
+> PaginatedToolList listTools()
+
+List all tools owned by your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiListToolsRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
+
+const request: AIStudioToolsApiListToolsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listTools(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+
+
+### Return type
+
+**PaginatedToolList**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **partialUpdateTool**
+> ResponseAsyncTool | ResponseTool partialUpdateTool()
+
+Update one or more fields of an existing tool without affecting other fields.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiPartialUpdateToolRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
+
+const request: AIStudioToolsApiPartialUpdateToolRequest = {
+  
+  toolId: 1,
+  
+  patchedToolRequest: {
+    name: "name_example",
+    description: "description_example",
+    type: "type_example",
+    jsonSchema: {
+      "key": null,
+    },
+    active: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateTool(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchedToolRequest** | **PatchedToolRequest**|  |
+ **toolId** | [**number**] |  | defaults to undefined
+
+
+### Return type
+
+**ResponseAsyncTool | ResponseTool**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **removeKnowledgeBaseFromATool**
+> void removeKnowledgeBaseFromATool()
+
+Remove a specific knowledge base from a tool in your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiRemoveKnowledgeBaseFromAToolRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
+
+const request: AIStudioToolsApiRemoveKnowledgeBaseFromAToolRequest = {
+  
+  kbId: 1,
+  
+  toolId: 1,
+};
+
+const data = await apiInstance.removeKnowledgeBaseFromATool(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **kbId** | [**number**] |  | defaults to undefined
+ **toolId** | [**number**] |  | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No response body |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retriveTool**
+> ResponseRetrieveTool retriveTool()
+
+Retrieve details from a specific tool in your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiRetriveToolRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
+
+const request: AIStudioToolsApiRetriveToolRequest = {
+  
+  toolId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retriveTool(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **toolId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**ResponseRetrieveTool**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateTool**
+> ResponseAsyncTool | ResponseTool updateTool(toolRequest)
+
+Update an existing tool. This replaces the entire tool with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AIStudioToolsApi } from '';
+import type { AIStudioToolsApiUpdateToolRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new AIStudioToolsApi(configuration);
+
+const request: AIStudioToolsApiUpdateToolRequest = {
+  
+  toolId: 1,
+  
+  toolRequest: {
+    name: "name_example",
+    description: "description_example",
+    type: "type_example",
+    jsonSchema: {
+      "key": null,
+    },
+    active: true,
+  },
+};
+
+const data = await apiInstance.updateTool(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **toolRequest** | **ToolRequest**|  |
+ **toolId** | [**number**] |  | defaults to undefined
+
+
+### Return type
+
+**ResponseAsyncTool | ResponseTool**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

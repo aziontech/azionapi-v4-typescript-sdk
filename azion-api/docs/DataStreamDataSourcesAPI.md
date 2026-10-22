@@ -1,89 +1,92 @@
-# \DataStreamDataSourcesAPI
+# .DataStreamDataSourcesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListDataSources**](DataStreamDataSourcesAPI.md#ListDataSources) | **Get** /workspace/stream/data_sources | List of Data Sources
+[**listDataSources**](DataStreamDataSourcesApi.md#listDataSources) | **GET** /workspace/stream/data_sources | List of Data Sources
 
 
+# **listDataSources**
+> PaginatedDataSourceList listDataSources()
 
-## ListDataSources
-
-> PaginatedDataSourceList ListDataSources(ctx).Active(active).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Slug(slug).Execute()
-
-List of Data Sources
-
-
+List all Data Sources.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DataStreamDataSourcesApi } from '';
+import type { DataStreamDataSourcesApiListDataSourcesRequest } from '';
 
-func main() {
-	active := true // bool | Filter by active status. (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	slug := "slug_example" // string | Filter by slug (case-insensitive, exact match). (optional)
+const configuration = createConfiguration();
+const apiInstance = new DataStreamDataSourcesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamDataSourcesAPI.ListDataSources(context.Background()).Active(active).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Slug(slug).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamDataSourcesAPI.ListDataSources``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListDataSources`: PaginatedDataSourceList
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamDataSourcesAPI.ListDataSources`: %v\n", resp)
-}
+const request: DataStreamDataSourcesApiListDataSourcesRequest = {
+    // Filter by active status. (optional)
+  active: true,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+    // Filter by slug (case-insensitive, exact match). (optional)
+  slug: "slug_example",
+};
+
+const data = await apiInstance.listDataSources(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListDataSourcesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** | Filter by active status. | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **slug** | **string** | Filter by slug (case-insensitive, exact match). | 
+ **active** | [**boolean**] | Filter by active status. | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **slug** | [**string**] | Filter by slug (case-insensitive, exact match). | (optional) defaults to undefined
+
 
 ### Return type
 
-[**PaginatedDataSourceList**](PaginatedDataSourceList.md)
+**PaginatedDataSourceList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

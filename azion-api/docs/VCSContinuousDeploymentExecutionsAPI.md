@@ -1,175 +1,169 @@
-# \VCSContinuousDeploymentExecutionsAPI
+# .VCSContinuousDeploymentExecutionsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateExecution**](VCSContinuousDeploymentExecutionsAPI.md#CreateExecution) | **Post** /vcs/continuous_deployments/{continuous_deployment_id}/executions | Create a execution
-[**ListExecutions**](VCSContinuousDeploymentExecutionsAPI.md#ListExecutions) | **Get** /vcs/continuous_deployments/{continuous_deployment_id}/executions | List executions
+[**createExecution**](VCSContinuousDeploymentExecutionsApi.md#createExecution) | **POST** /vcs/continuous_deployments/{continuous_deployment_id}/executions | Create a execution
+[**listExecutions**](VCSContinuousDeploymentExecutionsApi.md#listExecutions) | **GET** /vcs/continuous_deployments/{continuous_deployment_id}/executions | List executions
 
 
+# **createExecution**
+> ExecutionResponse createExecution()
 
-## CreateExecution
-
-> ExecutionResponse CreateExecution(ctx, continuousDeploymentId).Body(body).Execute()
-
-Create a execution
-
-
+Create a new continuous deployment execution.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, VCSContinuousDeploymentExecutionsApi } from '';
+import type { VCSContinuousDeploymentExecutionsApiCreateExecutionRequest } from '';
 
-func main() {
-	continuousDeploymentId := int64(789) // int64 | Unique identifier of the continuous deployment
-	body := map[string]interface{}{ ... } // map[string]interface{} | No request body required (optional)
+const configuration = createConfiguration();
+const apiInstance = new VCSContinuousDeploymentExecutionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.CreateExecution(context.Background(), continuousDeploymentId).Body(body).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.CreateExecution``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateExecution`: ExecutionResponse
-	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentExecutionsAPI.CreateExecution`: %v\n", resp)
-}
+const request: VCSContinuousDeploymentExecutionsApiCreateExecutionRequest = {
+    // Unique identifier of the continuous deployment
+  continuousDeploymentId: 1,
+    // No request body required (optional)
+  body: {},
+};
+
+const data = await apiInstance.createExecution(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **int64** | Unique identifier of the continuous deployment | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateExecutionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | **any**| No request body required |
+ **continuousDeploymentId** | [**number**] | Unique identifier of the continuous deployment | defaults to undefined
 
- **body** | **map[string]interface{}** | No request body required | 
 
 ### Return type
 
-[**ExecutionResponse**](ExecutionResponse.md)
+**ExecutionResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListExecutions
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedExecutionListResponseList ListExecutions(ctx, continuousDeploymentId).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List executions
+# **listExecutions**
+> PaginatedExecutionListResponseList listExecutions()
 
-
+List all continuous deployment executions.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, VCSContinuousDeploymentExecutionsApi } from '';
+import type { VCSContinuousDeploymentExecutionsApiListExecutionsRequest } from '';
 
-func main() {
-	continuousDeploymentId := int64(789) // int64 | Unique identifier of the continuous deployment
-	createdAtGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
-	createdAtLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	status := "status_example" // string | Filter by status (accepts comma-separated values). (optional)
-	updatedAtGte := time.Now() // time.Time | Filter by updated date (greater than or equal). (optional)
-	updatedAtLte := time.Now() // time.Time | Filter by updated date (less than or equal). (optional)
+const configuration = createConfiguration();
+const apiInstance = new VCSContinuousDeploymentExecutionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.ListExecutions(context.Background(), continuousDeploymentId).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.ListExecutions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListExecutions`: PaginatedExecutionListResponseList
-	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentExecutionsAPI.ListExecutions`: %v\n", resp)
-}
+const request: VCSContinuousDeploymentExecutionsApiListExecutionsRequest = {
+    // Unique identifier of the continuous deployment
+  continuousDeploymentId: 1,
+    // Filter by created date (greater than or equal). (optional)
+  createdAtGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by created date (less than or equal). (optional)
+  createdAtLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+    // Filter by status (accepts comma-separated values). (optional)
+  status: "status_example",
+    // Filter by updated date (greater than or equal). (optional)
+  updatedAtGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by updated date (less than or equal). (optional)
+  updatedAtLte: new Date('1970-01-01T00:00:00.00Z'),
+};
+
+const data = await apiInstance.listExecutions(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **int64** | Unique identifier of the continuous deployment | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListExecutionsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **continuousDeploymentId** | [**number**] | Unique identifier of the continuous deployment | defaults to undefined
+ **createdAtGte** | [**Date**] | Filter by created date (greater than or equal). | (optional) defaults to undefined
+ **createdAtLte** | [**Date**] | Filter by created date (less than or equal). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **status** | [**string**] | Filter by status (accepts comma-separated values). | (optional) defaults to undefined
+ **updatedAtGte** | [**Date**] | Filter by updated date (greater than or equal). | (optional) defaults to undefined
+ **updatedAtLte** | [**Date**] | Filter by updated date (less than or equal). | (optional) defaults to undefined
 
- **createdAtGte** | **time.Time** | Filter by created date (greater than or equal). | 
- **createdAtLte** | **time.Time** | Filter by created date (less than or equal). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **status** | **string** | Filter by status (accepts comma-separated values). | 
- **updatedAtGte** | **time.Time** | Filter by updated date (greater than or equal). | 
- **updatedAtLte** | **time.Time** | Filter by updated date (less than or equal). | 
 
 ### Return type
 
-[**PaginatedExecutionListResponseList**](PaginatedExecutionListResponseList.md)
+**PaginatedExecutionListResponseList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

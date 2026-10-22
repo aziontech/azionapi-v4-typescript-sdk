@@ -1,75 +1,88 @@
-# \DigitalCertificatesCertificateSigningRequestsAPI
+# .DigitalCertificatesCertificateSigningRequestsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCertificateSigningRequest**](DigitalCertificatesCertificateSigningRequestsAPI.md#CreateCertificateSigningRequest) | **Post** /workspace/tls/csr | Create a certificate signing request (CSR)
+[**createCertificateSigningRequest**](DigitalCertificatesCertificateSigningRequestsApi.md#createCertificateSigningRequest) | **POST** /workspace/tls/csr | Create a certificate signing request (CSR)
 
 
+# **createCertificateSigningRequest**
+> CertificateResponse createCertificateSigningRequest(certificateSigningRequest)
 
-## CreateCertificateSigningRequest
-
-> CertificateResponse CreateCertificateSigningRequest(ctx).CertificateSigningRequest(certificateSigningRequest).Execute()
-
-Create a certificate signing request (CSR)
-
-
+Create a new certificate signing request (CSR) for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificateSigningRequestsApi } from '';
+import type { DigitalCertificatesCertificateSigningRequestsApiCreateCertificateSigningRequestRequest } from '';
 
-func main() {
-	certificateSigningRequest := *openapiclient.NewCertificateSigningRequest("Name_example", "CommonName_example", "Country_example", "State_example", "Locality_example", "Organization_example", "OrganizationUnity_example", "Email_example") // CertificateSigningRequest | 
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificateSigningRequestsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateSigningRequestsAPI.CreateCertificateSigningRequest(context.Background()).CertificateSigningRequest(certificateSigningRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateSigningRequestsAPI.CreateCertificateSigningRequest``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateCertificateSigningRequest`: CertificateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateSigningRequestsAPI.CreateCertificateSigningRequest`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificateSigningRequestsApiCreateCertificateSigningRequestRequest = {
+  
+  certificateSigningRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    certificate: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    privateKey: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "certificate",
+    keyAlgorithm: "rsa_2048",
+    active: true,
+    commonName: "*.u.T",
+    alternativeNames: [
+      "*.u.T",
+    ],
+    country: "AE",
+    state: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    locality: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    organization: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    organizationUnity: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    email: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createCertificateSigningRequest(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCertificateSigningRequestRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificateSigningRequest** | [**CertificateSigningRequest**](CertificateSigningRequest.md) |  | 
+ **certificateSigningRequest** | **CertificateSigningRequest**|  |
+
 
 ### Return type
 
-[**CertificateResponse**](CertificateResponse.md)
+**CertificateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Certificate signing request created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

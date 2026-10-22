@@ -1,440 +1,456 @@
-# \PolicyPoliciesAPI
+# .PolicyPoliciesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreatePolicy**](PolicyPoliciesAPI.md#CreatePolicy) | **Post** /auth/policies | Create a new policy
-[**DeletePolicy**](PolicyPoliciesAPI.md#DeletePolicy) | **Delete** /auth/policies/{policy_id} | Delete a policy
-[**ListPolicy**](PolicyPoliciesAPI.md#ListPolicy) | **Get** /auth/policies | List of account policies
-[**PartialUpdatePolicy**](PolicyPoliciesAPI.md#PartialUpdatePolicy) | **Patch** /auth/policies/{policy_id} | Partially update a policy
-[**RetrievePolicy**](PolicyPoliciesAPI.md#RetrievePolicy) | **Get** /auth/policies/{policy_id} | Retrieve details from a policy
-[**UpdatePolicy**](PolicyPoliciesAPI.md#UpdatePolicy) | **Put** /auth/policies/{policy_id} | Update a policy
+[**createPolicy**](PolicyPoliciesApi.md#createPolicy) | **POST** /auth/policies | Create a new policy
+[**deletePolicy**](PolicyPoliciesApi.md#deletePolicy) | **DELETE** /auth/policies/{policy_id} | Delete a policy
+[**listPolicy**](PolicyPoliciesApi.md#listPolicy) | **GET** /auth/policies | List of account policies
+[**partialUpdatePolicy**](PolicyPoliciesApi.md#partialUpdatePolicy) | **PATCH** /auth/policies/{policy_id} | Partially update a policy
+[**retrievePolicy**](PolicyPoliciesApi.md#retrievePolicy) | **GET** /auth/policies/{policy_id} | Retrieve details from a policy
+[**updatePolicy**](PolicyPoliciesApi.md#updatePolicy) | **PUT** /auth/policies/{policy_id} | Update a policy
 
 
+# **createPolicy**
+> PolicyResponse createPolicy(policyRequest)
 
-## CreatePolicy
-
-> PolicyResponse CreatePolicy(ctx).PolicyRequest(policyRequest).Execute()
-
-Create a new policy
-
-
+Create a new policy for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicyPoliciesApi } from '';
+import type { PolicyPoliciesApiCreatePolicyRequest } from '';
 
-func main() {
-	policyRequest := *openapiclient.NewPolicyRequest("Name_example", false, []openapiclient.PolicyRuleRequest{*openapiclient.NewPolicyRuleRequest("Name_example", "Effect_example", "Resource_example", []string{"Actions_example"}, *openapiclient.NewPolicyRuleConditionRequest([]string{"IpAddress_example"}))}) // PolicyRequest | 
+const configuration = createConfiguration();
+const apiInstance = new PolicyPoliciesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyPoliciesAPI.CreatePolicy(context.Background()).PolicyRequest(policyRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.CreatePolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreatePolicy`: PolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.CreatePolicy`: %v\n", resp)
-}
+const request: PolicyPoliciesApiCreatePolicyRequest = {
+  
+  policyRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    rules: [
+      {
+        name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+        effect: "allow",
+        resource: "j",
+        actions: [
+          "actions_example",
+        ],
+        condition: {
+          ipAddress: [
+            "ipAddress_example",
+          ],
+        },
+      },
+    ],
+  },
+};
+
+const data = await apiInstance.createPolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreatePolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyRequest** | [**PolicyRequest**](PolicyRequest.md) |  | 
-
-### Return type
-
-[**PolicyResponse**](PolicyResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeletePolicy
-
-> DeleteResponse DeletePolicy(ctx, policyId).Execute()
-
-Delete a policy
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	policyId := int64(789) // int64 | A unique integer value identifying the policy.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyPoliciesAPI.DeletePolicy(context.Background(), policyId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.DeletePolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeletePolicy`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.DeletePolicy`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**policyId** | **int64** | A unique integer value identifying the policy. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeletePolicyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **policyRequest** | **PolicyRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**PolicyResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListPolicy
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Policy created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedPolicyList ListPolicy(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List of account policies
+# **deletePolicy**
+> DeleteResponse deletePolicy()
 
-
+Delete a specific policy from your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicyPoliciesApi } from '';
+import type { PolicyPoliciesApiDeletePolicyRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new PolicyPoliciesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyPoliciesAPI.ListPolicy(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.ListPolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListPolicy`: PaginatedPolicyList
-	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.ListPolicy`: %v\n", resp)
-}
+const request: PolicyPoliciesApiDeletePolicyRequest = {
+    // A unique integer value identifying the policy.
+  policyId: 1,
+};
+
+const data = await apiInstance.deletePolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListPolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **policyId** | [**number**] | A unique integer value identifying the policy. | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedPolicyList**](PaginatedPolicyList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdatePolicy
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Policy deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PolicyResponse PartialUpdatePolicy(ctx, policyId).PatchedPolicyRequest(patchedPolicyRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a policy
+# **listPolicy**
+> PaginatedPolicyList listPolicy()
 
-
+List all your account policies.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicyPoliciesApi } from '';
+import type { PolicyPoliciesApiListPolicyRequest } from '';
 
-func main() {
-	policyId := int64(789) // int64 | A unique integer value identifying the policy.
-	patchedPolicyRequest := *openapiclient.NewPatchedPolicyRequest() // PatchedPolicyRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new PolicyPoliciesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyPoliciesAPI.PartialUpdatePolicy(context.Background(), policyId).PatchedPolicyRequest(patchedPolicyRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.PartialUpdatePolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdatePolicy`: PolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.PartialUpdatePolicy`: %v\n", resp)
-}
+const request: PolicyPoliciesApiListPolicyRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listPolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**policyId** | **int64** | A unique integer value identifying the policy. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdatePolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedPolicyRequest** | [**PatchedPolicyRequest**](PatchedPolicyRequest.md) |  | 
 
 ### Return type
 
-[**PolicyResponse**](PolicyResponse.md)
+**PaginatedPolicyList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrievePolicy
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of policies retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PolicyResponse RetrievePolicy(ctx, policyId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a policy
+# **partialUpdatePolicy**
+> PolicyResponse partialUpdatePolicy()
 
-
+Update one or more fields of an existing policy without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicyPoliciesApi } from '';
+import type { PolicyPoliciesApiPartialUpdatePolicyRequest } from '';
 
-func main() {
-	policyId := int64(789) // int64 | A unique integer value identifying the policy.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new PolicyPoliciesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyPoliciesAPI.RetrievePolicy(context.Background(), policyId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.RetrievePolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrievePolicy`: PolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.RetrievePolicy`: %v\n", resp)
-}
+const request: PolicyPoliciesApiPartialUpdatePolicyRequest = {
+    // A unique integer value identifying the policy.
+  policyId: 1,
+  
+  patchedPolicyRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    rules: [
+      {
+        name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+        effect: "allow",
+        resource: "j",
+        actions: [
+          "actions_example",
+        ],
+        condition: {
+          ipAddress: [
+            "ipAddress_example",
+          ],
+        },
+      },
+    ],
+  },
+};
+
+const data = await apiInstance.partialUpdatePolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**policyId** | **int64** | A unique integer value identifying the policy. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrievePolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedPolicyRequest** | **PatchedPolicyRequest**|  |
+ **policyId** | [**number**] | A unique integer value identifying the policy. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**PolicyResponse**](PolicyResponse.md)
+**PolicyResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdatePolicy
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Policy partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PolicyResponse UpdatePolicy(ctx, policyId).PolicyRequest(policyRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a policy
+# **retrievePolicy**
+> PolicyResponse retrievePolicy()
 
-
+Retrieve details from a specific policy from your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicyPoliciesApi } from '';
+import type { PolicyPoliciesApiRetrievePolicyRequest } from '';
 
-func main() {
-	policyId := int64(789) // int64 | A unique integer value identifying the policy.
-	policyRequest := *openapiclient.NewPolicyRequest("Name_example", false, []openapiclient.PolicyRuleRequest{*openapiclient.NewPolicyRuleRequest("Name_example", "Effect_example", "Resource_example", []string{"Actions_example"}, *openapiclient.NewPolicyRuleConditionRequest([]string{"IpAddress_example"}))}) // PolicyRequest | 
+const configuration = createConfiguration();
+const apiInstance = new PolicyPoliciesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyPoliciesAPI.UpdatePolicy(context.Background(), policyId).PolicyRequest(policyRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.UpdatePolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdatePolicy`: PolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.UpdatePolicy`: %v\n", resp)
-}
+const request: PolicyPoliciesApiRetrievePolicyRequest = {
+    // A unique integer value identifying the policy.
+  policyId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrievePolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**policyId** | **int64** | A unique integer value identifying the policy. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdatePolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **policyId** | [**number**] | A unique integer value identifying the policy. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **policyRequest** | [**PolicyRequest**](PolicyRequest.md) |  | 
 
 ### Return type
 
-[**PolicyResponse**](PolicyResponse.md)
+**PolicyResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Policy details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updatePolicy**
+> PolicyResponse updatePolicy(policyRequest)
+
+Update an existing policy. This replaces all policy rules with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, PolicyPoliciesApi } from '';
+import type { PolicyPoliciesApiUpdatePolicyRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new PolicyPoliciesApi(configuration);
+
+const request: PolicyPoliciesApiUpdatePolicyRequest = {
+    // A unique integer value identifying the policy.
+  policyId: 1,
+  
+  policyRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    rules: [
+      {
+        name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+        effect: "allow",
+        resource: "j",
+        actions: [
+          "actions_example",
+        ],
+        condition: {
+          ipAddress: [
+            "ipAddress_example",
+          ],
+        },
+      },
+    ],
+  },
+};
+
+const data = await apiInstance.updatePolicy(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **policyRequest** | **PolicyRequest**|  |
+ **policyId** | [**number**] | A unique integer value identifying the policy. | defaults to undefined
+
+
+### Return type
+
+**PolicyResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Policy updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

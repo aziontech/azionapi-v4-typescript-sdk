@@ -1,82 +1,77 @@
-# \IdentityServiceTokenRenewAPI
+# .IdentityServiceTokenRenewApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RenewServiceToken**](IdentityServiceTokenRenewAPI.md#RenewServiceToken) | **Post** /identity/service-tokens/{id}/renew | Renews a service token
+[**renewServiceToken**](IdentityServiceTokenRenewApi.md#renewServiceToken) | **POST** /identity/service-tokens/{id}/renew | Renews a service token
 
 
+# **renewServiceToken**
+> ResponseServiceTokenRenew renewServiceToken(serviceTokenRenewRequest)
 
-## RenewServiceToken
-
-> ResponseServiceTokenRenew RenewServiceToken(ctx, id).ServiceTokenRenewRequest(serviceTokenRenewRequest).Execute()
-
-Renews a service token
-
-
+Renews a service token for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, IdentityServiceTokenRenewApi } from '';
+import type { IdentityServiceTokenRenewApiRenewServiceTokenRequest } from '';
 
-func main() {
-	id := int64(789) // int64 | 
-	serviceTokenRenewRequest := *openapiclient.NewServiceTokenRenewRequest(time.Now()) // ServiceTokenRenewRequest | 
+const configuration = createConfiguration();
+const apiInstance = new IdentityServiceTokenRenewApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentityServiceTokenRenewAPI.RenewServiceToken(context.Background(), id).ServiceTokenRenewRequest(serviceTokenRenewRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IdentityServiceTokenRenewAPI.RenewServiceToken``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RenewServiceToken`: ResponseServiceTokenRenew
-	fmt.Fprintf(os.Stdout, "Response from `IdentityServiceTokenRenewAPI.RenewServiceToken`: %v\n", resp)
-}
+const request: IdentityServiceTokenRenewApiRenewServiceTokenRequest = {
+  
+  id: 1,
+  
+  serviceTokenRenewRequest: {
+    expires: new Date('1970-01-01T00:00:00.00Z'),
+  },
+};
+
+const data = await apiInstance.renewServiceToken(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRenewServiceTokenRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **serviceTokenRenewRequest** | **ServiceTokenRenewRequest**|  |
+ **id** | [**number**] |  | defaults to undefined
 
- **serviceTokenRenewRequest** | [**ServiceTokenRenewRequest**](ServiceTokenRenewRequest.md) |  | 
 
 ### Return type
 
-[**ResponseServiceTokenRenew**](ResponseServiceTokenRenew.md)
+**ResponseServiceTokenRenew**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

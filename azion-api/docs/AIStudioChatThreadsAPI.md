@@ -1,440 +1,415 @@
-# \AIStudioChatThreadsAPI
+# .AIStudioChatThreadsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateChatThread**](AIStudioChatThreadsAPI.md#CreateChatThread) | **Post** /workspace/ai/threads | Create a chat thread
-[**DestroyAChatThread**](AIStudioChatThreadsAPI.md#DestroyAChatThread) | **Delete** /workspace/ai/threads/{thread_id} | Destroy a chat thread
-[**ListChatThreads**](AIStudioChatThreadsAPI.md#ListChatThreads) | **Get** /workspace/ai/threads | List chat threads
-[**PartialUpdateChatThread**](AIStudioChatThreadsAPI.md#PartialUpdateChatThread) | **Patch** /workspace/ai/threads/{thread_id} | Partially update a chat thread
-[**RetriveChatThread**](AIStudioChatThreadsAPI.md#RetriveChatThread) | **Get** /workspace/ai/threads/{thread_id} | Retrieve details from a chat thread
-[**UpdateChatThread**](AIStudioChatThreadsAPI.md#UpdateChatThread) | **Put** /workspace/ai/threads/{thread_id} | Update a chat thread
+[**createChatThread**](AIStudioChatThreadsApi.md#createChatThread) | **POST** /workspace/ai/threads | Create a chat thread
+[**destroyAChatThread**](AIStudioChatThreadsApi.md#destroyAChatThread) | **DELETE** /workspace/ai/threads/{thread_id} | Destroy a chat thread
+[**listChatThreads**](AIStudioChatThreadsApi.md#listChatThreads) | **GET** /workspace/ai/threads | List chat threads
+[**partialUpdateChatThread**](AIStudioChatThreadsApi.md#partialUpdateChatThread) | **PATCH** /workspace/ai/threads/{thread_id} | Partially update a chat thread
+[**retriveChatThread**](AIStudioChatThreadsApi.md#retriveChatThread) | **GET** /workspace/ai/threads/{thread_id} | Retrieve details from a chat thread
+[**updateChatThread**](AIStudioChatThreadsApi.md#updateChatThread) | **PUT** /workspace/ai/threads/{thread_id} | Update a chat thread
 
 
+# **createChatThread**
+> ResponseChatThread | ResponseAsyncChatThread createChatThread()
 
-## CreateChatThread
-
-> ResponseChatThread CreateChatThread(ctx).ChatThreadRequest(chatThreadRequest).Execute()
-
-Create a chat thread
-
-
+Create a new chat thread for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioChatThreadsApi } from '';
+import type { AIStudioChatThreadsApiCreateChatThreadRequest } from '';
 
-func main() {
-	chatThreadRequest := *openapiclient.NewChatThreadRequest() // ChatThreadRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioChatThreadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioChatThreadsAPI.CreateChatThread(context.Background()).ChatThreadRequest(chatThreadRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioChatThreadsAPI.CreateChatThread``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateChatThread`: ResponseChatThread
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioChatThreadsAPI.CreateChatThread`: %v\n", resp)
-}
+const request: AIStudioChatThreadsApiCreateChatThreadRequest = {
+  
+  chatThreadRequest: {
+    name: "name_example",
+    description: "description_example",
+  },
+};
+
+const data = await apiInstance.createChatThread(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateChatThreadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chatThreadRequest** | [**ChatThreadRequest**](ChatThreadRequest.md) |  | 
-
-### Return type
-
-[**ResponseChatThread**](ResponseChatThread.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DestroyAChatThread
-
-> ResponseDeleteChatThread DestroyAChatThread(ctx, threadId).Execute()
-
-Destroy a chat thread
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	threadId := int64(789) // int64 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioChatThreadsAPI.DestroyAChatThread(context.Background(), threadId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioChatThreadsAPI.DestroyAChatThread``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DestroyAChatThread`: ResponseDeleteChatThread
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioChatThreadsAPI.DestroyAChatThread`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDestroyAChatThreadRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **chatThreadRequest** | **ChatThreadRequest**|  |
 
 
 ### Return type
 
-[**ResponseDeleteChatThread**](ResponseDeleteChatThread.md)
+**ResponseChatThread | ResponseAsyncChatThread**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListChatThreads
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**202** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedChatThreadList ListChatThreads(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List chat threads
+# **destroyAChatThread**
+> ResponseDeleteChatThread | ResponseAsyncDeleteChatThread destroyAChatThread()
 
-
+Destruction of a specific chat thread in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioChatThreadsApi } from '';
+import type { AIStudioChatThreadsApiDestroyAChatThreadRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioChatThreadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioChatThreadsAPI.ListChatThreads(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioChatThreadsAPI.ListChatThreads``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListChatThreads`: PaginatedChatThreadList
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioChatThreadsAPI.ListChatThreads`: %v\n", resp)
-}
+const request: AIStudioChatThreadsApiDestroyAChatThreadRequest = {
+  
+  threadId: 1,
+};
+
+const data = await apiInstance.destroyAChatThread(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListChatThreadsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **threadId** | [**number**] |  | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedChatThreadList**](PaginatedChatThreadList.md)
+**ResponseDeleteChatThread | ResponseAsyncDeleteChatThread**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateChatThread
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseChatThread PartialUpdateChatThread(ctx, threadId).PatchedChatThreadRequest(patchedChatThreadRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a chat thread
+# **listChatThreads**
+> PaginatedChatThreadList listChatThreads()
 
-
+List all chat threads owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioChatThreadsApi } from '';
+import type { AIStudioChatThreadsApiListChatThreadsRequest } from '';
 
-func main() {
-	threadId := int64(789) // int64 | 
-	patchedChatThreadRequest := *openapiclient.NewPatchedChatThreadRequest() // PatchedChatThreadRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioChatThreadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioChatThreadsAPI.PartialUpdateChatThread(context.Background(), threadId).PatchedChatThreadRequest(patchedChatThreadRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioChatThreadsAPI.PartialUpdateChatThread``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateChatThread`: ResponseChatThread
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioChatThreadsAPI.PartialUpdateChatThread`: %v\n", resp)
-}
+const request: AIStudioChatThreadsApiListChatThreadsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listChatThreads(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateChatThreadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedChatThreadRequest** | [**PatchedChatThreadRequest**](PatchedChatThreadRequest.md) |  | 
 
 ### Return type
 
-[**ResponseChatThread**](ResponseChatThread.md)
+**PaginatedChatThreadList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetriveChatThread
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseRetrieveChatThread RetriveChatThread(ctx, threadId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a chat thread
+# **partialUpdateChatThread**
+> ResponseChatThread | ResponseAsyncChatThread partialUpdateChatThread()
 
-
+Update one or more fields of an existing chat thread without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioChatThreadsApi } from '';
+import type { AIStudioChatThreadsApiPartialUpdateChatThreadRequest } from '';
 
-func main() {
-	threadId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioChatThreadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioChatThreadsAPI.RetriveChatThread(context.Background(), threadId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioChatThreadsAPI.RetriveChatThread``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetriveChatThread`: ResponseRetrieveChatThread
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioChatThreadsAPI.RetriveChatThread`: %v\n", resp)
-}
+const request: AIStudioChatThreadsApiPartialUpdateChatThreadRequest = {
+  
+  threadId: 1,
+  
+  patchedChatThreadRequest: {
+    name: "name_example",
+    description: "description_example",
+  },
+};
+
+const data = await apiInstance.partialUpdateChatThread(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetriveChatThreadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedChatThreadRequest** | **PatchedChatThreadRequest**|  |
+ **threadId** | [**number**] |  | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponseRetrieveChatThread**](ResponseRetrieveChatThread.md)
+**ResponseChatThread | ResponseAsyncChatThread**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateChatThread
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseChatThread UpdateChatThread(ctx, threadId).ChatThreadRequest(chatThreadRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a chat thread
+# **retriveChatThread**
+> ResponseRetrieveChatThread retriveChatThread()
 
-
+Retrieve details from a specific chat thread in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioChatThreadsApi } from '';
+import type { AIStudioChatThreadsApiRetriveChatThreadRequest } from '';
 
-func main() {
-	threadId := int64(789) // int64 | 
-	chatThreadRequest := *openapiclient.NewChatThreadRequest() // ChatThreadRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioChatThreadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioChatThreadsAPI.UpdateChatThread(context.Background(), threadId).ChatThreadRequest(chatThreadRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioChatThreadsAPI.UpdateChatThread``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateChatThread`: ResponseChatThread
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioChatThreadsAPI.UpdateChatThread`: %v\n", resp)
-}
+const request: AIStudioChatThreadsApiRetriveChatThreadRequest = {
+  
+  threadId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retriveChatThread(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateChatThreadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **threadId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **chatThreadRequest** | [**ChatThreadRequest**](ChatThreadRequest.md) |  | 
 
 ### Return type
 
-[**ResponseChatThread**](ResponseChatThread.md)
+**ResponseRetrieveChatThread**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateChatThread**
+> ResponseChatThread | ResponseAsyncChatThread updateChatThread()
+
+Update an existing chat thread. This replaces the entire chat thread with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AIStudioChatThreadsApi } from '';
+import type { AIStudioChatThreadsApiUpdateChatThreadRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new AIStudioChatThreadsApi(configuration);
+
+const request: AIStudioChatThreadsApiUpdateChatThreadRequest = {
+  
+  threadId: 1,
+  
+  chatThreadRequest: {
+    name: "name_example",
+    description: "description_example",
+  },
+};
+
+const data = await apiInstance.updateChatThread(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chatThreadRequest** | **ChatThreadRequest**|  |
+ **threadId** | [**number**] |  | defaults to undefined
+
+
+### Return type
+
+**ResponseChatThread | ResponseAsyncChatThread**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

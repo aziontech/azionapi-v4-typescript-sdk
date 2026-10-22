@@ -1,461 +1,444 @@
-# \DataStreamTemplatesAPI
+# .DataStreamTemplatesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTemplate**](DataStreamTemplatesAPI.md#CreateTemplate) | **Post** /workspace/stream/templates | Create a Template
-[**DeleteTemplate**](DataStreamTemplatesAPI.md#DeleteTemplate) | **Delete** /workspace/stream/templates/{template_id} | Delete a Template
-[**ListTemplates**](DataStreamTemplatesAPI.md#ListTemplates) | **Get** /workspace/stream/templates | List Templates
-[**PartialUpdateTemplate**](DataStreamTemplatesAPI.md#PartialUpdateTemplate) | **Patch** /workspace/stream/templates/{template_id} | Partially update a Template
-[**RetrieveTemplate**](DataStreamTemplatesAPI.md#RetrieveTemplate) | **Get** /workspace/stream/templates/{template_id} | Retrieve details of a Template
-[**UpdateTemplate**](DataStreamTemplatesAPI.md#UpdateTemplate) | **Put** /workspace/stream/templates/{template_id} | Update a Template
+[**createTemplate**](DataStreamTemplatesApi.md#createTemplate) | **POST** /workspace/stream/templates | Create a Template
+[**deleteTemplate**](DataStreamTemplatesApi.md#deleteTemplate) | **DELETE** /workspace/stream/templates/{template_id} | Delete a Template
+[**listTemplates**](DataStreamTemplatesApi.md#listTemplates) | **GET** /workspace/stream/templates | List Templates
+[**partialUpdateTemplate**](DataStreamTemplatesApi.md#partialUpdateTemplate) | **PATCH** /workspace/stream/templates/{template_id} | Partially update a Template
+[**retrieveTemplate**](DataStreamTemplatesApi.md#retrieveTemplate) | **GET** /workspace/stream/templates/{template_id} | Retrieve details of a Template
+[**updateTemplate**](DataStreamTemplatesApi.md#updateTemplate) | **PUT** /workspace/stream/templates/{template_id} | Update a Template
 
 
+# **createTemplate**
+> TemplateResponse createTemplate(templateRequest)
 
-## CreateTemplate
-
-> TemplateResponse CreateTemplate(ctx).TemplateRequest(templateRequest).Execute()
-
-Create a Template
-
-
+Create a new custom Template in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DataStreamTemplatesApi } from '';
+import type { DataStreamTemplatesApiCreateTemplateRequest } from '';
 
-func main() {
-	templateRequest := *openapiclient.NewTemplateRequest("Name_example", "DataSet_example") // TemplateRequest | 
+const configuration = createConfiguration();
+const apiInstance = new DataStreamTemplatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.CreateTemplate(context.Background()).TemplateRequest(templateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.CreateTemplate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateTemplate`: TemplateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.CreateTemplate`: %v\n", resp)
-}
+const request: DataStreamTemplatesApiCreateTemplateRequest = {
+  
+  templateRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    dataSet: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createTemplate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateTemplateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templateRequest** | [**TemplateRequest**](TemplateRequest.md) |  | 
-
-### Return type
-
-[**TemplateResponse**](TemplateResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteTemplate
-
-> DeleteResponse DeleteTemplate(ctx, templateId).Execute()
-
-Delete a Template
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	templateId := int64(789) // int64 | A unique integer value identifying the template.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.DeleteTemplate(context.Background(), templateId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.DeleteTemplate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteTemplate`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.DeleteTemplate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **int64** | A unique integer value identifying the template. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteTemplateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **templateRequest** | **TemplateRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**TemplateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListTemplates
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedTemplateList ListTemplates(ctx).Active(active).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Templates
+# **deleteTemplate**
+> DeleteResponse deleteTemplate()
 
-
+Delete a specific custom Template in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DataStreamTemplatesApi } from '';
+import type { DataStreamTemplatesApiDeleteTemplateRequest } from '';
 
-func main() {
-	active := true // bool | Filter by active status. (optional)
-	createdAtGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
-	createdAtLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
-	custom := true // bool | Filter by custom status (true for custom templates, false for default templates). (optional)
-	dataSet := "dataSet_example" // string | Filter by data set (case-insensitive, partial match). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new DataStreamTemplatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.ListTemplates(context.Background()).Active(active).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.ListTemplates``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListTemplates`: PaginatedTemplateList
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.ListTemplates`: %v\n", resp)
-}
+const request: DataStreamTemplatesApiDeleteTemplateRequest = {
+    // A unique integer value identifying the template.
+  templateId: 1,
+};
+
+const data = await apiInstance.deleteTemplate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListTemplatesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** | Filter by active status. | 
- **createdAtGte** | **time.Time** | Filter by created date (greater than or equal). | 
- **createdAtLte** | **time.Time** | Filter by created date (less than or equal). | 
- **custom** | **bool** | Filter by custom status (true for custom templates, false for default templates). | 
- **dataSet** | **string** | Filter by data set (case-insensitive, partial match). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **templateId** | [**number**] | A unique integer value identifying the template. | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedTemplateList**](PaginatedTemplateList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateTemplate
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> TemplateResponse PartialUpdateTemplate(ctx, templateId).PatchedTemplateRequest(patchedTemplateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Template
+# **listTemplates**
+> PaginatedTemplateList listTemplates()
 
-
+List all Templates owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DataStreamTemplatesApi } from '';
+import type { DataStreamTemplatesApiListTemplatesRequest } from '';
 
-func main() {
-	templateId := int64(789) // int64 | A unique integer value identifying the template.
-	patchedTemplateRequest := *openapiclient.NewPatchedTemplateRequest() // PatchedTemplateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new DataStreamTemplatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.PartialUpdateTemplate(context.Background(), templateId).PatchedTemplateRequest(patchedTemplateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.PartialUpdateTemplate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateTemplate`: TemplateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.PartialUpdateTemplate`: %v\n", resp)
-}
+const request: DataStreamTemplatesApiListTemplatesRequest = {
+    // Filter by active status. (optional)
+  active: true,
+    // Filter by created date (greater than or equal). (optional)
+  createdAtGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by created date (less than or equal). (optional)
+  createdAtLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by custom status (true for custom templates, false for default templates). (optional)
+  custom: true,
+    // Filter by data set (case-insensitive, partial match). (optional)
+  dataSet: "data_set_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listTemplates(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **int64** | A unique integer value identifying the template. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateTemplateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | [**boolean**] | Filter by active status. | (optional) defaults to undefined
+ **createdAtGte** | [**Date**] | Filter by created date (greater than or equal). | (optional) defaults to undefined
+ **createdAtLte** | [**Date**] | Filter by created date (less than or equal). | (optional) defaults to undefined
+ **custom** | [**boolean**] | Filter by custom status (true for custom templates, false for default templates). | (optional) defaults to undefined
+ **dataSet** | [**string**] | Filter by data set (case-insensitive, partial match). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedTemplateRequest** | [**PatchedTemplateRequest**](PatchedTemplateRequest.md) |  | 
 
 ### Return type
 
-[**TemplateResponse**](TemplateResponse.md)
+**PaginatedTemplateList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveTemplate
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> TemplateResponse RetrieveTemplate(ctx, templateId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of a Template
+# **partialUpdateTemplate**
+> TemplateResponse partialUpdateTemplate()
 
-
+Update one or more fields of an existing custom Template.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DataStreamTemplatesApi } from '';
+import type { DataStreamTemplatesApiPartialUpdateTemplateRequest } from '';
 
-func main() {
-	templateId := int64(789) // int64 | A unique integer value identifying the template.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new DataStreamTemplatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.RetrieveTemplate(context.Background(), templateId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.RetrieveTemplate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveTemplate`: TemplateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.RetrieveTemplate`: %v\n", resp)
-}
+const request: DataStreamTemplatesApiPartialUpdateTemplateRequest = {
+    // A unique integer value identifying the template.
+  templateId: 1,
+  
+  patchedTemplateRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    dataSet: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateTemplate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **int64** | A unique integer value identifying the template. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveTemplateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedTemplateRequest** | **PatchedTemplateRequest**|  |
+ **templateId** | [**number**] | A unique integer value identifying the template. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**TemplateResponse**](TemplateResponse.md)
+**TemplateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateTemplate
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> TemplateResponse UpdateTemplate(ctx, templateId).TemplateRequest(templateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Template
+# **retrieveTemplate**
+> TemplateResponse retrieveTemplate()
 
-
+Retrieve details from a specific Template in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DataStreamTemplatesApi } from '';
+import type { DataStreamTemplatesApiRetrieveTemplateRequest } from '';
 
-func main() {
-	templateId := int64(789) // int64 | A unique integer value identifying the template.
-	templateRequest := *openapiclient.NewTemplateRequest("Name_example", "DataSet_example") // TemplateRequest | 
+const configuration = createConfiguration();
+const apiInstance = new DataStreamTemplatesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.UpdateTemplate(context.Background(), templateId).TemplateRequest(templateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.UpdateTemplate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateTemplate`: TemplateResponse
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.UpdateTemplate`: %v\n", resp)
-}
+const request: DataStreamTemplatesApiRetrieveTemplateRequest = {
+    // A unique integer value identifying the template.
+  templateId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveTemplate(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**templateId** | **int64** | A unique integer value identifying the template. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateTemplateRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **templateId** | [**number**] | A unique integer value identifying the template. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **templateRequest** | [**TemplateRequest**](TemplateRequest.md) |  | 
 
 ### Return type
 
-[**TemplateResponse**](TemplateResponse.md)
+**TemplateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateTemplate**
+> TemplateResponse updateTemplate(templateRequest)
+
+Update an existing custom Template.
+
+### Example
+
+
+```typescript
+import { createConfiguration, DataStreamTemplatesApi } from '';
+import type { DataStreamTemplatesApiUpdateTemplateRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new DataStreamTemplatesApi(configuration);
+
+const request: DataStreamTemplatesApiUpdateTemplateRequest = {
+    // A unique integer value identifying the template.
+  templateId: 1,
+  
+  templateRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    dataSet: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateTemplate(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **templateRequest** | **TemplateRequest**|  |
+ **templateId** | [**number**] | A unique integer value identifying the template. | defaults to undefined
+
+
+### Return type
+
+**TemplateResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

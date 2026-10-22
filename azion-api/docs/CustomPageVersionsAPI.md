@@ -1,666 +1,574 @@
-# \CustomPageVersionsAPI
+# .CustomPageVersionsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveCustomPageVersion**](CustomPageVersionsAPI.md#ArchiveCustomPageVersion) | **Post** /workspace/custom_pages/{custom_page_id}/versions/{version_id}/archive | Archive a Custom Page version
-[**BuildCustomPageVersion**](CustomPageVersionsAPI.md#BuildCustomPageVersion) | **Post** /workspace/custom_pages/{custom_page_id}/versions/{version_id}/build | Build a Custom Page version
-[**CancelCustomPageVersionBuild**](CustomPageVersionsAPI.md#CancelCustomPageVersionBuild) | **Post** /workspace/custom_pages/{custom_page_id}/versions/{version_id}/cancel | Cancel a Custom Page version build
-[**CreateCustomPageVersion**](CustomPageVersionsAPI.md#CreateCustomPageVersion) | **Post** /workspace/custom_pages/{custom_page_id}/versions | Create a new Custom Page version
-[**DeleteCustomPageVersion**](CustomPageVersionsAPI.md#DeleteCustomPageVersion) | **Delete** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Delete a Custom Page version
-[**ListCustomPageVersions**](CustomPageVersionsAPI.md#ListCustomPageVersions) | **Get** /workspace/custom_pages/{custom_page_id}/versions | List Custom Page versions
-[**PartialUpdateCustomPageVersion**](CustomPageVersionsAPI.md#PartialUpdateCustomPageVersion) | **Patch** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Partially update a Custom Page version
-[**RetrieveCustomPageVersion**](CustomPageVersionsAPI.md#RetrieveCustomPageVersion) | **Get** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Retrieve a Custom Page version
-[**UpdateCustomPageVersion**](CustomPageVersionsAPI.md#UpdateCustomPageVersion) | **Put** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Update a Custom Page version
+[**archiveCustomPageVersion**](CustomPageVersionsApi.md#archiveCustomPageVersion) | **POST** /workspace/custom_pages/{custom_page_id}/versions/{version_id}/archive | Archive a Custom Page version
+[**buildCustomPageVersion**](CustomPageVersionsApi.md#buildCustomPageVersion) | **POST** /workspace/custom_pages/{custom_page_id}/versions/{version_id}/build | Build a Custom Page version
+[**cancelCustomPageVersionBuild**](CustomPageVersionsApi.md#cancelCustomPageVersionBuild) | **POST** /workspace/custom_pages/{custom_page_id}/versions/{version_id}/cancel | Cancel a Custom Page version build
+[**createCustomPageVersion**](CustomPageVersionsApi.md#createCustomPageVersion) | **POST** /workspace/custom_pages/{custom_page_id}/versions | Create a new Custom Page version
+[**deleteCustomPageVersion**](CustomPageVersionsApi.md#deleteCustomPageVersion) | **DELETE** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Delete a Custom Page version
+[**listCustomPageVersions**](CustomPageVersionsApi.md#listCustomPageVersions) | **GET** /workspace/custom_pages/{custom_page_id}/versions | List Custom Page versions
+[**partialUpdateCustomPageVersion**](CustomPageVersionsApi.md#partialUpdateCustomPageVersion) | **PATCH** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Partially update a Custom Page version
+[**retrieveCustomPageVersion**](CustomPageVersionsApi.md#retrieveCustomPageVersion) | **GET** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Retrieve a Custom Page version
+[**updateCustomPageVersion**](CustomPageVersionsApi.md#updateCustomPageVersion) | **PUT** /workspace/custom_pages/{custom_page_id}/versions/{version_id} | Update a Custom Page version
 
 
+# **archiveCustomPageVersion**
+> void archiveCustomPageVersion()
 
-## ArchiveCustomPageVersion
-
-> ArchiveCustomPageVersion(ctx, customPageId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-
-Archive a Custom Page version
-
-
+Archive a ready version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiArchiveCustomPageVersionRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.ArchiveCustomPageVersion(context.Background(), customPageId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.ArchiveCustomPageVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: CustomPageVersionsApiArchiveCustomPageVersionRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionArchiveRequest: {
+    comment: "",
+  },
+};
+
+const data = await apiInstance.archiveCustomPageVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiArchiveCustomPageVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
- **versionArchiveRequest** | [**VersionArchiveRequest**](VersionArchiveRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## BuildCustomPageVersion
-
-> BuildCustomPageVersion(ctx, customPageId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-
-Build a Custom Page version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.BuildCustomPageVersion(context.Background(), customPageId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.BuildCustomPageVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiBuildCustomPageVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionBuildRequest** | [**VersionBuildRequest**](VersionBuildRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CancelCustomPageVersionBuild
-
-> CancelCustomPageVersionBuild(ctx, customPageId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
-
-Cancel a Custom Page version build
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.CancelCustomPageVersionBuild(context.Background(), customPageId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.CancelCustomPageVersionBuild``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCancelCustomPageVersionBuildRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionCancelRequest** | [**VersionCancelRequest**](VersionCancelRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateCustomPageVersion
-
-> CreateCustomPageVersion(ctx, customPageId).VersionCreateRequest(versionCreateRequest).Execute()
-
-Create a new Custom Page version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.CreateCustomPageVersion(context.Background(), customPageId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.CreateCustomPageVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCustomPageVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteCustomPageVersion
-
-> DeleteCustomPageVersion(ctx, customPageId, versionId).Execute()
-
-Delete a Custom Page version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.DeleteCustomPageVersion(context.Background(), customPageId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.DeleteCustomPageVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCustomPageVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **versionArchiveRequest** | **VersionArchiveRequest**|  |
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListCustomPageVersions
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> ListCustomPageVersions(ctx, customPageId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Custom Page versions
+# **buildCustomPageVersion**
+> void buildCustomPageVersion()
 
-
+Trigger a build for a draft version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiBuildCustomPageVersionRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.ListCustomPageVersions(context.Background(), customPageId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.ListCustomPageVersions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: CustomPageVersionsApiBuildCustomPageVersionRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionBuildRequest: {
+    traceId: "",
+    comment: "",
+  },
+};
+
+const data = await apiInstance.buildCustomPageVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListCustomPageVersionsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionBuildRequest** | **VersionBuildRequest**|  |
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateCustomPageVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> PartialUpdateCustomPageVersion(ctx, customPageId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Custom Page version
+# **cancelCustomPageVersionBuild**
+> void cancelCustomPageVersionBuild()
 
-
+Cancel a queued or building version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiCancelCustomPageVersionBuildRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.PartialUpdateCustomPageVersion(context.Background(), customPageId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.PartialUpdateCustomPageVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: CustomPageVersionsApiCancelCustomPageVersionBuildRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionCancelRequest: {
+    comment: "",
+  },
+};
+
+const data = await apiInstance.cancelCustomPageVersionBuild(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateCustomPageVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionCancelRequest** | **VersionCancelRequest**|  |
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveCustomPageVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> RetrieveCustomPageVersion(ctx, customPageId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve a Custom Page version
+# **createCustomPageVersion**
+> void createCustomPageVersion()
 
-
+Create a new version by cloning.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiCreateCustomPageVersionRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.RetrieveCustomPageVersion(context.Background(), customPageId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.RetrieveCustomPageVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: CustomPageVersionsApiCreateCustomPageVersionRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.createCustomPageVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveCustomPageVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateCustomPageVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> UpdateCustomPageVersion(ctx, customPageId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Custom Page version
+# **deleteCustomPageVersion**
+> void deleteCustomPageVersion()
 
-
+Delete a specific version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiDeleteCustomPageVersionRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.UpdateCustomPageVersion(context.Background(), customPageId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.UpdateCustomPageVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: CustomPageVersionsApiDeleteCustomPageVersionRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteCustomPageVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | The ID of the Custom Page resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateCustomPageVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listCustomPageVersions**
+> void listCustomPageVersions()
+
+List all versions of a specific Custom Page.
+
+### Example
+
+
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiListCustomPageVersionsRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
+
+const request: CustomPageVersionsApiListCustomPageVersionsRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.listCustomPageVersions(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **partialUpdateCustomPageVersion**
+> void partialUpdateCustomPageVersion()
+
+Partially update a draft version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiPartialUpdateCustomPageVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
+
+const request: CustomPageVersionsApiPartialUpdateCustomPageVersionRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedVersionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.partialUpdateCustomPageVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchedVersionCreateRequest** | **PatchedVersionCreateRequest**|  |
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveCustomPageVersion**
+> void retrieveCustomPageVersion()
+
+Retrieve details of a specific version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiRetrieveCustomPageVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
+
+const request: CustomPageVersionsApiRetrieveCustomPageVersionRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveCustomPageVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateCustomPageVersion**
+> void updateCustomPageVersion()
+
+Update a draft version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, CustomPageVersionsApi } from '';
+import type { CustomPageVersionsApiUpdateCustomPageVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CustomPageVersionsApi(configuration);
+
+const request: CustomPageVersionsApiUpdateCustomPageVersionRequest = {
+    // The ID of the Custom Page resource.
+  customPageId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.updateCustomPageVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **customPageId** | [**number**] | The ID of the Custom Page resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

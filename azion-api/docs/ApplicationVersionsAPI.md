@@ -1,666 +1,575 @@
-# \ApplicationVersionsAPI
+# .ApplicationVersionsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveApplicationVersion**](ApplicationVersionsAPI.md#ArchiveApplicationVersion) | **Post** /workspace/applications/{application_id}/versions/{version_id}/archive | Archive an Application version
-[**BuildApplicationVersion**](ApplicationVersionsAPI.md#BuildApplicationVersion) | **Post** /workspace/applications/{application_id}/versions/{version_id}/build | Build an Application version
-[**CancelApplicationVersionBuild**](ApplicationVersionsAPI.md#CancelApplicationVersionBuild) | **Post** /workspace/applications/{application_id}/versions/{version_id}/cancel | Cancel an Application version build
-[**CreateApplicationVersion**](ApplicationVersionsAPI.md#CreateApplicationVersion) | **Post** /workspace/applications/{application_id}/versions | Create a new Application version
-[**DeleteApplicationVersion**](ApplicationVersionsAPI.md#DeleteApplicationVersion) | **Delete** /workspace/applications/{application_id}/versions/{version_id} | Delete an Application version
-[**ListApplicationVersions**](ApplicationVersionsAPI.md#ListApplicationVersions) | **Get** /workspace/applications/{application_id}/versions | List Application versions
-[**PartialUpdateApplicationVersion**](ApplicationVersionsAPI.md#PartialUpdateApplicationVersion) | **Patch** /workspace/applications/{application_id}/versions/{version_id} | Partially update an Application version
-[**RetrieveApplicationVersion**](ApplicationVersionsAPI.md#RetrieveApplicationVersion) | **Get** /workspace/applications/{application_id}/versions/{version_id} | Retrieve an Application version
-[**UpdateApplicationVersion**](ApplicationVersionsAPI.md#UpdateApplicationVersion) | **Put** /workspace/applications/{application_id}/versions/{version_id} | Update an Application version
+[**archiveApplicationVersion**](ApplicationVersionsApi.md#archiveApplicationVersion) | **POST** /workspace/applications/{application_id}/versions/{version_id}/archive | Archive an Application version
+[**buildApplicationVersion**](ApplicationVersionsApi.md#buildApplicationVersion) | **POST** /workspace/applications/{application_id}/versions/{version_id}/build | Build an Application version
+[**cancelApplicationVersionBuild**](ApplicationVersionsApi.md#cancelApplicationVersionBuild) | **POST** /workspace/applications/{application_id}/versions/{version_id}/cancel | Cancel an Application version build
+[**createApplicationVersion**](ApplicationVersionsApi.md#createApplicationVersion) | **POST** /workspace/applications/{application_id}/versions | Create a new Application version
+[**deleteApplicationVersion**](ApplicationVersionsApi.md#deleteApplicationVersion) | **DELETE** /workspace/applications/{application_id}/versions/{version_id} | Delete an Application version
+[**listApplicationVersions**](ApplicationVersionsApi.md#listApplicationVersions) | **GET** /workspace/applications/{application_id}/versions | List Application versions
+[**partialUpdateApplicationVersion**](ApplicationVersionsApi.md#partialUpdateApplicationVersion) | **PATCH** /workspace/applications/{application_id}/versions/{version_id} | Partially update an Application version
+[**retrieveApplicationVersion**](ApplicationVersionsApi.md#retrieveApplicationVersion) | **GET** /workspace/applications/{application_id}/versions/{version_id} | Retrieve an Application version
+[**updateApplicationVersion**](ApplicationVersionsApi.md#updateApplicationVersion) | **PUT** /workspace/applications/{application_id}/versions/{version_id} | Update an Application version
 
 
+# **archiveApplicationVersion**
+> void archiveApplicationVersion()
 
-## ArchiveApplicationVersion
-
-> ArchiveApplicationVersion(ctx, applicationId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-
-Archive an Application version
-
-
+Archive a ready version (soft-delete).
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiArchiveApplicationVersionRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.ArchiveApplicationVersion(context.Background(), applicationId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.ArchiveApplicationVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: ApplicationVersionsApiArchiveApplicationVersionRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionArchiveRequest: {
+    comment: "",
+  },
+};
+
+const data = await apiInstance.archiveApplicationVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiArchiveApplicationVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
- **versionArchiveRequest** | [**VersionArchiveRequest**](VersionArchiveRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## BuildApplicationVersion
-
-> BuildApplicationVersion(ctx, applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-
-Build an Application version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.BuildApplicationVersion(context.Background(), applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.BuildApplicationVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiBuildApplicationVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionBuildRequest** | [**VersionBuildRequest**](VersionBuildRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CancelApplicationVersionBuild
-
-> CancelApplicationVersionBuild(ctx, applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-
-Cancel an Application version build
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.CancelApplicationVersionBuild(context.Background(), applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.CancelApplicationVersionBuild``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCancelApplicationVersionBuildRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionBuildRequest** | [**VersionBuildRequest**](VersionBuildRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateApplicationVersion
-
-> CreateApplicationVersion(ctx, applicationId).VersionCreateRequest(versionCreateRequest).Execute()
-
-Create a new Application version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.CreateApplicationVersion(context.Background(), applicationId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.CreateApplicationVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateApplicationVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteApplicationVersion
-
-> DeleteApplicationVersion(ctx, applicationId, versionId).Execute()
-
-Delete an Application version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.DeleteApplicationVersion(context.Background(), applicationId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.DeleteApplicationVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteApplicationVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **versionArchiveRequest** | **VersionArchiveRequest**|  |
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListApplicationVersions
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> ListApplicationVersions(ctx, applicationId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Application versions
+# **buildApplicationVersion**
+> void buildApplicationVersion()
 
-
+Trigger a build for a draft version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiBuildApplicationVersionRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.ListApplicationVersions(context.Background(), applicationId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.ListApplicationVersions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: ApplicationVersionsApiBuildApplicationVersionRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionBuildRequest: {
+    traceId: "",
+    comment: "",
+  },
+};
+
+const data = await apiInstance.buildApplicationVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListApplicationVersionsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionBuildRequest** | **VersionBuildRequest**|  |
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateApplicationVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> PartialUpdateApplicationVersion(ctx, applicationId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Application version
+# **cancelApplicationVersionBuild**
+> void cancelApplicationVersionBuild()
 
-
+Cancel a queued or building version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiCancelApplicationVersionBuildRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.PartialUpdateApplicationVersion(context.Background(), applicationId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.PartialUpdateApplicationVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: ApplicationVersionsApiCancelApplicationVersionBuildRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionBuildRequest: {
+    traceId: "",
+    comment: "",
+  },
+};
+
+const data = await apiInstance.cancelApplicationVersionBuild(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateApplicationVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionBuildRequest** | **VersionBuildRequest**|  |
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveApplicationVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> RetrieveApplicationVersion(ctx, applicationId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve an Application version
+# **createApplicationVersion**
+> void createApplicationVersion()
 
-
+Create a new version by cloning an existing one.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiCreateApplicationVersionRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.RetrieveApplicationVersion(context.Background(), applicationId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.RetrieveApplicationVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: ApplicationVersionsApiCreateApplicationVersionRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.createApplicationVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveApplicationVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateApplicationVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> UpdateApplicationVersion(ctx, applicationId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Application version
+# **deleteApplicationVersion**
+> void deleteApplicationVersion()
 
-
+Delete a specific version of an Application.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiDeleteApplicationVersionRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.UpdateApplicationVersion(context.Background(), applicationId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.UpdateApplicationVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: ApplicationVersionsApiDeleteApplicationVersionRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteApplicationVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApplicationVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listApplicationVersions**
+> void listApplicationVersions()
+
+List all versions of a specific Application.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiListApplicationVersionsRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
+
+const request: ApplicationVersionsApiListApplicationVersionsRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.listApplicationVersions(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **partialUpdateApplicationVersion**
+> void partialUpdateApplicationVersion()
+
+Partially update a draft version of an Application.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiPartialUpdateApplicationVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
+
+const request: ApplicationVersionsApiPartialUpdateApplicationVersionRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedVersionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.partialUpdateApplicationVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchedVersionCreateRequest** | **PatchedVersionCreateRequest**|  |
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveApplicationVersion**
+> void retrieveApplicationVersion()
+
+Retrieve details of a specific version of an Application.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiRetrieveApplicationVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
+
+const request: ApplicationVersionsApiRetrieveApplicationVersionRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveApplicationVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateApplicationVersion**
+> void updateApplicationVersion()
+
+Update a draft version of an Application.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationVersionsApi } from '';
+import type { ApplicationVersionsApiUpdateApplicationVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationVersionsApi(configuration);
+
+const request: ApplicationVersionsApiUpdateApplicationVersionRequest = {
+    // The ID (global_id) of the Application resource.
+  applicationId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.updateApplicationVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **applicationId** | [**number**] | The ID (global_id) of the Application resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

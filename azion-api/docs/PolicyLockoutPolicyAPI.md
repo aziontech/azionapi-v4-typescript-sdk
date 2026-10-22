@@ -1,142 +1,137 @@
-# \PolicyLockoutPolicyAPI
+# .PolicyLockoutPolicyApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveLockoutPolicy**](PolicyLockoutPolicyAPI.md#RetrieveLockoutPolicy) | **Get** /auth/policies/lockout | Get Lockout Policy
-[**UpdateLockoutPolicy**](PolicyLockoutPolicyAPI.md#UpdateLockoutPolicy) | **Put** /auth/policies/lockout | Put Lockout Policy
+[**retrieveLockoutPolicy**](PolicyLockoutPolicyApi.md#retrieveLockoutPolicy) | **GET** /auth/policies/lockout | Get Lockout Policy
+[**updateLockoutPolicy**](PolicyLockoutPolicyApi.md#updateLockoutPolicy) | **PUT** /auth/policies/lockout | Put Lockout Policy
 
 
+# **retrieveLockoutPolicy**
+> LockoutPolicyResponse retrieveLockoutPolicy()
 
-## RetrieveLockoutPolicy
-
-> LockoutPolicyResponse RetrieveLockoutPolicy(ctx).Fields(fields).Execute()
-
-Get Lockout Policy
-
-
+Get Lockout Policy for the current account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicyLockoutPolicyApi } from '';
+import type { PolicyLockoutPolicyApiRetrieveLockoutPolicyRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new PolicyLockoutPolicyApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyLockoutPolicyAPI.RetrieveLockoutPolicy(context.Background()).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyLockoutPolicyAPI.RetrieveLockoutPolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveLockoutPolicy`: LockoutPolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicyLockoutPolicyAPI.RetrieveLockoutPolicy`: %v\n", resp)
-}
+const request: PolicyLockoutPolicyApiRetrieveLockoutPolicyRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveLockoutPolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveLockoutPolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
 
 ### Return type
 
-[**LockoutPolicyResponse**](LockoutPolicyResponse.md)
+**LockoutPolicyResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateLockoutPolicy
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Lockout policy details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> LockoutPolicyResponse UpdateLockoutPolicy(ctx).LockoutPolicyRequest(lockoutPolicyRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Put Lockout Policy
+# **updateLockoutPolicy**
+> LockoutPolicyResponse updateLockoutPolicy(lockoutPolicyRequest)
 
-
+Put Lockout Policy for the current account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PolicyLockoutPolicyApi } from '';
+import type { PolicyLockoutPolicyApiUpdateLockoutPolicyRequest } from '';
 
-func main() {
-	lockoutPolicyRequest := *openapiclient.NewLockoutPolicyRequest(false, int64(123), int64(123)) // LockoutPolicyRequest | 
+const configuration = createConfiguration();
+const apiInstance = new PolicyLockoutPolicyApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyLockoutPolicyAPI.UpdateLockoutPolicy(context.Background()).LockoutPolicyRequest(lockoutPolicyRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PolicyLockoutPolicyAPI.UpdateLockoutPolicy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateLockoutPolicy`: LockoutPolicyResponse
-	fmt.Fprintf(os.Stdout, "Response from `PolicyLockoutPolicyAPI.UpdateLockoutPolicy`: %v\n", resp)
-}
+const request: PolicyLockoutPolicyApiUpdateLockoutPolicyRequest = {
+  
+  lockoutPolicyRequest: {
+    active: true,
+    maxAttempts: 1,
+    blockingPeriod: 1,
+  },
+};
+
+const data = await apiInstance.updateLockoutPolicy(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLockoutPolicyRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **lockoutPolicyRequest** | [**LockoutPolicyRequest**](LockoutPolicyRequest.md) |  | 
+ **lockoutPolicyRequest** | **LockoutPolicyRequest**|  |
+
 
 ### Return type
 
-[**LockoutPolicyResponse**](LockoutPolicyResponse.md)
+**LockoutPolicyResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Lockout policy updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

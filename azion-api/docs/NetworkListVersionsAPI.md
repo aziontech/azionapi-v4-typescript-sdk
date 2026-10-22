@@ -1,666 +1,574 @@
-# \NetworkListVersionsAPI
+# .NetworkListVersionsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveNetworkListVersion**](NetworkListVersionsAPI.md#ArchiveNetworkListVersion) | **Post** /workspace/network_lists/{network_list_id}/versions/{version_id}/archive | Archive a Network List version
-[**BuildNetworkListVersion**](NetworkListVersionsAPI.md#BuildNetworkListVersion) | **Post** /workspace/network_lists/{network_list_id}/versions/{version_id}/build | Build a Network List version
-[**CancelNetworkListVersionBuild**](NetworkListVersionsAPI.md#CancelNetworkListVersionBuild) | **Post** /workspace/network_lists/{network_list_id}/versions/{version_id}/cancel | Cancel a Network List version build
-[**CreateNetworkListVersion**](NetworkListVersionsAPI.md#CreateNetworkListVersion) | **Post** /workspace/network_lists/{network_list_id}/versions | Create a new Network List version
-[**DeleteNetworkListVersion**](NetworkListVersionsAPI.md#DeleteNetworkListVersion) | **Delete** /workspace/network_lists/{network_list_id}/versions/{version_id} | Delete a Network List version
-[**ListNetworkListVersions**](NetworkListVersionsAPI.md#ListNetworkListVersions) | **Get** /workspace/network_lists/{network_list_id}/versions | List Network List versions
-[**PartialUpdateNetworkListVersion**](NetworkListVersionsAPI.md#PartialUpdateNetworkListVersion) | **Patch** /workspace/network_lists/{network_list_id}/versions/{version_id} | Partially update a Network List version
-[**RetrieveNetworkListVersion**](NetworkListVersionsAPI.md#RetrieveNetworkListVersion) | **Get** /workspace/network_lists/{network_list_id}/versions/{version_id} | Retrieve a Network List version
-[**UpdateNetworkListVersion**](NetworkListVersionsAPI.md#UpdateNetworkListVersion) | **Put** /workspace/network_lists/{network_list_id}/versions/{version_id} | Update a Network List version
+[**archiveNetworkListVersion**](NetworkListVersionsApi.md#archiveNetworkListVersion) | **POST** /workspace/network_lists/{network_list_id}/versions/{version_id}/archive | Archive a Network List version
+[**buildNetworkListVersion**](NetworkListVersionsApi.md#buildNetworkListVersion) | **POST** /workspace/network_lists/{network_list_id}/versions/{version_id}/build | Build a Network List version
+[**cancelNetworkListVersionBuild**](NetworkListVersionsApi.md#cancelNetworkListVersionBuild) | **POST** /workspace/network_lists/{network_list_id}/versions/{version_id}/cancel | Cancel a Network List version build
+[**createNetworkListVersion**](NetworkListVersionsApi.md#createNetworkListVersion) | **POST** /workspace/network_lists/{network_list_id}/versions | Create a new Network List version
+[**deleteNetworkListVersion**](NetworkListVersionsApi.md#deleteNetworkListVersion) | **DELETE** /workspace/network_lists/{network_list_id}/versions/{version_id} | Delete a Network List version
+[**listNetworkListVersions**](NetworkListVersionsApi.md#listNetworkListVersions) | **GET** /workspace/network_lists/{network_list_id}/versions | List Network List versions
+[**partialUpdateNetworkListVersion**](NetworkListVersionsApi.md#partialUpdateNetworkListVersion) | **PATCH** /workspace/network_lists/{network_list_id}/versions/{version_id} | Partially update a Network List version
+[**retrieveNetworkListVersion**](NetworkListVersionsApi.md#retrieveNetworkListVersion) | **GET** /workspace/network_lists/{network_list_id}/versions/{version_id} | Retrieve a Network List version
+[**updateNetworkListVersion**](NetworkListVersionsApi.md#updateNetworkListVersion) | **PUT** /workspace/network_lists/{network_list_id}/versions/{version_id} | Update a Network List version
 
 
+# **archiveNetworkListVersion**
+> void archiveNetworkListVersion()
 
-## ArchiveNetworkListVersion
-
-> ArchiveNetworkListVersion(ctx, networkListId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-
-Archive a Network List version
-
-
+Archive a ready version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiArchiveNetworkListVersionRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.ArchiveNetworkListVersion(context.Background(), networkListId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.ArchiveNetworkListVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: NetworkListVersionsApiArchiveNetworkListVersionRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionArchiveRequest: {
+    comment: "",
+  },
+};
+
+const data = await apiInstance.archiveNetworkListVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiArchiveNetworkListVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
- **versionArchiveRequest** | [**VersionArchiveRequest**](VersionArchiveRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## BuildNetworkListVersion
-
-> BuildNetworkListVersion(ctx, networkListId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-
-Build a Network List version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.BuildNetworkListVersion(context.Background(), networkListId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.BuildNetworkListVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiBuildNetworkListVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionBuildRequest** | [**VersionBuildRequest**](VersionBuildRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CancelNetworkListVersionBuild
-
-> CancelNetworkListVersionBuild(ctx, networkListId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
-
-Cancel a Network List version build
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.CancelNetworkListVersionBuild(context.Background(), networkListId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.CancelNetworkListVersionBuild``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCancelNetworkListVersionBuildRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionCancelRequest** | [**VersionCancelRequest**](VersionCancelRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateNetworkListVersion
-
-> CreateNetworkListVersion(ctx, networkListId).VersionCreateRequest(versionCreateRequest).Execute()
-
-Create a new Network List version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.CreateNetworkListVersion(context.Background(), networkListId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.CreateNetworkListVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateNetworkListVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteNetworkListVersion
-
-> DeleteNetworkListVersion(ctx, networkListId, versionId).Execute()
-
-Delete a Network List version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.DeleteNetworkListVersion(context.Background(), networkListId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.DeleteNetworkListVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteNetworkListVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **versionArchiveRequest** | **VersionArchiveRequest**|  |
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListNetworkListVersions
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> ListNetworkListVersions(ctx, networkListId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Network List versions
+# **buildNetworkListVersion**
+> void buildNetworkListVersion()
 
-
+Trigger a build for a draft version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiBuildNetworkListVersionRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.ListNetworkListVersions(context.Background(), networkListId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.ListNetworkListVersions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: NetworkListVersionsApiBuildNetworkListVersionRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionBuildRequest: {
+    traceId: "",
+    comment: "",
+  },
+};
+
+const data = await apiInstance.buildNetworkListVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListNetworkListVersionsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionBuildRequest** | **VersionBuildRequest**|  |
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateNetworkListVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> PartialUpdateNetworkListVersion(ctx, networkListId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Network List version
+# **cancelNetworkListVersionBuild**
+> void cancelNetworkListVersionBuild()
 
-
+Cancel a queued or building version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiCancelNetworkListVersionBuildRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.PartialUpdateNetworkListVersion(context.Background(), networkListId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.PartialUpdateNetworkListVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: NetworkListVersionsApiCancelNetworkListVersionBuildRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionCancelRequest: {
+    comment: "",
+  },
+};
+
+const data = await apiInstance.cancelNetworkListVersionBuild(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateNetworkListVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionCancelRequest** | **VersionCancelRequest**|  |
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveNetworkListVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> RetrieveNetworkListVersion(ctx, networkListId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve a Network List version
+# **createNetworkListVersion**
+> void createNetworkListVersion()
 
-
+Create a new version by cloning.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiCreateNetworkListVersionRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.RetrieveNetworkListVersion(context.Background(), networkListId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.RetrieveNetworkListVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: NetworkListVersionsApiCreateNetworkListVersionRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.createNetworkListVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveNetworkListVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateNetworkListVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> UpdateNetworkListVersion(ctx, networkListId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Network List version
+# **deleteNetworkListVersion**
+> void deleteNetworkListVersion()
 
-
+Delete a specific version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiDeleteNetworkListVersionRequest } from '';
 
-func main() {
-	networkListId := int64(789) // int64 | The ID of the Network List resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.UpdateNetworkListVersion(context.Background(), networkListId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.UpdateNetworkListVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: NetworkListVersionsApiDeleteNetworkListVersionRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteNetworkListVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **int64** | The ID of the Network List resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateNetworkListVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listNetworkListVersions**
+> void listNetworkListVersions()
+
+List all versions of a specific Network List.
+
+### Example
+
+
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiListNetworkListVersionsRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
+
+const request: NetworkListVersionsApiListNetworkListVersionsRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.listNetworkListVersions(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **partialUpdateNetworkListVersion**
+> void partialUpdateNetworkListVersion()
+
+Partially update a draft version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiPartialUpdateNetworkListVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
+
+const request: NetworkListVersionsApiPartialUpdateNetworkListVersionRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedVersionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.partialUpdateNetworkListVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchedVersionCreateRequest** | **PatchedVersionCreateRequest**|  |
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveNetworkListVersion**
+> void retrieveNetworkListVersion()
+
+Retrieve details of a specific version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiRetrieveNetworkListVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
+
+const request: NetworkListVersionsApiRetrieveNetworkListVersionRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveNetworkListVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateNetworkListVersion**
+> void updateNetworkListVersion()
+
+Update a draft version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, NetworkListVersionsApi } from '';
+import type { NetworkListVersionsApiUpdateNetworkListVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new NetworkListVersionsApi(configuration);
+
+const request: NetworkListVersionsApiUpdateNetworkListVersionRequest = {
+    // The ID of the Network List resource.
+  networkListId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.updateNetworkListVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **networkListId** | [**number**] | The ID of the Network List resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

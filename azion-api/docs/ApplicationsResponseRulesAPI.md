@@ -1,1125 +1,1146 @@
-# \ApplicationsResponseRulesAPI
+# .ApplicationsResponseRulesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateApplicationResponseRule**](ApplicationsResponseRulesAPI.md#CreateApplicationResponseRule) | **Post** /workspace/applications/{application_id}/response_rules | Create an Application Response Rule
-[**CreateApplicationResponseRule2**](ApplicationsResponseRulesAPI.md#CreateApplicationResponseRule2) | **Post** /workspace/applications/{application_id}/versions/{version_id}/response_rules | Create an Application Response Rule
-[**DeleteApplicationResponseRule**](ApplicationsResponseRulesAPI.md#DeleteApplicationResponseRule) | **Delete** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Delete an Application Response Rule
-[**DeleteApplicationResponseRule2**](ApplicationsResponseRulesAPI.md#DeleteApplicationResponseRule2) | **Delete** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Delete an Application Response Rule
-[**ListApplicationResponseRules**](ApplicationsResponseRulesAPI.md#ListApplicationResponseRules) | **Get** /workspace/applications/{application_id}/response_rules | List Application Response Rules
-[**ListApplicationResponseRules2**](ApplicationsResponseRulesAPI.md#ListApplicationResponseRules2) | **Get** /workspace/applications/{application_id}/versions/{version_id}/response_rules | List Application Response Rules
-[**PartialUpdateApplicationResponseRule**](ApplicationsResponseRulesAPI.md#PartialUpdateApplicationResponseRule) | **Patch** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Partially update an Application Response Rule
-[**PartialUpdateApplicationResponseRule2**](ApplicationsResponseRulesAPI.md#PartialUpdateApplicationResponseRule2) | **Patch** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Partially update an Application Response Rule
-[**RetrieveApplicationResponseRule**](ApplicationsResponseRulesAPI.md#RetrieveApplicationResponseRule) | **Get** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Retrieve details of an Application Response Rule
-[**RetrieveApplicationResponseRule2**](ApplicationsResponseRulesAPI.md#RetrieveApplicationResponseRule2) | **Get** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Retrieve details of an Application Response Rule
-[**UpdateApplicationResponseRule**](ApplicationsResponseRulesAPI.md#UpdateApplicationResponseRule) | **Put** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Update an Application Response Rule
-[**UpdateApplicationResponseRule2**](ApplicationsResponseRulesAPI.md#UpdateApplicationResponseRule2) | **Put** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Update an Application Response Rule
-[**UpdateApplicationResponseRulesOrder**](ApplicationsResponseRulesAPI.md#UpdateApplicationResponseRulesOrder) | **Put** /workspace/applications/{application_id}/response_rules/order | Ordering Application Response Rules
-[**UpdateApplicationResponseRulesOrder2**](ApplicationsResponseRulesAPI.md#UpdateApplicationResponseRulesOrder2) | **Put** /workspace/applications/{application_id}/versions/{version_id}/response_rules/order | Ordering Application Response Rules
+[**createApplicationResponseRule**](ApplicationsResponseRulesApi.md#createApplicationResponseRule) | **POST** /workspace/applications/{application_id}/response_rules | Create an Application Response Rule
+[**createApplicationResponseRule2**](ApplicationsResponseRulesApi.md#createApplicationResponseRule2) | **POST** /workspace/applications/{application_id}/versions/{version_id}/response_rules | Create an Application Response Rule
+[**deleteApplicationResponseRule**](ApplicationsResponseRulesApi.md#deleteApplicationResponseRule) | **DELETE** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Delete an Application Response Rule
+[**deleteApplicationResponseRule2**](ApplicationsResponseRulesApi.md#deleteApplicationResponseRule2) | **DELETE** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Delete an Application Response Rule
+[**listApplicationResponseRules**](ApplicationsResponseRulesApi.md#listApplicationResponseRules) | **GET** /workspace/applications/{application_id}/response_rules | List Application Response Rules
+[**listApplicationResponseRules2**](ApplicationsResponseRulesApi.md#listApplicationResponseRules2) | **GET** /workspace/applications/{application_id}/versions/{version_id}/response_rules | List Application Response Rules
+[**partialUpdateApplicationResponseRule**](ApplicationsResponseRulesApi.md#partialUpdateApplicationResponseRule) | **PATCH** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Partially update an Application Response Rule
+[**partialUpdateApplicationResponseRule2**](ApplicationsResponseRulesApi.md#partialUpdateApplicationResponseRule2) | **PATCH** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Partially update an Application Response Rule
+[**retrieveApplicationResponseRule**](ApplicationsResponseRulesApi.md#retrieveApplicationResponseRule) | **GET** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Retrieve details of an Application Response Rule
+[**retrieveApplicationResponseRule2**](ApplicationsResponseRulesApi.md#retrieveApplicationResponseRule2) | **GET** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Retrieve details of an Application Response Rule
+[**updateApplicationResponseRule**](ApplicationsResponseRulesApi.md#updateApplicationResponseRule) | **PUT** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Update an Application Response Rule
+[**updateApplicationResponseRule2**](ApplicationsResponseRulesApi.md#updateApplicationResponseRule2) | **PUT** /workspace/applications/{application_id}/versions/{version_id}/response_rules/{response_rule_id} | Update an Application Response Rule
+[**updateApplicationResponseRulesOrder**](ApplicationsResponseRulesApi.md#updateApplicationResponseRulesOrder) | **PUT** /workspace/applications/{application_id}/response_rules/order | Ordering Application Response Rules
+[**updateApplicationResponseRulesOrder2**](ApplicationsResponseRulesApi.md#updateApplicationResponseRulesOrder2) | **PUT** /workspace/applications/{application_id}/versions/{version_id}/response_rules/order | Ordering Application Response Rules
 
 
+# **createApplicationResponseRule**
+> ResponsePhaseRuleResponse createApplicationResponseRule(responsePhaseRuleRequest)
 
-## CreateApplicationResponseRule
-
-> ResponsePhaseRuleResponse CreateApplicationResponseRule(ctx, applicationId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
-
-Create an Application Response Rule
-
-
+Create a new Rule for a specific Application in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiCreateApplicationResponseRuleRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.ApplicationCriterionFieldVariableEnum("$(arg_<name>)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(*openapiclient.NewBehaviorArgsAttributesValue()))}}) // ResponsePhaseRuleRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.CreateApplicationResponseRule(context.Background(), applicationId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.CreateApplicationResponseRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateApplicationResponseRule`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.CreateApplicationResponseRule`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiCreateApplicationResponseRuleRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+  
+  responsePhaseRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(arg_<name>)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createApplicationResponseRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateApplicationResponseRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **responsePhaseRuleRequest** | [**ResponsePhaseRuleRequest**](ResponsePhaseRuleRequest.md) |  | 
-
-### Return type
-
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateApplicationResponseRule2
-
-> ResponsePhaseRuleResponse CreateApplicationResponseRule2(ctx, applicationId, versionId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
-
-Create an Application Response Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.ApplicationCriterionFieldVariableEnum("$(arg_<name>)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(*openapiclient.NewBehaviorArgsAttributesValue()))}}) // ResponsePhaseRuleRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.CreateApplicationResponseRule2(context.Background(), applicationId, versionId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.CreateApplicationResponseRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateApplicationResponseRule2`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.CreateApplicationResponseRule2`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateApplicationResponseRule2Request struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **responsePhaseRuleRequest** | [**ResponsePhaseRuleRequest**](ResponsePhaseRuleRequest.md) |  | 
-
-### Return type
-
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteApplicationResponseRule
-
-> DeleteResponse DeleteApplicationResponseRule(ctx, applicationId, responseRuleId).Execute()
-
-Delete an Application Response Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.DeleteApplicationResponseRule(context.Background(), applicationId, responseRuleId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.DeleteApplicationResponseRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteApplicationResponseRule`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.DeleteApplicationResponseRule`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteApplicationResponseRuleRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **responsePhaseRuleRequest** | **ResponsePhaseRuleRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## DeleteApplicationResponseRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Application response rule created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeleteResponse DeleteApplicationResponseRule2(ctx, applicationId, responseRuleId, versionId).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Delete an Application Response Rule
+# **createApplicationResponseRule2**
+> ResponsePhaseRuleResponse createApplicationResponseRule2(responsePhaseRuleRequest)
 
-
+Create a new Rule for a specific Application in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiCreateApplicationResponseRule2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.DeleteApplicationResponseRule2(context.Background(), applicationId, responseRuleId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.DeleteApplicationResponseRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteApplicationResponseRule2`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.DeleteApplicationResponseRule2`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiCreateApplicationResponseRule2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  responsePhaseRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(arg_<name>)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createApplicationResponseRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteApplicationResponseRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
+ **responsePhaseRuleRequest** | **ResponsePhaseRuleRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListApplicationResponseRules
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Application response rule created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedResponsePhaseRuleList ListApplicationResponseRules(ctx, applicationId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Application Response Rules
+# **deleteApplicationResponseRule**
+> DeleteResponse deleteApplicationResponseRule()
 
-
+Delete a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiDeleteApplicationResponseRuleRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	description := "description_example" // string | Filter by description (case-insensitive, partial match). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	orderGte := int64(789) // int64 | Filter by order (greater than or equal). (optional)
-	orderLte := int64(789) // int64 | Filter by order (less than or equal). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.ListApplicationResponseRules(context.Background(), applicationId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.ListApplicationResponseRules``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListApplicationResponseRules`: PaginatedResponsePhaseRuleList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.ListApplicationResponseRules`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiDeleteApplicationResponseRuleRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+};
+
+const data = await apiInstance.deleteApplicationResponseRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListApplicationResponseRulesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
 
- **description** | **string** | Filter by description (case-insensitive, partial match). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **orderGte** | **int64** | Filter by order (greater than or equal). | 
- **orderLte** | **int64** | Filter by order (less than or equal). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedResponsePhaseRuleList**](PaginatedResponsePhaseRuleList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## ListApplicationResponseRules2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedResponsePhaseRuleList ListApplicationResponseRules2(ctx, applicationId, versionId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Application Response Rules
+# **deleteApplicationResponseRule2**
+> DeleteResponse deleteApplicationResponseRule2()
 
-
+Delete a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiDeleteApplicationResponseRule2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	description := "description_example" // string | Filter by description (case-insensitive, partial match). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	orderGte := int64(789) // int64 | Filter by order (greater than or equal). (optional)
-	orderLte := int64(789) // int64 | Filter by order (less than or equal). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.ListApplicationResponseRules2(context.Background(), applicationId, versionId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.ListApplicationResponseRules2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListApplicationResponseRules2`: PaginatedResponsePhaseRuleList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.ListApplicationResponseRules2`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiDeleteApplicationResponseRule2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteApplicationResponseRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListApplicationResponseRules2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
- **description** | **string** | Filter by description (case-insensitive, partial match). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **orderGte** | **int64** | Filter by order (greater than or equal). | 
- **orderLte** | **int64** | Filter by order (less than or equal). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedResponsePhaseRuleList**](PaginatedResponsePhaseRuleList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateApplicationResponseRule
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponsePhaseRuleResponse PartialUpdateApplicationResponseRule(ctx, applicationId, responseRuleId).PatchedResponsePhaseRuleRequest(patchedResponsePhaseRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Application Response Rule
+# **listApplicationResponseRules**
+> PaginatedResponsePhaseRuleList listApplicationResponseRules()
 
-
+List all Rules for a specific Application owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiListApplicationResponseRulesRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	patchedResponsePhaseRuleRequest := *openapiclient.NewPatchedResponsePhaseRuleRequest() // PatchedResponsePhaseRuleRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.PartialUpdateApplicationResponseRule(context.Background(), applicationId, responseRuleId).PatchedResponsePhaseRuleRequest(patchedResponsePhaseRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.PartialUpdateApplicationResponseRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateApplicationResponseRule`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.PartialUpdateApplicationResponseRule`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiListApplicationResponseRulesRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // Filter by description (case-insensitive, partial match). (optional)
+  description: "description_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Filter by order (greater than or equal). (optional)
+  orderGte: 1,
+    // Filter by order (less than or equal). (optional)
+  orderLte: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listApplicationResponseRules(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateApplicationResponseRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **description** | [**string**] | Filter by description (case-insensitive, partial match). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **orderGte** | [**number**] | Filter by order (greater than or equal). | (optional) defaults to undefined
+ **orderLte** | [**number**] | Filter by order (less than or equal). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
- **patchedResponsePhaseRuleRequest** | [**PatchedResponsePhaseRuleRequest**](PatchedResponsePhaseRuleRequest.md) |  | 
 
 ### Return type
 
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
+**PaginatedResponsePhaseRuleList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateApplicationResponseRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of application response rules retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponsePhaseRuleResponse PartialUpdateApplicationResponseRule2(ctx, applicationId, responseRuleId, versionId).PatchedResponsePhaseRuleRequest(patchedResponsePhaseRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Application Response Rule
+# **listApplicationResponseRules2**
+> PaginatedResponsePhaseRuleList listApplicationResponseRules2()
 
-
+List all Rules for a specific Application owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiListApplicationResponseRules2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	patchedResponsePhaseRuleRequest := *openapiclient.NewPatchedResponsePhaseRuleRequest() // PatchedResponsePhaseRuleRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.PartialUpdateApplicationResponseRule2(context.Background(), applicationId, responseRuleId, versionId).PatchedResponsePhaseRuleRequest(patchedResponsePhaseRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.PartialUpdateApplicationResponseRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateApplicationResponseRule2`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.PartialUpdateApplicationResponseRule2`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiListApplicationResponseRules2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Filter by description (case-insensitive, partial match). (optional)
+  description: "description_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Filter by order (greater than or equal). (optional)
+  orderGte: 1,
+    // Filter by order (less than or equal). (optional)
+  orderLte: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listApplicationResponseRules2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateApplicationResponseRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **description** | [**string**] | Filter by description (case-insensitive, partial match). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **orderGte** | [**number**] | Filter by order (greater than or equal). | (optional) defaults to undefined
+ **orderLte** | [**number**] | Filter by order (less than or equal). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
-
- **patchedResponsePhaseRuleRequest** | [**PatchedResponsePhaseRuleRequest**](PatchedResponsePhaseRuleRequest.md) |  | 
 
 ### Return type
 
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
+**PaginatedResponsePhaseRuleList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveApplicationResponseRule
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of application response rules retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponsePhaseRuleResponse RetrieveApplicationResponseRule(ctx, applicationId, responseRuleId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Application Response Rule
+# **partialUpdateApplicationResponseRule**
+> ResponsePhaseRuleResponse partialUpdateApplicationResponseRule()
 
-
+Update one or more fields of an existing Application Rule  without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiPartialUpdateApplicationResponseRuleRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule(context.Background(), applicationId, responseRuleId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveApplicationResponseRule`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiPartialUpdateApplicationResponseRuleRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+  
+  patchedResponsePhaseRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(arg_<name>)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateApplicationResponseRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveApplicationResponseRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedResponsePhaseRuleRequest** | **PatchedResponsePhaseRuleRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveApplicationResponseRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponsePhaseRuleResponse RetrieveApplicationResponseRule2(ctx, applicationId, responseRuleId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Application Response Rule
+# **partialUpdateApplicationResponseRule2**
+> ResponsePhaseRuleResponse partialUpdateApplicationResponseRule2()
 
-
+Update one or more fields of an existing Application Rule  without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiPartialUpdateApplicationResponseRule2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule2(context.Background(), applicationId, responseRuleId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveApplicationResponseRule2`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule2`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiPartialUpdateApplicationResponseRule2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedResponsePhaseRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(arg_<name>)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateApplicationResponseRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveApplicationResponseRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedResponsePhaseRuleRequest** | **PatchedResponsePhaseRuleRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateApplicationResponseRule
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponsePhaseRuleResponse UpdateApplicationResponseRule(ctx, applicationId, responseRuleId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Application Response Rule
+# **retrieveApplicationResponseRule**
+> ResponsePhaseRuleResponse retrieveApplicationResponseRule()
 
-
+Retrieve details of a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiRetrieveApplicationResponseRuleRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.ApplicationCriterionFieldVariableEnum("$(arg_<name>)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(*openapiclient.NewBehaviorArgsAttributesValue()))}}) // ResponsePhaseRuleRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.UpdateApplicationResponseRule(context.Background(), applicationId, responseRuleId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.UpdateApplicationResponseRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateApplicationResponseRule`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.UpdateApplicationResponseRule`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiRetrieveApplicationResponseRuleRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveApplicationResponseRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApplicationResponseRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
- **responsePhaseRuleRequest** | [**ResponsePhaseRuleRequest**](ResponsePhaseRuleRequest.md) |  | 
 
 ### Return type
 
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateApplicationResponseRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponsePhaseRuleResponse UpdateApplicationResponseRule2(ctx, applicationId, responseRuleId, versionId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Application Response Rule
+# **retrieveApplicationResponseRule2**
+> ResponsePhaseRuleResponse retrieveApplicationResponseRule2()
 
-
+Retrieve details of a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiRetrieveApplicationResponseRule2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.ApplicationCriterionFieldVariableEnum("$(arg_<name>)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(*openapiclient.NewBehaviorArgsAttributesValue()))}}) // ResponsePhaseRuleRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.UpdateApplicationResponseRule2(context.Background(), applicationId, responseRuleId, versionId).ResponsePhaseRuleRequest(responsePhaseRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.UpdateApplicationResponseRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateApplicationResponseRule2`: ResponsePhaseRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.UpdateApplicationResponseRule2`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiRetrieveApplicationResponseRule2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveApplicationResponseRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**responseRuleId** | **int64** | A unique integer value identifying the response rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApplicationResponseRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
-
- **responsePhaseRuleRequest** | [**ResponsePhaseRuleRequest**](ResponsePhaseRuleRequest.md) |  | 
 
 ### Return type
 
-[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateApplicationResponseRulesOrder
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedResponsePhaseRuleList UpdateApplicationResponseRulesOrder(ctx, applicationId).ApplicationResponsePhaseRuleEngineOrderRequest(applicationResponsePhaseRuleEngineOrderRequest).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Ordering Application Response Rules
+# **updateApplicationResponseRule**
+> ResponsePhaseRuleResponse updateApplicationResponseRule(responsePhaseRuleRequest)
 
-
+Update an existing Rule. This replaces the entire Rule with the new data provided.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiUpdateApplicationResponseRuleRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	applicationResponsePhaseRuleEngineOrderRequest := *openapiclient.NewApplicationResponsePhaseRuleEngineOrderRequest([]int64{int64(123)}) // ApplicationResponsePhaseRuleEngineOrderRequest | 
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.UpdateApplicationResponseRulesOrder(context.Background(), applicationId).ApplicationResponsePhaseRuleEngineOrderRequest(applicationResponsePhaseRuleEngineOrderRequest).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.UpdateApplicationResponseRulesOrder``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateApplicationResponseRulesOrder`: PaginatedResponsePhaseRuleList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.UpdateApplicationResponseRulesOrder`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiUpdateApplicationResponseRuleRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+  
+  responsePhaseRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(arg_<name>)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateApplicationResponseRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApplicationResponseRulesOrderRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **responsePhaseRuleRequest** | **ResponsePhaseRuleRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
 
- **applicationResponsePhaseRuleEngineOrderRequest** | [**ApplicationResponsePhaseRuleEngineOrderRequest**](ApplicationResponsePhaseRuleEngineOrderRequest.md) |  | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedResponsePhaseRuleList**](PaginatedResponsePhaseRuleList.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateApplicationResponseRulesOrder2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedResponsePhaseRuleList UpdateApplicationResponseRulesOrder2(ctx, applicationId, versionId).ApplicationResponsePhaseRuleEngineOrderRequest(applicationResponsePhaseRuleEngineOrderRequest).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Ordering Application Response Rules
+# **updateApplicationResponseRule2**
+> ResponsePhaseRuleResponse updateApplicationResponseRule2(responsePhaseRuleRequest)
 
-
+Update an existing Rule. This replaces the entire Rule with the new data provided.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiUpdateApplicationResponseRule2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	applicationResponsePhaseRuleEngineOrderRequest := *openapiclient.NewApplicationResponsePhaseRuleEngineOrderRequest([]int64{int64(123)}) // ApplicationResponsePhaseRuleEngineOrderRequest | 
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsResponseRulesAPI.UpdateApplicationResponseRulesOrder2(context.Background(), applicationId, versionId).ApplicationResponsePhaseRuleEngineOrderRequest(applicationResponsePhaseRuleEngineOrderRequest).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.UpdateApplicationResponseRulesOrder2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateApplicationResponseRulesOrder2`: PaginatedResponsePhaseRuleList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.UpdateApplicationResponseRulesOrder2`: %v\n", resp)
-}
+const request: ApplicationsResponseRulesApiUpdateApplicationResponseRule2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the response rule.
+  responseRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  responsePhaseRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(arg_<name>)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateApplicationResponseRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApplicationResponseRulesOrder2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **responsePhaseRuleRequest** | **ResponsePhaseRuleRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **responseRuleId** | [**number**] | A unique integer value identifying the response rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
- **applicationResponsePhaseRuleEngineOrderRequest** | [**ApplicationResponsePhaseRuleEngineOrderRequest**](ApplicationResponsePhaseRuleEngineOrderRequest.md) |  | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedResponsePhaseRuleList**](PaginatedResponsePhaseRuleList.md)
+**ResponsePhaseRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rule updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateApplicationResponseRulesOrder**
+> PaginatedResponsePhaseRuleList updateApplicationResponseRulesOrder(applicationResponsePhaseRuleEngineOrderRequest)
+
+Reorder all Rules for a specific Application owned by your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiUpdateApplicationResponseRulesOrderRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
+
+const request: ApplicationsResponseRulesApiUpdateApplicationResponseRulesOrderRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+  
+  applicationResponsePhaseRuleEngineOrderRequest: {
+    order: [
+      1,
+    ],
+  },
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.updateApplicationResponseRulesOrder(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applicationResponsePhaseRuleEngineOrderRequest** | **ApplicationResponsePhaseRuleEngineOrderRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+
+
+### Return type
+
+**PaginatedResponsePhaseRuleList**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rules order updated successfully. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateApplicationResponseRulesOrder2**
+> PaginatedResponsePhaseRuleList updateApplicationResponseRulesOrder2(applicationResponsePhaseRuleEngineOrderRequest)
+
+Reorder all Rules for a specific Application owned by your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationsResponseRulesApi } from '';
+import type { ApplicationsResponseRulesApiUpdateApplicationResponseRulesOrder2Request } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsResponseRulesApi(configuration);
+
+const request: ApplicationsResponseRulesApiUpdateApplicationResponseRulesOrder2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  applicationResponsePhaseRuleEngineOrderRequest: {
+    order: [
+      1,
+    ],
+  },
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.updateApplicationResponseRulesOrder2(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applicationResponsePhaseRuleEngineOrderRequest** | **ApplicationResponsePhaseRuleEngineOrderRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+
+
+### Return type
+
+**PaginatedResponsePhaseRuleList**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application response rules order updated successfully. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

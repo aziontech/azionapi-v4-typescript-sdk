@@ -67,15 +67,19 @@ used as shipped.
 | Template | Why it is overridden |
 | --- | --- |
 | `package.mustache` | Sets `"author": "aziontech"` — the built-in template hardcodes `OpenAPI-Generator Contributors` and has no option to change it |
+| `auth/auth.mustache` | Names each auth class after the security scheme exactly as written. The spec defines both `TokenAuth` and `tokenAuth`; the built-in template PascalCases both into `TokenAuthAuthentication`, a duplicate class that fails the build |
 
-The override is a copy of the template from generator version `7.26.0`. When you bump the
-version in `openapitools.json`, refresh it from the new release so it picks up upstream
-changes, then re-apply the author change:
+The overrides are copies of the templates from generator version `7.26.0`. When you bump
+the version in `openapitools.json`, refresh them from the new release so they pick up
+upstream changes, then re-apply the edits:
 
 ```sh
 openapi-generator-cli author template -g typescript -o /tmp/ts-templates
 cp /tmp/ts-templates/package.mustache templates/typescript/package.mustache
-# edit "author" in templates/typescript/package.mustache
+cp /tmp/ts-templates/auth/auth.mustache templates/typescript/auth/auth.mustache
+# package.mustache: set "author" to "aziontech"
+sed -i '' 's#{{\#lambda.pascalcase}}{{name}}{{/lambda.pascalcase}}Authentication#{{name}}Authentication#g' \
+  templates/typescript/auth/auth.mustache
 ```
 
 ### Updating the spec

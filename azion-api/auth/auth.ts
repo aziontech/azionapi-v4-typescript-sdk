@@ -104,7 +104,7 @@ export class JwtRefreshAuthenticationAuthentication implements SecurityAuthentic
 /**
  * Applies apiKey authentication to the request context.
  */
-export class TokenAuthAuthentication implements SecurityAuthentication {
+export class tokenAuthAuthentication implements SecurityAuthentication {
     /**
      * Configures this api key authentication with the necessary properties
      *
@@ -182,7 +182,7 @@ export function configureAuthMethods(config: AuthMethodsConfiguration | undefine
     }
 
     if (config["tokenAuth"]) {
-        authMethods["tokenAuth"] = new TokenAuthAuthentication(
+        authMethods["tokenAuth"] = new tokenAuthAuthentication(
             config["tokenAuth"]
         );
     }

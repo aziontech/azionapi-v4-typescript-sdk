@@ -1,313 +1,310 @@
-# \StorageCredentialsAPI
+# .StorageCredentialsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCredential**](StorageCredentialsAPI.md#CreateCredential) | **Post** /workspace/storage/credentials | Create a new credential
-[**DeleteCredential**](StorageCredentialsAPI.md#DeleteCredential) | **Delete** /workspace/storage/credentials/{credential_id} | Delete a credential
-[**ListCredentials**](StorageCredentialsAPI.md#ListCredentials) | **Get** /workspace/storage/credentials | List credentials
-[**RetrieveCredential**](StorageCredentialsAPI.md#RetrieveCredential) | **Get** /workspace/storage/credentials/{credential_id} | Retrieve details from a credential
+[**createCredential**](StorageCredentialsApi.md#createCredential) | **POST** /workspace/storage/credentials | Create a new credential
+[**deleteCredential**](StorageCredentialsApi.md#deleteCredential) | **DELETE** /workspace/storage/credentials/{credential_id} | Delete a credential
+[**listCredentials**](StorageCredentialsApi.md#listCredentials) | **GET** /workspace/storage/credentials | List credentials
+[**retrieveCredential**](StorageCredentialsApi.md#retrieveCredential) | **GET** /workspace/storage/credentials/{credential_id} | Retrieve details from a credential
 
 
+# **createCredential**
+> CredentialResponse createCredential(credentialCreateRequest)
 
-## CreateCredential
-
-> CredentialResponse CreateCredential(ctx).CredentialCreateRequest(credentialCreateRequest).Execute()
-
-Create a new credential
-
-
+Create a new credential.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, StorageCredentialsApi } from '';
+import type { StorageCredentialsApiCreateCredentialRequest } from '';
 
-func main() {
-	credentialCreateRequest := *openapiclient.NewCredentialCreateRequest("Name_example", []string{"Capabilities_example"}) // CredentialCreateRequest | 
+const configuration = createConfiguration();
+const apiInstance = new StorageCredentialsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.CreateCredential(context.Background()).CredentialCreateRequest(credentialCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.CreateCredential``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateCredential`: CredentialResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageCredentialsAPI.CreateCredential`: %v\n", resp)
-}
+const request: StorageCredentialsApiCreateCredentialRequest = {
+  
+  credentialCreateRequest: {
+    name: "G",
+    capabilities: [
+      "listFiles",
+    ],
+    buckets: [
+      "jUR,rZ#UM/?R,Fp^l6$ARj",
+    ],
+    expirationDate: new Date('1970-01-01T00:00:00.00Z'),
+  },
+};
+
+const data = await apiInstance.createCredential(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCredentialRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **credentialCreateRequest** | [**CredentialCreateRequest**](CredentialCreateRequest.md) |  | 
-
-### Return type
-
-[**CredentialResponse**](CredentialResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteCredential
-
-> DeleteResponse DeleteCredential(ctx, credentialId).Execute()
-
-Delete a credential
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	credentialId := int64(789) // int64 | The unique identifier of the credential
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.DeleteCredential(context.Background(), credentialId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.DeleteCredential``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteCredential`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageCredentialsAPI.DeleteCredential`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialId** | **int64** | The unique identifier of the credential | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCredentialRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **credentialCreateRequest** | **CredentialCreateRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**CredentialResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListCredentials
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Credential created successfully. |  -  |
+**202** | Credential creation request accepted and is being processed. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedCredentialList ListCredentials(ctx).AccessKey(accessKey).Buckets(buckets).BucketsIn(bucketsIn).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List credentials
+# **deleteCredential**
+> DeleteResponse deleteCredential()
 
-
+Delete a specific credential.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, StorageCredentialsApi } from '';
+import type { StorageCredentialsApiDeleteCredentialRequest } from '';
 
-func main() {
-	accessKey := "accessKey_example" // string | Filter by access key (exact match). (optional)
-	buckets := "buckets_example" // string | Filter by bucket name (exact match). (optional)
-	bucketsIn := "bucketsIn_example" // string | Filter by multiple bucket names (comma-separated). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModified := time.Now() // time.Time | Filter by last modified date (exact match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new StorageCredentialsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.ListCredentials(context.Background()).AccessKey(accessKey).Buckets(buckets).BucketsIn(bucketsIn).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.ListCredentials``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListCredentials`: PaginatedCredentialList
-	fmt.Fprintf(os.Stdout, "Response from `StorageCredentialsAPI.ListCredentials`: %v\n", resp)
-}
+const request: StorageCredentialsApiDeleteCredentialRequest = {
+    // The unique identifier of the credential
+  credentialId: 1,
+};
+
+const data = await apiInstance.deleteCredential(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListCredentialsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accessKey** | **string** | Filter by access key (exact match). | 
- **buckets** | **string** | Filter by bucket name (exact match). | 
- **bucketsIn** | **string** | Filter by multiple bucket names (comma-separated). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModified** | **time.Time** | Filter by last modified date (exact match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **credentialId** | [**number**] | The unique identifier of the credential | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedCredentialList**](PaginatedCredentialList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveCredential
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Credential deleted successfully. |  -  |
+**202** | Credential deletion request accepted and is being processed. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CredentialResponse RetrieveCredential(ctx, credentialId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a credential
+# **listCredentials**
+> PaginatedCredentialList listCredentials()
 
-
+List all credentials.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, StorageCredentialsApi } from '';
+import type { StorageCredentialsApiListCredentialsRequest } from '';
 
-func main() {
-	credentialId := int64(789) // int64 | The unique identifier of the credential
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new StorageCredentialsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.RetrieveCredential(context.Background(), credentialId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.RetrieveCredential``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveCredential`: CredentialResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageCredentialsAPI.RetrieveCredential`: %v\n", resp)
-}
+const request: StorageCredentialsApiListCredentialsRequest = {
+    // Filter by access key (exact match). (optional)
+  accessKey: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by bucket name (exact match). (optional)
+  buckets: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by multiple bucket names (comma-separated). (optional)
+  bucketsIn: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by last modified date (exact match). (optional)
+  lastModified: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listCredentials(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialId** | **int64** | The unique identifier of the credential | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveCredentialRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **accessKey** | [**string**] | Filter by access key (exact match). | (optional) defaults to undefined
+ **buckets** | [**string**] | Filter by bucket name (exact match). | (optional) defaults to undefined
+ **bucketsIn** | [**string**] | Filter by multiple bucket names (comma-separated). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModified** | [**Date**] | Filter by last modified date (exact match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**CredentialResponse**](CredentialResponse.md)
+**PaginatedCredentialList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of credentials retrieved successfully. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveCredential**
+> CredentialResponse retrieveCredential()
+
+Retrieve details from a specific credential.
+
+### Example
+
+
+```typescript
+import { createConfiguration, StorageCredentialsApi } from '';
+import type { StorageCredentialsApiRetrieveCredentialRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new StorageCredentialsApi(configuration);
+
+const request: StorageCredentialsApiRetrieveCredentialRequest = {
+    // The unique identifier of the credential
+  credentialId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveCredential(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **credentialId** | [**number**] | The unique identifier of the credential | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**CredentialResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Credential details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

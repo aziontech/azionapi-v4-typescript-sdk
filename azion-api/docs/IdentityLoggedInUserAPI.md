@@ -1,209 +1,217 @@
-# \IdentityLoggedInUserAPI
+# .IdentityLoggedInUserApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListLoggedUser**](IdentityLoggedInUserAPI.md#ListLoggedUser) | **Get** /identity/user | Retrieve details from the currently logged-in user
-[**PartialUpdateLoggedUser**](IdentityLoggedInUserAPI.md#PartialUpdateLoggedUser) | **Patch** /identity/user | Partially update the currently logged-in user
-[**UpdateLoggedUser**](IdentityLoggedInUserAPI.md#UpdateLoggedUser) | **Put** /identity/user | Update the currently logged-in user
+[**listLoggedUser**](IdentityLoggedInUserApi.md#listLoggedUser) | **GET** /identity/user | Retrieve details from the currently logged-in user
+[**partialUpdateLoggedUser**](IdentityLoggedInUserApi.md#partialUpdateLoggedUser) | **PATCH** /identity/user | Partially update the currently logged-in user
+[**updateLoggedUser**](IdentityLoggedInUserApi.md#updateLoggedUser) | **PUT** /identity/user | Update the currently logged-in user
 
 
+# **listLoggedUser**
+> ResponseRetrieveUser listLoggedUser()
 
-## ListLoggedUser
-
-> ResponseRetrieveUser ListLoggedUser(ctx).Fields(fields).Execute()
-
-Retrieve details from the currently logged-in user
-
-
+Retrieve details from the logged user.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, IdentityLoggedInUserApi } from '';
+import type { IdentityLoggedInUserApiListLoggedUserRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new IdentityLoggedInUserApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentityLoggedInUserAPI.ListLoggedUser(context.Background()).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IdentityLoggedInUserAPI.ListLoggedUser``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListLoggedUser`: ResponseRetrieveUser
-	fmt.Fprintf(os.Stdout, "Response from `IdentityLoggedInUserAPI.ListLoggedUser`: %v\n", resp)
-}
+const request: IdentityLoggedInUserApiListLoggedUserRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.listLoggedUser(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListLoggedUserRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
 
 ### Return type
 
-[**ResponseRetrieveUser**](ResponseRetrieveUser.md)
+**ResponseRetrieveUser**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateLoggedUser
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseUser PartialUpdateLoggedUser(ctx).PatchedUserRequest(patchedUserRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update the currently logged-in user
+# **partialUpdateLoggedUser**
+> ResponseUser partialUpdateLoggedUser()
 
-
+Update one or more fields of the logged user without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, IdentityLoggedInUserApi } from '';
+import type { IdentityLoggedInUserApiPartialUpdateLoggedUserRequest } from '';
 
-func main() {
-	patchedUserRequest := *openapiclient.NewPatchedUserRequest() // PatchedUserRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new IdentityLoggedInUserApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentityLoggedInUserAPI.PartialUpdateLoggedUser(context.Background()).PatchedUserRequest(patchedUserRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IdentityLoggedInUserAPI.PartialUpdateLoggedUser``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateLoggedUser`: ResponseUser
-	fmt.Fprintf(os.Stdout, "Response from `IdentityLoggedInUserAPI.PartialUpdateLoggedUser`: %v\n", resp)
-}
+const request: IdentityLoggedInUserApiPartialUpdateLoggedUserRequest = {
+  
+  patchedUserRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    email: "email_example",
+    active: true,
+    twoFactorEnabled: false,
+    preferences: {
+      "key": null,
+    },
+    phone: `20/		+-	66	
+33009`,
+  },
+};
+
+const data = await apiInstance.partialUpdateLoggedUser(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateLoggedUserRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **patchedUserRequest** | [**PatchedUserRequest**](PatchedUserRequest.md) |  | 
+ **patchedUserRequest** | **PatchedUserRequest**|  |
+
 
 ### Return type
 
-[**ResponseUser**](ResponseUser.md)
+**ResponseUser**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateLoggedUser
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseUser UpdateLoggedUser(ctx).UserRequest(userRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update the currently logged-in user
+# **updateLoggedUser**
+> ResponseUser updateLoggedUser(userRequest)
 
-
+Update the logged user. This replaces the entire user with the new data provided.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, IdentityLoggedInUserApi } from '';
+import type { IdentityLoggedInUserApiUpdateLoggedUserRequest } from '';
 
-func main() {
-	userRequest := *openapiclient.NewUserRequest("Name_example", "Email_example") // UserRequest | 
+const configuration = createConfiguration();
+const apiInstance = new IdentityLoggedInUserApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentityLoggedInUserAPI.UpdateLoggedUser(context.Background()).UserRequest(userRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IdentityLoggedInUserAPI.UpdateLoggedUser``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateLoggedUser`: ResponseUser
-	fmt.Fprintf(os.Stdout, "Response from `IdentityLoggedInUserAPI.UpdateLoggedUser`: %v\n", resp)
-}
+const request: IdentityLoggedInUserApiUpdateLoggedUserRequest = {
+  
+  userRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    email: "email_example",
+    active: true,
+    twoFactorEnabled: false,
+    preferences: {
+      "key": null,
+    },
+    phone: `20/		+-	66	
+33009`,
+  },
+};
+
+const data = await apiInstance.updateLoggedUser(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateLoggedUserRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userRequest** | [**UserRequest**](UserRequest.md) |  | 
+ **userRequest** | **UserRequest**|  |
+
 
 ### Return type
 
-[**ResponseUser**](ResponseUser.md)
+**ResponseUser**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

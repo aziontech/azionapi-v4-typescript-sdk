@@ -1,81 +1,79 @@
-# \PurgeAPI
+# .PurgeApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreatePurgeRequest**](PurgeAPI.md#CreatePurgeRequest) | **Post** /workspace/purge/{purge_type} | Create a Purge Request
+[**createPurgeRequest**](PurgeApi.md#createPurgeRequest) | **POST** /workspace/purge/{purge_type} | Create a Purge Request
 
 
+# **createPurgeRequest**
+> PurgeResponse createPurgeRequest(purgeRequest)
 
-## CreatePurgeRequest
-
-> PurgeResponse CreatePurgeRequest(ctx, purgeType).PurgeRequest(purgeRequest).Execute()
-
-Create a Purge Request
-
-
+Create a new Purge Request in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, PurgeApi } from '';
+import type { PurgeApiCreatePurgeRequestRequest } from '';
 
-func main() {
-	purgeType := "purgeType_example" // string | type of purge: URL, Wildcard or Cachekey
-	purgeRequest := *openapiclient.NewPurgeRequest([]string{"Items_example"}) // PurgeRequest | 
+const configuration = createConfiguration();
+const apiInstance = new PurgeApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PurgeAPI.CreatePurgeRequest(context.Background(), purgeType).PurgeRequest(purgeRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PurgeAPI.CreatePurgeRequest``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreatePurgeRequest`: PurgeResponse
-	fmt.Fprintf(os.Stdout, "Response from `PurgeAPI.CreatePurgeRequest`: %v\n", resp)
-}
+const request: PurgeApiCreatePurgeRequestRequest = {
+    // type of purge: URL, Wildcard or Cachekey
+  purgeType: "cachekey",
+  
+  purgeRequest: {
+    items: [
+      "items_example",
+    ],
+    layer: null,
+  },
+};
+
+const data = await apiInstance.createPurgeRequest(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**purgeType** | **string** | type of purge: URL, Wildcard or Cachekey | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreatePurgeRequestRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **purgeRequest** | **PurgeRequest**|  |
+ **purgeType** | [**&#39;cachekey&#39; | &#39;url&#39; | &#39;wildcard&#39;**]**Array<&#39;cachekey&#39; &#124; &#39;url&#39; &#124; &#39;wildcard&#39;>** | type of purge: URL, Wildcard or Cachekey | defaults to undefined
 
- **purgeRequest** | [**PurgeRequest**](PurgeRequest.md) |  | 
 
 ### Return type
 
-[**PurgeResponse**](PurgeResponse.md)
+**PurgeResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Purge request created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

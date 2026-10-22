@@ -1,92 +1,89 @@
-# \AIStudioChunksAPI
+# .AIStudioChunksApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListChunks**](AIStudioChunksAPI.md#ListChunks) | **Get** /workspace/ai/kbs/{kb_id}/documents/{document_id}/chunks | List chunks
+[**listChunks**](AIStudioChunksApi.md#listChunks) | **GET** /workspace/ai/kbs/{kb_id}/documents/{document_id}/chunks | List chunks
 
 
+# **listChunks**
+> PaginatedChunkList listChunks()
 
-## ListChunks
-
-> PaginatedChunkList ListChunks(ctx, documentId, kbId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-
-List chunks
-
-
+List all chunks owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AIStudioChunksApi } from '';
+import type { AIStudioChunksApiListChunksRequest } from '';
 
-func main() {
-	documentId := int64(789) // int64 | 
-	kbId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new AIStudioChunksApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AIStudioChunksAPI.ListChunks(context.Background(), documentId, kbId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioChunksAPI.ListChunks``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListChunks`: PaginatedChunkList
-	fmt.Fprintf(os.Stdout, "Response from `AIStudioChunksAPI.ListChunks`: %v\n", resp)
-}
+const request: AIStudioChunksApiListChunksRequest = {
+  
+  documentId: 1,
+  
+  kbId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listChunks(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**documentId** | **int64** |  | 
-**kbId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListChunksRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **documentId** | [**number**] |  | defaults to undefined
+ **kbId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedChunkList**](PaginatedChunkList.md)
+**PaginatedChunkList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

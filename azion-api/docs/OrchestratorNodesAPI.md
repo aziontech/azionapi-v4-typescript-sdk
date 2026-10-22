@@ -1,596 +1,562 @@
-# \OrchestratorNodesAPI
+# .OrchestratorNodesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteNode**](OrchestratorNodesAPI.md#DeleteNode) | **Delete** /orchestrator/nodes/{node_id} | Delete an Node
-[**ListNodes**](OrchestratorNodesAPI.md#ListNodes) | **Get** /orchestrator/nodes | List Nodes
-[**PartialUpdateNode**](OrchestratorNodesAPI.md#PartialUpdateNode) | **Patch** /orchestrator/nodes/{node_id} | Partially update an Node
-[**PartialUpdateNode2**](OrchestratorNodesAPI.md#PartialUpdateNode2) | **Patch** /orchestrator/nodes/{node_id}/ | Partially update an Node
-[**RetrieveNode**](OrchestratorNodesAPI.md#RetrieveNode) | **Get** /orchestrator/nodes/{node_id} | Retrieve details of an Node
-[**RetrieveNode2**](OrchestratorNodesAPI.md#RetrieveNode2) | **Get** /orchestrator/nodes/{node_id}/ | Retrieve details of an Node
-[**UpdateNode**](OrchestratorNodesAPI.md#UpdateNode) | **Put** /orchestrator/nodes/{node_id} | Update an Node
-[**UpdateNode2**](OrchestratorNodesAPI.md#UpdateNode2) | **Put** /orchestrator/nodes/{node_id}/ | Update an Node
+[**deleteNode**](OrchestratorNodesApi.md#deleteNode) | **DELETE** /orchestrator/nodes/{node_id} | Delete an Node
+[**listNodes**](OrchestratorNodesApi.md#listNodes) | **GET** /orchestrator/nodes | List Nodes
+[**partialUpdateNode**](OrchestratorNodesApi.md#partialUpdateNode) | **PATCH** /orchestrator/nodes/{node_id} | Partially update an Node
+[**partialUpdateNode2**](OrchestratorNodesApi.md#partialUpdateNode2) | **PATCH** /orchestrator/nodes/{node_id}/ | Partially update an Node
+[**retrieveNode**](OrchestratorNodesApi.md#retrieveNode) | **GET** /orchestrator/nodes/{node_id} | Retrieve details of an Node
+[**retrieveNode2**](OrchestratorNodesApi.md#retrieveNode2) | **GET** /orchestrator/nodes/{node_id}/ | Retrieve details of an Node
+[**updateNode**](OrchestratorNodesApi.md#updateNode) | **PUT** /orchestrator/nodes/{node_id} | Update an Node
+[**updateNode2**](OrchestratorNodesApi.md#updateNode2) | **PUT** /orchestrator/nodes/{node_id}/ | Update an Node
 
 
+# **deleteNode**
+> ResponseAsyncDeleteNodes deleteNode()
 
-## DeleteNode
-
-> ResponseAsyncDeleteNodes DeleteNode(ctx, nodeId).Execute()
-
-Delete an Node
-
-
+Delete an Node.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiDeleteNodeRequest } from '';
 
-func main() {
-	nodeId := "nodeId_example" // string | 
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.DeleteNode(context.Background(), nodeId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.DeleteNode``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteNode`: ResponseAsyncDeleteNodes
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.DeleteNode`: %v\n", resp)
-}
+const request: OrchestratorNodesApiDeleteNodeRequest = {
+  
+  nodeId: "node_id_example",
+};
+
+const data = await apiInstance.deleteNode(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteNodeRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **nodeId** | [**string**] |  | defaults to undefined
 
 
 ### Return type
 
-[**ResponseAsyncDeleteNodes**](ResponseAsyncDeleteNodes.md)
+**ResponseAsyncDeleteNodes**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## ListNodes
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** | Accepted |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedNodesList ListNodes(ctx).Fields(fields).HashId(hashId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Nodes
+# **listNodes**
+> PaginatedNodesList listNodes()
 
-
+List all Nodes of your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiListNodesRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	hashId := "hashId_example" // string | Search by hash_id (optional)
-	name := "name_example" // string | Search by name (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.ListNodes(context.Background()).Fields(fields).HashId(hashId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.ListNodes``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListNodes`: PaginatedNodesList
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.ListNodes`: %v\n", resp)
-}
+const request: OrchestratorNodesApiListNodesRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Search by hash_id (optional)
+  hashId: "hash_id_example",
+    // Search by name (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listNodes(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListNodesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **hashId** | **string** | Search by hash_id | 
- **name** | **string** | Search by name | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **hashId** | [**string**] | Search by hash_id | (optional) defaults to undefined
+ **name** | [**string**] | Search by name | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+
 
 ### Return type
 
-[**PaginatedNodesList**](PaginatedNodesList.md)
+**PaginatedNodesList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateNode
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAsyncNodes PartialUpdateNode(ctx, nodeId).PatchedNodesRequest(patchedNodesRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Node
+# **partialUpdateNode**
+> ResponseAsyncNodes partialUpdateNode()
 
-
+Update one or more fields of an existing Node without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiPartialUpdateNodeRequest } from '';
 
-func main() {
-	nodeId := "nodeId_example" // string | 
-	patchedNodesRequest := *openapiclient.NewPatchedNodesRequest() // PatchedNodesRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.PartialUpdateNode(context.Background(), nodeId).PatchedNodesRequest(patchedNodesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.PartialUpdateNode``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateNode`: ResponseAsyncNodes
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.PartialUpdateNode`: %v\n", resp)
-}
+const request: OrchestratorNodesApiPartialUpdateNodeRequest = {
+  
+  nodeId: "node_id_example",
+  
+  patchedNodesRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    status: "waiting_authorization",
+    modules: null,
+  },
+};
+
+const data = await apiInstance.partialUpdateNode(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateNodeRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedNodesRequest** | **PatchedNodesRequest**|  |
+ **nodeId** | [**string**] |  | defaults to undefined
 
- **patchedNodesRequest** | [**PatchedNodesRequest**](PatchedNodesRequest.md) |  | 
 
 ### Return type
 
-[**ResponseAsyncNodes**](ResponseAsyncNodes.md)
+**ResponseAsyncNodes**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateNode2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAsyncNodes PartialUpdateNode2(ctx, nodeId).PatchedNodesRequest(patchedNodesRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Node
+# **partialUpdateNode2**
+> ResponseAsyncNodes partialUpdateNode2()
 
-
+Update one or more fields of an existing Node without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiPartialUpdateNode2Request } from '';
 
-func main() {
-	nodeId := int64(789) // int64 | 
-	patchedNodesRequest := *openapiclient.NewPatchedNodesRequest() // PatchedNodesRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.PartialUpdateNode2(context.Background(), nodeId).PatchedNodesRequest(patchedNodesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.PartialUpdateNode2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateNode2`: ResponseAsyncNodes
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.PartialUpdateNode2`: %v\n", resp)
-}
+const request: OrchestratorNodesApiPartialUpdateNode2Request = {
+  
+  nodeId: 1,
+  
+  patchedNodesRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    status: "waiting_authorization",
+    modules: null,
+  },
+};
+
+const data = await apiInstance.partialUpdateNode2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateNode2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedNodesRequest** | **PatchedNodesRequest**|  |
+ **nodeId** | [**number**] |  | defaults to undefined
 
- **patchedNodesRequest** | [**PatchedNodesRequest**](PatchedNodesRequest.md) |  | 
 
 ### Return type
 
-[**ResponseAsyncNodes**](ResponseAsyncNodes.md)
+**ResponseAsyncNodes**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveNode
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseRetrieveNodes RetrieveNode(ctx, nodeId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Node
+# **retrieveNode**
+> ResponseRetrieveNodes retrieveNode()
 
-
+Retrieve details of a specific Node in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiRetrieveNodeRequest } from '';
 
-func main() {
-	nodeId := "nodeId_example" // string | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.RetrieveNode(context.Background(), nodeId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.RetrieveNode``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveNode`: ResponseRetrieveNodes
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.RetrieveNode`: %v\n", resp)
-}
+const request: OrchestratorNodesApiRetrieveNodeRequest = {
+  
+  nodeId: "node_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveNode(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveNodeRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **nodeId** | [**string**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponseRetrieveNodes**](ResponseRetrieveNodes.md)
+**ResponseRetrieveNodes**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveNode2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseRetrieveNodes RetrieveNode2(ctx, nodeId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Node
+# **retrieveNode2**
+> ResponseRetrieveNodes retrieveNode2()
 
-
+Retrieve details of a specific Node in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiRetrieveNode2Request } from '';
 
-func main() {
-	nodeId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.RetrieveNode2(context.Background(), nodeId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.RetrieveNode2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveNode2`: ResponseRetrieveNodes
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.RetrieveNode2`: %v\n", resp)
-}
+const request: OrchestratorNodesApiRetrieveNode2Request = {
+  
+  nodeId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveNode2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveNode2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **nodeId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponseRetrieveNodes**](ResponseRetrieveNodes.md)
+**ResponseRetrieveNodes**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateNode
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAsyncNodes UpdateNode(ctx, nodeId).NodesRequest(nodesRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Node
+# **updateNode**
+> ResponseAsyncNodes updateNode(nodesRequest)
 
-
+Update an existing Node. This replaces the entire Node with the new data provided.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiUpdateNodeRequest } from '';
 
-func main() {
-	nodeId := "nodeId_example" // string | 
-	nodesRequest := *openapiclient.NewNodesRequest("Name_example", openapiclient.StatusEnum("waiting_authorization")) // NodesRequest | 
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.UpdateNode(context.Background(), nodeId).NodesRequest(nodesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.UpdateNode``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateNode`: ResponseAsyncNodes
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.UpdateNode`: %v\n", resp)
-}
+const request: OrchestratorNodesApiUpdateNodeRequest = {
+  
+  nodeId: "node_id_example",
+  
+  nodesRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    status: "waiting_authorization",
+    modules: null,
+  },
+};
+
+const data = await apiInstance.updateNode(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateNodeRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **nodesRequest** | **NodesRequest**|  |
+ **nodeId** | [**string**] |  | defaults to undefined
 
- **nodesRequest** | [**NodesRequest**](NodesRequest.md) |  | 
 
 ### Return type
 
-[**ResponseAsyncNodes**](ResponseAsyncNodes.md)
+**ResponseAsyncNodes**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateNode2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAsyncNodes UpdateNode2(ctx, nodeId).NodesRequest(nodesRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Node
+# **updateNode2**
+> ResponseAsyncNodes updateNode2(nodesRequest)
 
-
+Update an existing Node. This replaces the entire Node with the new data provided.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodesApi } from '';
+import type { OrchestratorNodesApiUpdateNode2Request } from '';
 
-func main() {
-	nodeId := int64(789) // int64 | 
-	nodesRequest := *openapiclient.NewNodesRequest("Name_example", openapiclient.StatusEnum("waiting_authorization")) // NodesRequest | 
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodesAPI.UpdateNode2(context.Background(), nodeId).NodesRequest(nodesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodesAPI.UpdateNode2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateNode2`: ResponseAsyncNodes
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodesAPI.UpdateNode2`: %v\n", resp)
-}
+const request: OrchestratorNodesApiUpdateNode2Request = {
+  
+  nodeId: 1,
+  
+  nodesRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    status: "waiting_authorization",
+    modules: null,
+  },
+};
+
+const data = await apiInstance.updateNode2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateNode2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **nodesRequest** | **NodesRequest**|  |
+ **nodeId** | [**number**] |  | defaults to undefined
 
- **nodesRequest** | [**NodesRequest**](NodesRequest.md) |  | 
 
 ### Return type
 
-[**ResponseAsyncNodes**](ResponseAsyncNodes.md)
+**ResponseAsyncNodes**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

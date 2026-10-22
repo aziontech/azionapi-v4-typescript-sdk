@@ -1,467 +1,450 @@
-# \DigitalCertificatesCertificateRevocationListsAPI
+# .DigitalCertificatesCertificateRevocationListsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#CreateCertificateRevocationList) | **Post** /workspace/tls/crls | Create a certificate revocation lists (CRL)
-[**DeleteCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#DeleteCertificateRevocationList) | **Delete** /workspace/tls/crls/{crl_id} | Delete a certificate revocation list
-[**ListCertificateRevocationLists**](DigitalCertificatesCertificateRevocationListsAPI.md#ListCertificateRevocationLists) | **Get** /workspace/tls/crls | List certificate revocation lists (CRL)
-[**PartialUpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#PartialUpdateCertificateRevocationList) | **Patch** /workspace/tls/crls/{crl_id} | Update a certificate revocation lists (CRL)
-[**RetrieveCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#RetrieveCertificateRevocationList) | **Get** /workspace/tls/crls/{crl_id} | Retrieve details from a certificate revocation lists (CRL)
-[**UpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#UpdateCertificateRevocationList) | **Put** /workspace/tls/crls/{crl_id} | Update a certificate revocation lists (CRL)
+[**createCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsApi.md#createCertificateRevocationList) | **POST** /workspace/tls/crls | Create a certificate revocation lists (CRL)
+[**deleteCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsApi.md#deleteCertificateRevocationList) | **DELETE** /workspace/tls/crls/{crl_id} | Delete a certificate revocation list
+[**listCertificateRevocationLists**](DigitalCertificatesCertificateRevocationListsApi.md#listCertificateRevocationLists) | **GET** /workspace/tls/crls | List certificate revocation lists (CRL)
+[**partialUpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsApi.md#partialUpdateCertificateRevocationList) | **PATCH** /workspace/tls/crls/{crl_id} | Update a certificate revocation lists (CRL)
+[**retrieveCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsApi.md#retrieveCertificateRevocationList) | **GET** /workspace/tls/crls/{crl_id} | Retrieve details from a certificate revocation lists (CRL)
+[**updateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsApi.md#updateCertificateRevocationList) | **PUT** /workspace/tls/crls/{crl_id} | Update a certificate revocation lists (CRL)
 
 
+# **createCertificateRevocationList**
+> CertificateRevocationListResponse createCertificateRevocationList(certificateRevocationList)
 
-## CreateCertificateRevocationList
-
-> CertificateRevocationListResponse CreateCertificateRevocationList(ctx).CertificateRevocationList(certificateRevocationList).Execute()
-
-Create a certificate revocation lists (CRL)
-
-
+Create a new certificate revocation lists (CRL) for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificateRevocationListsApi } from '';
+import type { DigitalCertificatesCertificateRevocationListsApiCreateCertificateRevocationListRequest } from '';
 
-func main() {
-	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example") // CertificateRevocationList | 
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificateRevocationListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.CreateCertificateRevocationList(context.Background()).CertificateRevocationList(certificateRevocationList).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.CreateCertificateRevocationList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateCertificateRevocationList`: CertificateRevocationListResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.CreateCertificateRevocationList`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificateRevocationListsApiCreateCertificateRevocationListRequest = {
+  
+  certificateRevocationList: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    crl: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createCertificateRevocationList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCertificateRevocationListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificateRevocationList** | [**CertificateRevocationList**](CertificateRevocationList.md) |  | 
-
-### Return type
-
-[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteCertificateRevocationList
-
-> DeleteResponse DeleteCertificateRevocationList(ctx, crlId).Execute()
-
-Delete a certificate revocation list
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList(context.Background(), crlId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteCertificateRevocationList`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**crlId** | **int64** | The unique identifier of the certificate revocation list | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCertificateRevocationListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **certificateRevocationList** | **CertificateRevocationList**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**CertificateRevocationListResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListCertificateRevocationLists
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Certificate revocation list created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedCertificateRevocationList ListCertificateRevocationLists(ctx).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).LastUpdate(lastUpdate).LastUpdateGte(lastUpdateGte).LastUpdateLte(lastUpdateLte).Name(name).NextUpdate(nextUpdate).NextUpdateGte(nextUpdateGte).NextUpdateLte(nextUpdateLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List certificate revocation lists (CRL)
+# **deleteCertificateRevocationList**
+> DeleteResponse deleteCertificateRevocationList()
 
-
+Delete a specific certificate revocation list in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificateRevocationListsApi } from '';
+import type { DigitalCertificatesCertificateRevocationListsApiDeleteCertificateRevocationListRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by CRL ID (accepts comma-separated values). (optional)
-	issuer := "issuer_example" // string | Filter by issuer (case-insensitive, partial match). (optional)
-	lastModified := time.Now() // time.Time | Filter by exact last modified date and time. (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	lastUpdate := time.Now() // time.Time | Filter by exact last update date and time. (optional)
-	lastUpdateGte := time.Now() // time.Time | Filter by last update date (greater than or equal). (optional)
-	lastUpdateLte := time.Now() // time.Time | Filter by last update date (less than or equal). (optional)
-	name := "name_example" // string | Filter by CRL name (case-insensitive, partial match). (optional)
-	nextUpdate := time.Now() // time.Time | Filter by exact next update date and time. (optional)
-	nextUpdateGte := time.Now() // time.Time | Filter by next update date (greater than or equal). (optional)
-	nextUpdateLte := time.Now() // time.Time | Filter by next update date (less than or equal). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificateRevocationListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists(context.Background()).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).LastUpdate(lastUpdate).LastUpdateGte(lastUpdateGte).LastUpdateLte(lastUpdateLte).Name(name).NextUpdate(nextUpdate).NextUpdateGte(nextUpdateGte).NextUpdateLte(nextUpdateLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListCertificateRevocationLists`: PaginatedCertificateRevocationList
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificateRevocationListsApiDeleteCertificateRevocationListRequest = {
+    // The unique identifier of the certificate revocation list
+  crlId: 1,
+};
+
+const data = await apiInstance.deleteCertificateRevocationList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListCertificateRevocationListsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by CRL ID (accepts comma-separated values). | 
- **issuer** | **string** | Filter by issuer (case-insensitive, partial match). | 
- **lastModified** | **time.Time** | Filter by exact last modified date and time. | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **lastUpdate** | **time.Time** | Filter by exact last update date and time. | 
- **lastUpdateGte** | **time.Time** | Filter by last update date (greater than or equal). | 
- **lastUpdateLte** | **time.Time** | Filter by last update date (less than or equal). | 
- **name** | **string** | Filter by CRL name (case-insensitive, partial match). | 
- **nextUpdate** | **time.Time** | Filter by exact next update date and time. | 
- **nextUpdateGte** | **time.Time** | Filter by next update date (greater than or equal). | 
- **nextUpdateLte** | **time.Time** | Filter by next update date (less than or equal). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **crlId** | [**number**] | The unique identifier of the certificate revocation list | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedCertificateRevocationList**](PaginatedCertificateRevocationList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateCertificateRevocationList
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Certificate revocation list deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CertificateRevocationListResponse PartialUpdateCertificateRevocationList(ctx, crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a certificate revocation lists (CRL)
+# **listCertificateRevocationLists**
+> PaginatedCertificateRevocationList listCertificateRevocationLists()
 
-
+List all certificate revocation lists (CRL) owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificateRevocationListsApi } from '';
+import type { DigitalCertificatesCertificateRevocationListsApiListCertificateRevocationListsRequest } from '';
 
-func main() {
-	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
-	patchedCertificateRevocationList := *openapiclient.NewPatchedCertificateRevocationList() // PatchedCertificateRevocationList |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificateRevocationListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList(context.Background(), crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateCertificateRevocationList`: CertificateRevocationListResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificateRevocationListsApiListCertificateRevocationListsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by CRL ID (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by issuer (case-insensitive, partial match). (optional)
+  issuer: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by exact last modified date and time. (optional)
+  lastModified: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by exact last update date and time. (optional)
+  lastUpdate: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last update date (greater than or equal). (optional)
+  lastUpdateGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last update date (less than or equal). (optional)
+  lastUpdateLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by CRL name (case-insensitive, partial match). (optional)
+  name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by exact next update date and time. (optional)
+  nextUpdate: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by next update date (greater than or equal). (optional)
+  nextUpdateGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by next update date (less than or equal). (optional)
+  nextUpdateLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listCertificateRevocationLists(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**crlId** | **int64** | The unique identifier of the certificate revocation list | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateCertificateRevocationListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by CRL ID (accepts comma-separated values). | (optional) defaults to undefined
+ **issuer** | [**string**] | Filter by issuer (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModified** | [**Date**] | Filter by exact last modified date and time. | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **lastUpdate** | [**Date**] | Filter by exact last update date and time. | (optional) defaults to undefined
+ **lastUpdateGte** | [**Date**] | Filter by last update date (greater than or equal). | (optional) defaults to undefined
+ **lastUpdateLte** | [**Date**] | Filter by last update date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by CRL name (case-insensitive, partial match). | (optional) defaults to undefined
+ **nextUpdate** | [**Date**] | Filter by exact next update date and time. | (optional) defaults to undefined
+ **nextUpdateGte** | [**Date**] | Filter by next update date (greater than or equal). | (optional) defaults to undefined
+ **nextUpdateLte** | [**Date**] | Filter by next update date (less than or equal). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedCertificateRevocationList** | [**PatchedCertificateRevocationList**](PatchedCertificateRevocationList.md) |  | 
 
 ### Return type
 
-[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
+**PaginatedCertificateRevocationList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveCertificateRevocationList
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of certificate revocation lists retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CertificateRevocationListResponse RetrieveCertificateRevocationList(ctx, crlId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a certificate revocation lists (CRL)
+# **partialUpdateCertificateRevocationList**
+> CertificateRevocationListResponse partialUpdateCertificateRevocationList()
 
-
+Update one or more fields of an existing certificate revocation lists (CRL) without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificateRevocationListsApi } from '';
+import type { DigitalCertificatesCertificateRevocationListsApiPartialUpdateCertificateRevocationListRequest } from '';
 
-func main() {
-	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificateRevocationListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList(context.Background(), crlId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveCertificateRevocationList`: CertificateRevocationListResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificateRevocationListsApiPartialUpdateCertificateRevocationListRequest = {
+    // The unique identifier of the certificate revocation list
+  crlId: 1,
+  
+  patchedCertificateRevocationList: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    crl: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateCertificateRevocationList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**crlId** | **int64** | The unique identifier of the certificate revocation list | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveCertificateRevocationListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedCertificateRevocationList** | **PatchedCertificateRevocationList**|  |
+ **crlId** | [**number**] | The unique identifier of the certificate revocation list | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
+**CertificateRevocationListResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateCertificateRevocationList
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Certificate revocation list partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CertificateRevocationListResponse UpdateCertificateRevocationList(ctx, crlId).CertificateRevocationList(certificateRevocationList).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a certificate revocation lists (CRL)
+# **retrieveCertificateRevocationList**
+> CertificateRevocationListResponse retrieveCertificateRevocationList()
 
-
+Retrieve details from a specific certificate revocation lists (CRL) in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, DigitalCertificatesCertificateRevocationListsApi } from '';
+import type { DigitalCertificatesCertificateRevocationListsApiRetrieveCertificateRevocationListRequest } from '';
 
-func main() {
-	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
-	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example") // CertificateRevocationList | 
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificateRevocationListsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList(context.Background(), crlId).CertificateRevocationList(certificateRevocationList).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateCertificateRevocationList`: CertificateRevocationListResponse
-	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList`: %v\n", resp)
-}
+const request: DigitalCertificatesCertificateRevocationListsApiRetrieveCertificateRevocationListRequest = {
+    // The unique identifier of the certificate revocation list
+  crlId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveCertificateRevocationList(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**crlId** | **int64** | The unique identifier of the certificate revocation list | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateCertificateRevocationListRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **crlId** | [**number**] | The unique identifier of the certificate revocation list | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **certificateRevocationList** | [**CertificateRevocationList**](CertificateRevocationList.md) |  | 
 
 ### Return type
 
-[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
+**CertificateRevocationListResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Certificate revocation list details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateCertificateRevocationList**
+> CertificateRevocationListResponse updateCertificateRevocationList(certificateRevocationList)
+
+Update an existing certificate revocation lists (CRL).  This replaces the entire certificate with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, DigitalCertificatesCertificateRevocationListsApi } from '';
+import type { DigitalCertificatesCertificateRevocationListsApiUpdateCertificateRevocationListRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new DigitalCertificatesCertificateRevocationListsApi(configuration);
+
+const request: DigitalCertificatesCertificateRevocationListsApiUpdateCertificateRevocationListRequest = {
+    // The unique identifier of the certificate revocation list
+  crlId: 1,
+  
+  certificateRevocationList: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    crl: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateCertificateRevocationList(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **certificateRevocationList** | **CertificateRevocationList**|  |
+ **crlId** | [**number**] | The unique identifier of the certificate revocation list | defaults to undefined
+
+
+### Return type
+
+**CertificateRevocationListResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Certificate revocation list updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

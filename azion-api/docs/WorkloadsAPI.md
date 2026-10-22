@@ -1,461 +1,469 @@
-# \WorkloadsAPI
+# .WorkloadsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateWorkload**](WorkloadsAPI.md#CreateWorkload) | **Post** /workspace/workloads | Create an Workload
-[**DeleteWorkload**](WorkloadsAPI.md#DeleteWorkload) | **Delete** /workspace/workloads/{workload_id} | Delete an Workload
-[**ListWorkloads**](WorkloadsAPI.md#ListWorkloads) | **Get** /workspace/workloads | List Workloads
-[**PartialUpdateWorkload**](WorkloadsAPI.md#PartialUpdateWorkload) | **Patch** /workspace/workloads/{workload_id} | Partially update an Workload
-[**RetrieveWorkload**](WorkloadsAPI.md#RetrieveWorkload) | **Get** /workspace/workloads/{workload_id} | Retrieve details of an Workload
-[**UpdateWorkload**](WorkloadsAPI.md#UpdateWorkload) | **Put** /workspace/workloads/{workload_id} | Update an Workload
+[**createWorkload**](WorkloadsApi.md#createWorkload) | **POST** /workspace/workloads | Create an Workload
+[**deleteWorkload**](WorkloadsApi.md#deleteWorkload) | **DELETE** /workspace/workloads/{workload_id} | Delete an Workload
+[**listWorkloads**](WorkloadsApi.md#listWorkloads) | **GET** /workspace/workloads | List Workloads
+[**partialUpdateWorkload**](WorkloadsApi.md#partialUpdateWorkload) | **PATCH** /workspace/workloads/{workload_id} | Partially update an Workload
+[**retrieveWorkload**](WorkloadsApi.md#retrieveWorkload) | **GET** /workspace/workloads/{workload_id} | Retrieve details of an Workload
+[**updateWorkload**](WorkloadsApi.md#updateWorkload) | **PUT** /workspace/workloads/{workload_id} | Update an Workload
 
 
+# **createWorkload**
+> WorkloadResponse createWorkload(workloadRequest)
 
-## CreateWorkload
-
-> WorkloadResponse CreateWorkload(ctx).WorkloadRequest(workloadRequest).Execute()
-
-Create an Workload
-
-
+Create a new Workload in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WorkloadsApi } from '';
+import type { WorkloadsApiCreateWorkloadRequest } from '';
 
-func main() {
-	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
+const configuration = createConfiguration();
+const apiInstance = new WorkloadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.CreateWorkload(context.Background()).WorkloadRequest(workloadRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.CreateWorkload``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateWorkload`: WorkloadResponse
-	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.CreateWorkload`: %v\n", resp)
-}
+const request: WorkloadsApiCreateWorkloadRequest = {
+  
+  workloadRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    infrastructure: null,
+    tls: null,
+    protocols: null,
+    mtls: null,
+    domains: [
+      "jUR,rZ#UM/?R,Fp^l6$ARj",
+    ],
+    workloadDomainAllowAccess: true,
+  },
+};
+
+const data = await apiInstance.createWorkload(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateWorkloadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workloadRequest** | [**WorkloadRequest**](WorkloadRequest.md) |  | 
-
-### Return type
-
-[**WorkloadResponse**](WorkloadResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteWorkload
-
-> DeleteResponse DeleteWorkload(ctx, workloadId).Execute()
-
-Delete an Workload
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.DeleteWorkload(context.Background(), workloadId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.DeleteWorkload``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteWorkload`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.DeleteWorkload`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** | A unique integer value identifying the workload. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteWorkloadRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **workloadRequest** | **WorkloadRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**WorkloadResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListWorkloads
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Workload created successfully. |  -  |
+**202** | Workload creation accepted and processing asynchronously. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedWorkloadList ListWorkloads(ctx).Active(active).DigitalCertificateId(digitalCertificateId).Fields(fields).Id(id).Infrastructure(infrastructure).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateId(mtlsTrustedCaCertificateId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Workloads
+# **deleteWorkload**
+> DeleteResponse deleteWorkload()
 
-
+Delete a specific Workload in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WorkloadsApi } from '';
+import type { WorkloadsApiDeleteWorkloadRequest } from '';
 
-func main() {
-	active := true // bool | Filter by active status. (optional)
-	digitalCertificateId := int64(789) // int64 | Filter by digital certificate id (accepts comma-separated values). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	infrastructure := "infrastructure_example" // string | Filter by infrastructure (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	mapName := "mapName_example" // string | Filter by map name (case-insensitive, partial match). (optional)
-	mtlsTrustedCaCertificateId := int64(789) // int64 | Filter by mTLS trusted CA certificate id (accepts comma-separated values). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new WorkloadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.ListWorkloads(context.Background()).Active(active).DigitalCertificateId(digitalCertificateId).Fields(fields).Id(id).Infrastructure(infrastructure).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateId(mtlsTrustedCaCertificateId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.ListWorkloads``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListWorkloads`: PaginatedWorkloadList
-	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.ListWorkloads`: %v\n", resp)
-}
+const request: WorkloadsApiDeleteWorkloadRequest = {
+    // A unique integer value identifying the workload.
+  workloadId: 1,
+};
+
+const data = await apiInstance.deleteWorkload(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListWorkloadsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** | Filter by active status. | 
- **digitalCertificateId** | **int64** | Filter by digital certificate id (accepts comma-separated values). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **infrastructure** | **string** | Filter by infrastructure (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **mapName** | **string** | Filter by map name (case-insensitive, partial match). | 
- **mtlsTrustedCaCertificateId** | **int64** | Filter by mTLS trusted CA certificate id (accepts comma-separated values). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **workloadId** | [**number**] | A unique integer value identifying the workload. | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedWorkloadList**](PaginatedWorkloadList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateWorkload
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Workload deleted successfully. |  -  |
+**202** | Workload deletion accepted and processing asynchronously. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> WorkloadResponse PartialUpdateWorkload(ctx, workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Workload
+# **listWorkloads**
+> PaginatedWorkloadList listWorkloads()
 
-
+List all Workloads owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WorkloadsApi } from '';
+import type { WorkloadsApiListWorkloadsRequest } from '';
 
-func main() {
-	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	patchedWorkloadRequest := *openapiclient.NewPatchedWorkloadRequest() // PatchedWorkloadRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new WorkloadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.PartialUpdateWorkload(context.Background(), workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.PartialUpdateWorkload``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateWorkload`: WorkloadResponse
-	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.PartialUpdateWorkload`: %v\n", resp)
-}
+const request: WorkloadsApiListWorkloadsRequest = {
+    // Filter by active status. (optional)
+  active: true,
+    // Filter by digital certificate id (accepts comma-separated values). (optional)
+  digitalCertificateId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by infrastructure (accepts comma-separated values). (optional)
+  infrastructure: "infrastructure_example",
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by map name (case-insensitive, partial match). (optional)
+  mapName: "map_name_example",
+    // Filter by mTLS trusted CA certificate id (accepts comma-separated values). (optional)
+  mtlsTrustedCaCertificateId: 1,
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listWorkloads(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** | A unique integer value identifying the workload. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateWorkloadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | [**boolean**] | Filter by active status. | (optional) defaults to undefined
+ **digitalCertificateId** | [**number**] | Filter by digital certificate id (accepts comma-separated values). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **infrastructure** | [**string**] | Filter by infrastructure (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **mapName** | [**string**] | Filter by map name (case-insensitive, partial match). | (optional) defaults to undefined
+ **mtlsTrustedCaCertificateId** | [**number**] | Filter by mTLS trusted CA certificate id (accepts comma-separated values). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedWorkloadRequest** | [**PatchedWorkloadRequest**](PatchedWorkloadRequest.md) |  | 
 
 ### Return type
 
-[**WorkloadResponse**](WorkloadResponse.md)
+**PaginatedWorkloadList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveWorkload
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of workloads retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> WorkloadResponse RetrieveWorkload(ctx, workloadId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Workload
+# **partialUpdateWorkload**
+> WorkloadResponse partialUpdateWorkload()
 
-
+Update one or more fields of an existing Workload without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WorkloadsApi } from '';
+import type { WorkloadsApiPartialUpdateWorkloadRequest } from '';
 
-func main() {
-	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new WorkloadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.RetrieveWorkload(context.Background(), workloadId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.RetrieveWorkload``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveWorkload`: WorkloadResponse
-	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.RetrieveWorkload`: %v\n", resp)
-}
+const request: WorkloadsApiPartialUpdateWorkloadRequest = {
+    // A unique integer value identifying the workload.
+  workloadId: 1,
+  
+  patchedWorkloadRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    infrastructure: null,
+    tls: null,
+    protocols: null,
+    mtls: null,
+    domains: [
+      "jUR,rZ#UM/?R,Fp^l6$ARj",
+    ],
+    workloadDomainAllowAccess: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateWorkload(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** | A unique integer value identifying the workload. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveWorkloadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedWorkloadRequest** | **PatchedWorkloadRequest**|  |
+ **workloadId** | [**number**] | A unique integer value identifying the workload. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**WorkloadResponse**](WorkloadResponse.md)
+**WorkloadResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateWorkload
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Workload partially updated successfully. |  -  |
+**202** | Workload partial update accepted and processing asynchronously. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> WorkloadResponse UpdateWorkload(ctx, workloadId).WorkloadRequest(workloadRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Workload
+# **retrieveWorkload**
+> WorkloadResponse retrieveWorkload()
 
-
+Retrieve details of a specific Workload in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WorkloadsApi } from '';
+import type { WorkloadsApiRetrieveWorkloadRequest } from '';
 
-func main() {
-	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
+const configuration = createConfiguration();
+const apiInstance = new WorkloadsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.UpdateWorkload(context.Background(), workloadId).WorkloadRequest(workloadRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.UpdateWorkload``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateWorkload`: WorkloadResponse
-	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.UpdateWorkload`: %v\n", resp)
-}
+const request: WorkloadsApiRetrieveWorkloadRequest = {
+    // A unique integer value identifying the workload.
+  workloadId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveWorkload(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** | A unique integer value identifying the workload. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateWorkloadRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **workloadId** | [**number**] | A unique integer value identifying the workload. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **workloadRequest** | [**WorkloadRequest**](WorkloadRequest.md) |  | 
 
 ### Return type
 
-[**WorkloadResponse**](WorkloadResponse.md)
+**WorkloadResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Workload details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateWorkload**
+> WorkloadResponse updateWorkload(workloadRequest)
+
+Update an existing Workload. This replaces the entire Workload with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, WorkloadsApi } from '';
+import type { WorkloadsApiUpdateWorkloadRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new WorkloadsApi(configuration);
+
+const request: WorkloadsApiUpdateWorkloadRequest = {
+    // A unique integer value identifying the workload.
+  workloadId: 1,
+  
+  workloadRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    infrastructure: null,
+    tls: null,
+    protocols: null,
+    mtls: null,
+    domains: [
+      "jUR,rZ#UM/?R,Fp^l6$ARj",
+    ],
+    workloadDomainAllowAccess: true,
+  },
+};
+
+const data = await apiInstance.updateWorkload(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workloadRequest** | **WorkloadRequest**|  |
+ **workloadId** | [**number**] | A unique integer value identifying the workload. | defaults to undefined
+
+
+### Return type
+
+**WorkloadResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Workload updated successfully. |  -  |
+**202** | Workload update accepted and processing asynchronously. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

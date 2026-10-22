@@ -1,79 +1,71 @@
-# \BillingInvoicesAPI
+# .BillingInvoicesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveInvoice**](BillingInvoicesAPI.md#RetrieveInvoice) | **Get** /billing/invoices/{period} | Retrieve details of an invoice
+[**retrieveInvoice**](BillingInvoicesApi.md#retrieveInvoice) | **GET** /billing/invoices/{period} | Retrieve details of an invoice
 
 
+# **retrieveInvoice**
+> void retrieveInvoice()
 
-## RetrieveInvoice
-
-> RetrieveInvoice(ctx, period).Fields(fields).Execute()
-
-Retrieve details of an invoice
-
-
+Retrieve invoice data for a specific period.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, BillingInvoicesApi } from '';
+import type { BillingInvoicesApiRetrieveInvoiceRequest } from '';
 
-func main() {
-	period := "period_example" // string | Invoice period in MM-YYYY format (e.g., 01-2024 for January 2024)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new BillingInvoicesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.BillingInvoicesAPI.RetrieveInvoice(context.Background(), period).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingInvoicesAPI.RetrieveInvoice``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: BillingInvoicesApiRetrieveInvoiceRequest = {
+    // Invoice period in MM-YYYY format (e.g., 01-2024 for January 2024)
+  period: "04-8072",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveInvoice(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**period** | **string** | Invoice period in MM-YYYY format (e.g., 01-2024 for January 2024) | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveInvoiceRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **period** | [**string**] | Invoice period in MM-YYYY format (e.g., 01-2024 for January 2024) | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[tokenAuth](README.md#tokenAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Invoice details (application/pdf) |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**404** | Not Found |  -  |
+**400** | Validation Error |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

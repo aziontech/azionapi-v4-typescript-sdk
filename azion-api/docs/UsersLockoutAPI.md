@@ -1,77 +1,71 @@
-# \UsersLockoutAPI
+# .UsersLockoutApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DestroyLockoutUser**](UsersLockoutAPI.md#DestroyLockoutUser) | **Delete** /identity/users/{user_id}/lockout | Unlock user
+[**destroyLockoutUser**](UsersLockoutApi.md#destroyLockoutUser) | **DELETE** /identity/users/{user_id}/lockout | Unlock user
 
 
+# **destroyLockoutUser**
+> void destroyLockoutUser()
 
-## DestroyLockoutUser
-
-> DestroyLockoutUser(ctx, userId).Execute()
-
-Unlock user
-
-
+Destroy Lockout info from user.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, UsersLockoutApi } from '';
+import type { UsersLockoutApiDestroyLockoutUserRequest } from '';
 
-func main() {
-	userId := int64(789) // int64 | A unique integer value identifying the user.
+const configuration = createConfiguration();
+const apiInstance = new UsersLockoutApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.UsersLockoutAPI.DestroyLockoutUser(context.Background(), userId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersLockoutAPI.DestroyLockoutUser``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: UsersLockoutApiDestroyLockoutUserRequest = {
+    // A unique integer value identifying the user.
+  userId: 1,
+};
+
+const data = await apiInstance.destroyLockoutUser(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int64** | A unique integer value identifying the user. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDestroyLockoutUserRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **userId** | [**number**] | A unique integer value identifying the user. | defaults to undefined
 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

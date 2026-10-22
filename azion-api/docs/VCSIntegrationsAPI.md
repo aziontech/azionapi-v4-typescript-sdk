@@ -1,314 +1,296 @@
-# \VCSIntegrationsAPI
+# .VCSIntegrationsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteIntegration**](VCSIntegrationsAPI.md#DeleteIntegration) | **Delete** /vcs/integrations/{integration_id} | Delete an integration
-[**ListIntegrations**](VCSIntegrationsAPI.md#ListIntegrations) | **Get** /vcs/integrations | List integrations
-[**ListRepositories**](VCSIntegrationsAPI.md#ListRepositories) | **Get** /vcs/integrations/{integration_id}/repositories | List integration repositories.
-[**RetrieveIntegration**](VCSIntegrationsAPI.md#RetrieveIntegration) | **Get** /vcs/integrations/{integration_id} | Retrieve details from a integration
+[**deleteIntegration**](VCSIntegrationsApi.md#deleteIntegration) | **DELETE** /vcs/integrations/{integration_id} | Delete an integration
+[**listIntegrations**](VCSIntegrationsApi.md#listIntegrations) | **GET** /vcs/integrations | List integrations
+[**listRepositories**](VCSIntegrationsApi.md#listRepositories) | **GET** /vcs/integrations/{integration_id}/repositories | List integration repositories.
+[**retrieveIntegration**](VCSIntegrationsApi.md#retrieveIntegration) | **GET** /vcs/integrations/{integration_id} | Retrieve details from a integration
 
 
+# **deleteIntegration**
+> DeleteResponse deleteIntegration()
 
-## DeleteIntegration
-
-> DeleteResponse DeleteIntegration(ctx, integrationId).Execute()
-
-Delete an integration
-
-
+Delete a specific account integration.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, VCSIntegrationsApi } from '';
+import type { VCSIntegrationsApiDeleteIntegrationRequest } from '';
 
-func main() {
-	integrationId := "integrationId_example" // string | Unique identifier of the integration
+const configuration = createConfiguration();
+const apiInstance = new VCSIntegrationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSIntegrationsAPI.DeleteIntegration(context.Background(), integrationId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.DeleteIntegration``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteIntegration`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.DeleteIntegration`: %v\n", resp)
-}
+const request: VCSIntegrationsApiDeleteIntegrationRequest = {
+    // Unique identifier of the integration
+  integrationId: "integration_id_example",
+};
+
+const data = await apiInstance.deleteIntegration(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | Unique identifier of the integration | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteIntegrationRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **integrationId** | [**string**] | Unique identifier of the integration | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## ListIntegrations
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedIntegrationListResponseList ListIntegrations(ctx).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Platform(platform).Scope(scope).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List integrations
+# **listIntegrations**
+> PaginatedIntegrationListResponseList listIntegrations()
 
-
+List all account integrations.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, VCSIntegrationsApi } from '';
+import type { VCSIntegrationsApiListIntegrationsRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	platform := "platform_example" // string | Filter by platform id (exact match). (optional)
-	scope := "scope_example" // string | Filter by scope (case-insensitive, partial match). (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new VCSIntegrationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSIntegrationsAPI.ListIntegrations(context.Background()).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Platform(platform).Scope(scope).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.ListIntegrations``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListIntegrations`: PaginatedIntegrationListResponseList
-	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.ListIntegrations`: %v\n", resp)
-}
+const request: VCSIntegrationsApiListIntegrationsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // Filter by platform id (exact match). (optional)
+  platform: "platform_example",
+    // Filter by scope (case-insensitive, partial match). (optional)
+  scope: "scope_example",
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listIntegrations(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListIntegrationsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **platform** | **string** | Filter by platform id (exact match). | 
- **scope** | **string** | Filter by scope (case-insensitive, partial match). | 
- **search** | **string** | A search term. | 
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **platform** | [**string**] | Filter by platform id (exact match). | (optional) defaults to undefined
+ **scope** | [**string**] | Filter by scope (case-insensitive, partial match). | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+
 
 ### Return type
 
-[**PaginatedIntegrationListResponseList**](PaginatedIntegrationListResponseList.md)
+**PaginatedIntegrationListResponseList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## ListRepositories
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedRepositoryListResponseList ListRepositories(ctx, integrationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List integration repositories.
+# **listRepositories**
+> PaginatedRepositoryListResponseList listRepositories()
 
-
+Retrieve repositories for a specific integration.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, VCSIntegrationsApi } from '';
+import type { VCSIntegrationsApiListRepositoriesRequest } from '';
 
-func main() {
-	integrationId := int64(789) // int64 | Unique identifier of the integration
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new VCSIntegrationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSIntegrationsAPI.ListRepositories(context.Background(), integrationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.ListRepositories``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListRepositories`: PaginatedRepositoryListResponseList
-	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.ListRepositories`: %v\n", resp)
-}
+const request: VCSIntegrationsApiListRepositoriesRequest = {
+    // Unique identifier of the integration
+  integrationId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listRepositories(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **int64** | Unique identifier of the integration | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListRepositoriesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **integrationId** | [**number**] | Unique identifier of the integration | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedRepositoryListResponseList**](PaginatedRepositoryListResponseList.md)
+**PaginatedRepositoryListResponseList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveIntegration
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> IntegrationResponse RetrieveIntegration(ctx, integrationId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a integration
+# **retrieveIntegration**
+> IntegrationResponse retrieveIntegration()
 
-
+Retrieve details from a specific account integration.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, VCSIntegrationsApi } from '';
+import type { VCSIntegrationsApiRetrieveIntegrationRequest } from '';
 
-func main() {
-	integrationId := "integrationId_example" // string | Unique identifier of the integration
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new VCSIntegrationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSIntegrationsAPI.RetrieveIntegration(context.Background(), integrationId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.RetrieveIntegration``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveIntegration`: IntegrationResponse
-	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.RetrieveIntegration`: %v\n", resp)
-}
+const request: VCSIntegrationsApiRetrieveIntegrationRequest = {
+    // Unique identifier of the integration
+  integrationId: "integration_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveIntegration(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | Unique identifier of the integration | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveIntegrationRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **integrationId** | [**string**] | Unique identifier of the integration | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**IntegrationResponse**](IntegrationResponse.md)
+**IntegrationResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

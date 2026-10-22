@@ -1,392 +1,381 @@
-# \StorageBucketsAPI
+# .StorageBucketsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateBucket**](StorageBucketsAPI.md#CreateBucket) | **Post** /workspace/storage/buckets | Create a new bucket
-[**DeleteBucket**](StorageBucketsAPI.md#DeleteBucket) | **Delete** /workspace/storage/buckets/{bucket_name} | Delete a bucket
-[**ListBuckets**](StorageBucketsAPI.md#ListBuckets) | **Get** /workspace/storage/buckets | List buckets
-[**RetrieveBucket**](StorageBucketsAPI.md#RetrieveBucket) | **Get** /workspace/storage/buckets/{bucket_name} | Retrieve a bucket
-[**UpdateBucket**](StorageBucketsAPI.md#UpdateBucket) | **Patch** /workspace/storage/buckets/{bucket_name} | Update bucket info
+[**createBucket**](StorageBucketsApi.md#createBucket) | **POST** /workspace/storage/buckets | Create a new bucket
+[**deleteBucket**](StorageBucketsApi.md#deleteBucket) | **DELETE** /workspace/storage/buckets/{bucket_name} | Delete a bucket
+[**listBuckets**](StorageBucketsApi.md#listBuckets) | **GET** /workspace/storage/buckets | List buckets
+[**retrieveBucket**](StorageBucketsApi.md#retrieveBucket) | **GET** /workspace/storage/buckets/{bucket_name} | Retrieve a bucket
+[**updateBucket**](StorageBucketsApi.md#updateBucket) | **PATCH** /workspace/storage/buckets/{bucket_name} | Update bucket info
 
 
+# **createBucket**
+> BucketCreateResponse createBucket(bucketCreateRequest)
 
-## CreateBucket
-
-> BucketCreateResponse CreateBucket(ctx).BucketCreateRequest(bucketCreateRequest).Execute()
-
-Create a new bucket
-
-
+Create a new bucket.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, StorageBucketsApi } from '';
+import type { StorageBucketsApiCreateBucketRequest } from '';
 
-func main() {
-	bucketCreateRequest := *openapiclient.NewBucketCreateRequest("Name_example", "WorkloadsAccess_example") // BucketCreateRequest | 
+const configuration = createConfiguration();
+const apiInstance = new StorageBucketsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.CreateBucket(context.Background()).BucketCreateRequest(bucketCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.CreateBucket``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateBucket`: BucketCreateResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageBucketsAPI.CreateBucket`: %v\n", resp)
-}
+const request: StorageBucketsApiCreateBucketRequest = {
+  
+  bucketCreateRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARjbhJk C>i H'qT\{<?'es",
+    workloadsAccess: "read_only",
+  },
+};
+
+const data = await apiInstance.createBucket(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateBucketRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucketCreateRequest** | [**BucketCreateRequest**](BucketCreateRequest.md) |  | 
-
-### Return type
-
-[**BucketCreateResponse**](BucketCreateResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteBucket
-
-> DeleteResponse DeleteBucket(ctx, bucketName).Execute()
-
-Delete a bucket
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	bucketName := "bucketName_example" // string | The name of the bucket
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.DeleteBucket(context.Background(), bucketName).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.DeleteBucket``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteBucket`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageBucketsAPI.DeleteBucket`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bucketName** | **string** | The name of the bucket | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteBucketRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **bucketCreateRequest** | **BucketCreateRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**BucketCreateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListBuckets
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Bucket created successfully. |  -  |
+**202** | Bucket creation request accepted and is being processed. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedBucketList ListBuckets(ctx).Bucket(bucket).Created(created).CreatedGte(createdGte).CreatedLte(createdLte).Description(description).Fields(fields).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).WorkloadsAccess(workloadsAccess).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List buckets
+# **deleteBucket**
+> DeleteResponse deleteBucket()
 
-
+Delete a specific bucket.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, StorageBucketsApi } from '';
+import type { StorageBucketsApiDeleteBucketRequest } from '';
 
-func main() {
-	bucket := "bucket_example" // string | Filter by bucket (exact match). (optional)
-	created := time.Now() // time.Time | Filter by creation date (exact match). (optional)
-	createdGte := time.Now() // time.Time | Filter by creation date (greater than or equal). (optional)
-	createdLte := time.Now() // time.Time | Filter by creation date (less than or equal). (optional)
-	description := "description_example" // string | Filter by description (case-insensitive, partial match). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModified := time.Now() // time.Time | Filter by last modified date (exact match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	status := "status_example" // string | Filter by status (accepts comma-separated values). (optional)
-	workloadsAccess := "workloadsAccess_example" // string | Filter by workloads access (accepts comma-separated values). (optional)
+const configuration = createConfiguration();
+const apiInstance = new StorageBucketsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.ListBuckets(context.Background()).Bucket(bucket).Created(created).CreatedGte(createdGte).CreatedLte(createdLte).Description(description).Fields(fields).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).WorkloadsAccess(workloadsAccess).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.ListBuckets``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListBuckets`: PaginatedBucketList
-	fmt.Fprintf(os.Stdout, "Response from `StorageBucketsAPI.ListBuckets`: %v\n", resp)
-}
+const request: StorageBucketsApiDeleteBucketRequest = {
+    // The name of the bucket
+  bucketName: "jUR,rZ#UM/?R,Fp^l6$ARj",
+};
+
+const data = await apiInstance.deleteBucket(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListBucketsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **bucket** | **string** | Filter by bucket (exact match). | 
- **created** | **time.Time** | Filter by creation date (exact match). | 
- **createdGte** | **time.Time** | Filter by creation date (greater than or equal). | 
- **createdLte** | **time.Time** | Filter by creation date (less than or equal). | 
- **description** | **string** | Filter by description (case-insensitive, partial match). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModified** | **time.Time** | Filter by last modified date (exact match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **status** | **string** | Filter by status (accepts comma-separated values). | 
- **workloadsAccess** | **string** | Filter by workloads access (accepts comma-separated values). | 
+ **bucketName** | [**string**] | The name of the bucket | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedBucketList**](PaginatedBucketList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveBucket
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Bucket deleted successfully. |  -  |
+**202** | Bucket deletion request accepted and is being processed. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> BucketCreateResponse RetrieveBucket(ctx, bucketName).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve a bucket
+# **listBuckets**
+> PaginatedBucketList listBuckets()
 
-
+List all buckets.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, StorageBucketsApi } from '';
+import type { StorageBucketsApiListBucketsRequest } from '';
 
-func main() {
-	bucketName := "bucketName_example" // string | The name of the bucket
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new StorageBucketsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.RetrieveBucket(context.Background(), bucketName).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.RetrieveBucket``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveBucket`: BucketCreateResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageBucketsAPI.RetrieveBucket`: %v\n", resp)
-}
+const request: StorageBucketsApiListBucketsRequest = {
+    // Filter by bucket (exact match). (optional)
+  bucket: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by creation date (exact match). (optional)
+  created: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by creation date (greater than or equal). (optional)
+  createdGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by creation date (less than or equal). (optional)
+  createdLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by description (case-insensitive, partial match). (optional)
+  description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by last modified date (exact match). (optional)
+  lastModified: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+    // Filter by status (accepts comma-separated values). (optional)
+  status: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Filter by workloads access (accepts comma-separated values). (optional)
+  workloadsAccess: "jUR,rZ#UM/?R,Fp^l6$ARj",
+};
+
+const data = await apiInstance.listBuckets(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bucketName** | **string** | The name of the bucket | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveBucketRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **bucket** | [**string**] | Filter by bucket (exact match). | (optional) defaults to undefined
+ **created** | [**Date**] | Filter by creation date (exact match). | (optional) defaults to undefined
+ **createdGte** | [**Date**] | Filter by creation date (greater than or equal). | (optional) defaults to undefined
+ **createdLte** | [**Date**] | Filter by creation date (less than or equal). | (optional) defaults to undefined
+ **description** | [**string**] | Filter by description (case-insensitive, partial match). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModified** | [**Date**] | Filter by last modified date (exact match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **status** | [**string**] | Filter by status (accepts comma-separated values). | (optional) defaults to undefined
+ **workloadsAccess** | [**string**] | Filter by workloads access (accepts comma-separated values). | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**BucketCreateResponse**](BucketCreateResponse.md)
+**PaginatedBucketList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateBucket
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of buckets retrieved successfully. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> BucketCreateResponse UpdateBucket(ctx, bucketName).PatchedBucketRequest(patchedBucketRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update bucket info
+# **retrieveBucket**
+> BucketCreateResponse retrieveBucket()
 
-
+Retrieve details from a specific bucket.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, StorageBucketsApi } from '';
+import type { StorageBucketsApiRetrieveBucketRequest } from '';
 
-func main() {
-	bucketName := "bucketName_example" // string | The name of the bucket
-	patchedBucketRequest := *openapiclient.NewPatchedBucketRequest() // PatchedBucketRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new StorageBucketsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.UpdateBucket(context.Background(), bucketName).PatchedBucketRequest(patchedBucketRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.UpdateBucket``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateBucket`: BucketCreateResponse
-	fmt.Fprintf(os.Stdout, "Response from `StorageBucketsAPI.UpdateBucket`: %v\n", resp)
-}
+const request: StorageBucketsApiRetrieveBucketRequest = {
+    // The name of the bucket
+  bucketName: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveBucket(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bucketName** | **string** | The name of the bucket | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateBucketRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **bucketName** | [**string**] | The name of the bucket | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **patchedBucketRequest** | [**PatchedBucketRequest**](PatchedBucketRequest.md) |  | 
 
 ### Return type
 
-[**BucketCreateResponse**](BucketCreateResponse.md)
+**BucketCreateResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Bucket details retrieved successfully. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateBucket**
+> BucketCreateResponse updateBucket()
+
+Update bucket information (bucket name cannot be changed)
+
+### Example
+
+
+```typescript
+import { createConfiguration, StorageBucketsApi } from '';
+import type { StorageBucketsApiUpdateBucketRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new StorageBucketsApi(configuration);
+
+const request: StorageBucketsApiUpdateBucketRequest = {
+    // The name of the bucket
+  bucketName: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  
+  patchedBucketRequest: {
+    workloadsAccess: "read_only",
+  },
+};
+
+const data = await apiInstance.updateBucket(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchedBucketRequest** | **PatchedBucketRequest**|  |
+ **bucketName** | [**string**] | The name of the bucket | defaults to undefined
+
+
+### Return type
+
+**BucketCreateResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Bucket updated successfully. |  -  |
+**202** | Bucket update request accepted and is being processed. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

@@ -1,1125 +1,1146 @@
-# \FirewallsRulesEngineAPI
+# .FirewallsRulesEngineApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFirewallRule**](FirewallsRulesEngineAPI.md#CreateFirewallRule) | **Post** /workspace/firewalls/{firewall_id}/request_rules | Create an Firewall Rule
-[**CreateFirewallRule2**](FirewallsRulesEngineAPI.md#CreateFirewallRule2) | **Post** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules | Create an Firewall Rule
-[**DeleteFirewallRule**](FirewallsRulesEngineAPI.md#DeleteFirewallRule) | **Delete** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Delete an Firewall Rule
-[**DeleteFirewallRule2**](FirewallsRulesEngineAPI.md#DeleteFirewallRule2) | **Delete** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Delete an Firewall Rule
-[**ListFirewallRules**](FirewallsRulesEngineAPI.md#ListFirewallRules) | **Get** /workspace/firewalls/{firewall_id}/request_rules | List Firewall Rules
-[**ListFirewallRules2**](FirewallsRulesEngineAPI.md#ListFirewallRules2) | **Get** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules | List Firewall Rules
-[**OrderFirewallRules**](FirewallsRulesEngineAPI.md#OrderFirewallRules) | **Put** /workspace/firewalls/{firewall_id}/request_rules/order | Ordering Firewall Rules
-[**OrderFirewallRules2**](FirewallsRulesEngineAPI.md#OrderFirewallRules2) | **Put** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/order | Ordering Firewall Rules
-[**PartialUpdateFirewallRule**](FirewallsRulesEngineAPI.md#PartialUpdateFirewallRule) | **Patch** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Partially update an Firewall Rule
-[**PartialUpdateFirewallRule2**](FirewallsRulesEngineAPI.md#PartialUpdateFirewallRule2) | **Patch** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Partially update an Firewall Rule
-[**RetrieveFirewallRule**](FirewallsRulesEngineAPI.md#RetrieveFirewallRule) | **Get** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Retrieve details of an Firewall Rule
-[**RetrieveFirewallRule2**](FirewallsRulesEngineAPI.md#RetrieveFirewallRule2) | **Get** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Retrieve details of an Firewall Rule
-[**UpdateFirewallRule**](FirewallsRulesEngineAPI.md#UpdateFirewallRule) | **Put** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Update an Firewall Rule
-[**UpdateFirewallRule2**](FirewallsRulesEngineAPI.md#UpdateFirewallRule2) | **Put** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Update an Firewall Rule
+[**createFirewallRule**](FirewallsRulesEngineApi.md#createFirewallRule) | **POST** /workspace/firewalls/{firewall_id}/request_rules | Create an Firewall Rule
+[**createFirewallRule2**](FirewallsRulesEngineApi.md#createFirewallRule2) | **POST** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules | Create an Firewall Rule
+[**deleteFirewallRule**](FirewallsRulesEngineApi.md#deleteFirewallRule) | **DELETE** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Delete an Firewall Rule
+[**deleteFirewallRule2**](FirewallsRulesEngineApi.md#deleteFirewallRule2) | **DELETE** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Delete an Firewall Rule
+[**listFirewallRules**](FirewallsRulesEngineApi.md#listFirewallRules) | **GET** /workspace/firewalls/{firewall_id}/request_rules | List Firewall Rules
+[**listFirewallRules2**](FirewallsRulesEngineApi.md#listFirewallRules2) | **GET** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules | List Firewall Rules
+[**orderFirewallRules**](FirewallsRulesEngineApi.md#orderFirewallRules) | **PUT** /workspace/firewalls/{firewall_id}/request_rules/order | Ordering Firewall Rules
+[**orderFirewallRules2**](FirewallsRulesEngineApi.md#orderFirewallRules2) | **PUT** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/order | Ordering Firewall Rules
+[**partialUpdateFirewallRule**](FirewallsRulesEngineApi.md#partialUpdateFirewallRule) | **PATCH** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Partially update an Firewall Rule
+[**partialUpdateFirewallRule2**](FirewallsRulesEngineApi.md#partialUpdateFirewallRule2) | **PATCH** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Partially update an Firewall Rule
+[**retrieveFirewallRule**](FirewallsRulesEngineApi.md#retrieveFirewallRule) | **GET** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Retrieve details of an Firewall Rule
+[**retrieveFirewallRule2**](FirewallsRulesEngineApi.md#retrieveFirewallRule2) | **GET** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Retrieve details of an Firewall Rule
+[**updateFirewallRule**](FirewallsRulesEngineApi.md#updateFirewallRule) | **PUT** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Update an Firewall Rule
+[**updateFirewallRule2**](FirewallsRulesEngineApi.md#updateFirewallRule2) | **PUT** /workspace/firewalls/{firewall_id}/versions/{version_id}/request_rules/{request_rule_id} | Update an Firewall Rule
 
 
+# **createFirewallRule**
+> FirewallRuleResponse createFirewallRule(firewallRuleRequest)
 
-## CreateFirewallRule
-
-> FirewallRuleResponse CreateFirewallRule(ctx, firewallId).FirewallRuleRequest(firewallRuleRequest).Execute()
-
-Create an Firewall Rule
-
-
+Create a new Rule for a specific Firewall in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiCreateFirewallRuleRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]FirewallCriterionFieldRequest{[]openapiclient.FirewallCriterionFieldRequest{*openapiclient.NewFirewallCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.FirewallCriterionFieldVariableEnum("$(header_accept)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorArgsRequest: openapiclient.NewFirewallBehaviorArgsRequest("Type_example", *openapiclient.NewFirewallBehaviorRunFunctionAttributesRequest(int64(123)))}}) // FirewallRuleRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.CreateFirewallRule(context.Background(), firewallId).FirewallRuleRequest(firewallRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.CreateFirewallRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateFirewallRule`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.CreateFirewallRule`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiCreateFirewallRuleRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+  
+  firewallRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(header_accept)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createFirewallRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFirewallRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **firewallRuleRequest** | [**FirewallRuleRequest**](FirewallRuleRequest.md) |  | 
-
-### Return type
-
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateFirewallRule2
-
-> FirewallRuleResponse CreateFirewallRule2(ctx, firewallId, versionId).FirewallRuleRequest(firewallRuleRequest).Execute()
-
-Create an Firewall Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]FirewallCriterionFieldRequest{[]openapiclient.FirewallCriterionFieldRequest{*openapiclient.NewFirewallCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.FirewallCriterionFieldVariableEnum("$(header_accept)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorArgsRequest: openapiclient.NewFirewallBehaviorArgsRequest("Type_example", *openapiclient.NewFirewallBehaviorRunFunctionAttributesRequest(int64(123)))}}) // FirewallRuleRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.CreateFirewallRule2(context.Background(), firewallId, versionId).FirewallRuleRequest(firewallRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.CreateFirewallRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateFirewallRule2`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.CreateFirewallRule2`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFirewallRule2Request struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **firewallRuleRequest** | [**FirewallRuleRequest**](FirewallRuleRequest.md) |  | 
-
-### Return type
-
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteFirewallRule
-
-> DeleteResponse DeleteFirewallRule(ctx, firewallId, requestRuleId).Execute()
-
-Delete an Firewall Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.DeleteFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.DeleteFirewallRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteFirewallRule`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.DeleteFirewallRule`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFirewallRuleRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **firewallRuleRequest** | **FirewallRuleRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**FirewallRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## DeleteFirewallRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Firewall rule created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeleteResponse DeleteFirewallRule2(ctx, firewallId, requestRuleId, versionId).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Delete an Firewall Rule
+# **createFirewallRule2**
+> FirewallRuleResponse createFirewallRule2(firewallRuleRequest)
 
-
+Create a new Rule for a specific Firewall in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiCreateFirewallRule2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.DeleteFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.DeleteFirewallRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteFirewallRule2`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.DeleteFirewallRule2`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiCreateFirewallRule2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  firewallRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(header_accept)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createFirewallRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFirewallRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
+ **firewallRuleRequest** | **FirewallRuleRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**FirewallRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListFirewallRules
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Firewall rule created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFirewallRuleList ListFirewallRules(ctx, firewallId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Firewall Rules
+# **deleteFirewallRule**
+> DeleteResponse deleteFirewallRule()
 
-
+Delete a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiDeleteFirewallRuleRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	description := "description_example" // string | Filter by description (case-insensitive, partial match). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	orderGte := int64(789) // int64 | Filter by order (greater than or equal). (optional)
-	orderLte := int64(789) // int64 | Filter by order (less than or equal). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.ListFirewallRules(context.Background(), firewallId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.ListFirewallRules``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListFirewallRules`: PaginatedFirewallRuleList
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.ListFirewallRules`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiDeleteFirewallRuleRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+};
+
+const data = await apiInstance.deleteFirewallRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListFirewallRulesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
 
- **description** | **string** | Filter by description (case-insensitive, partial match). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **orderGte** | **int64** | Filter by order (greater than or equal). | 
- **orderLte** | **int64** | Filter by order (less than or equal). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedFirewallRuleList**](PaginatedFirewallRuleList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## ListFirewallRules2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFirewallRuleList ListFirewallRules2(ctx, firewallId, versionId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Firewall Rules
+# **deleteFirewallRule2**
+> DeleteResponse deleteFirewallRule2()
 
-
+Delete a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiDeleteFirewallRule2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	description := "description_example" // string | Filter by description (case-insensitive, partial match). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	orderGte := int64(789) // int64 | Filter by order (greater than or equal). (optional)
-	orderLte := int64(789) // int64 | Filter by order (less than or equal). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.ListFirewallRules2(context.Background(), firewallId, versionId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.ListFirewallRules2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListFirewallRules2`: PaginatedFirewallRuleList
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.ListFirewallRules2`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiDeleteFirewallRule2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteFirewallRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListFirewallRules2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
- **description** | **string** | Filter by description (case-insensitive, partial match). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **orderGte** | **int64** | Filter by order (greater than or equal). | 
- **orderLte** | **int64** | Filter by order (less than or equal). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedFirewallRuleList**](PaginatedFirewallRuleList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## OrderFirewallRules
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFirewallRuleList OrderFirewallRules(ctx, firewallId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Ordering Firewall Rules
+# **listFirewallRules**
+> PaginatedFirewallRuleList listFirewallRules()
 
-
+List all Rules for a specific Firewall owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiListFirewallRulesRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	firewallRuleEngineOrderRequest := *openapiclient.NewFirewallRuleEngineOrderRequest([]int64{int64(123)}) // FirewallRuleEngineOrderRequest | 
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules(context.Background(), firewallId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.OrderFirewallRules``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `OrderFirewallRules`: PaginatedFirewallRuleList
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.OrderFirewallRules`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiListFirewallRulesRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // Filter by description (case-insensitive, partial match). (optional)
+  description: "description_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Filter by order (greater than or equal). (optional)
+  orderGte: 1,
+    // Filter by order (less than or equal). (optional)
+  orderLte: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listFirewallRules(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrderFirewallRulesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **description** | [**string**] | Filter by description (case-insensitive, partial match). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **orderGte** | [**number**] | Filter by order (greater than or equal). | (optional) defaults to undefined
+ **orderLte** | [**number**] | Filter by order (less than or equal). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **firewallRuleEngineOrderRequest** | [**FirewallRuleEngineOrderRequest**](FirewallRuleEngineOrderRequest.md) |  | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedFirewallRuleList**](PaginatedFirewallRuleList.md)
+**PaginatedFirewallRuleList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## OrderFirewallRules2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of firewall rules retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFirewallRuleList OrderFirewallRules2(ctx, firewallId, versionId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Ordering Firewall Rules
+# **listFirewallRules2**
+> PaginatedFirewallRuleList listFirewallRules2()
 
-
+List all Rules for a specific Firewall owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiListFirewallRules2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	firewallRuleEngineOrderRequest := *openapiclient.NewFirewallRuleEngineOrderRequest([]int64{int64(123)}) // FirewallRuleEngineOrderRequest | 
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules2(context.Background(), firewallId, versionId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.OrderFirewallRules2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `OrderFirewallRules2`: PaginatedFirewallRuleList
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.OrderFirewallRules2`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiListFirewallRules2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Filter by description (case-insensitive, partial match). (optional)
+  description: "description_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Filter by order (greater than or equal). (optional)
+  orderGte: 1,
+    // Filter by order (less than or equal). (optional)
+  orderLte: 1,
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listFirewallRules2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrderFirewallRules2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **description** | [**string**] | Filter by description (case-insensitive, partial match). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **orderGte** | [**number**] | Filter by order (greater than or equal). | (optional) defaults to undefined
+ **orderLte** | [**number**] | Filter by order (less than or equal). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
- **firewallRuleEngineOrderRequest** | [**FirewallRuleEngineOrderRequest**](FirewallRuleEngineOrderRequest.md) |  | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedFirewallRuleList**](PaginatedFirewallRuleList.md)
+**PaginatedFirewallRuleList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateFirewallRule
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of firewall rules retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallRuleResponse PartialUpdateFirewallRule(ctx, firewallId, requestRuleId).PatchedFirewallRuleRequest(patchedFirewallRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Firewall Rule
+# **orderFirewallRules**
+> PaginatedFirewallRuleList orderFirewallRules(firewallRuleEngineOrderRequest)
 
-
+Reorder all Rules for a specific Firewall owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiOrderFirewallRulesRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	patchedFirewallRuleRequest := *openapiclient.NewPatchedFirewallRuleRequest() // PatchedFirewallRuleRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.PartialUpdateFirewallRule(context.Background(), firewallId, requestRuleId).PatchedFirewallRuleRequest(patchedFirewallRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.PartialUpdateFirewallRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateFirewallRule`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.PartialUpdateFirewallRule`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiOrderFirewallRulesRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+  
+  firewallRuleEngineOrderRequest: {
+    order: [
+      1,
+    ],
+  },
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.orderFirewallRules(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateFirewallRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallRuleEngineOrderRequest** | **FirewallRuleEngineOrderRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
- **patchedFirewallRuleRequest** | [**PatchedFirewallRuleRequest**](PatchedFirewallRuleRequest.md) |  | 
 
 ### Return type
 
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
+**PaginatedFirewallRuleList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateFirewallRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rules order updated successfully. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallRuleResponse PartialUpdateFirewallRule2(ctx, firewallId, requestRuleId, versionId).PatchedFirewallRuleRequest(patchedFirewallRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Firewall Rule
+# **orderFirewallRules2**
+> PaginatedFirewallRuleList orderFirewallRules2(firewallRuleEngineOrderRequest)
 
-
+Reorder all Rules for a specific Firewall owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiOrderFirewallRules2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	patchedFirewallRuleRequest := *openapiclient.NewPatchedFirewallRuleRequest() // PatchedFirewallRuleRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.PartialUpdateFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).PatchedFirewallRuleRequest(patchedFirewallRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.PartialUpdateFirewallRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateFirewallRule2`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.PartialUpdateFirewallRule2`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiOrderFirewallRules2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  firewallRuleEngineOrderRequest: {
+    order: [
+      1,
+    ],
+  },
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.orderFirewallRules2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateFirewallRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallRuleEngineOrderRequest** | **FirewallRuleEngineOrderRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
-
- **patchedFirewallRuleRequest** | [**PatchedFirewallRuleRequest**](PatchedFirewallRuleRequest.md) |  | 
 
 ### Return type
 
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
+**PaginatedFirewallRuleList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveFirewallRule
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rules order updated successfully. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallRuleResponse RetrieveFirewallRule(ctx, firewallId, requestRuleId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Firewall Rule
+# **partialUpdateFirewallRule**
+> FirewallRuleResponse partialUpdateFirewallRule()
 
-
+Update one or more fields of an existing Firewall Rule without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiPartialUpdateFirewallRuleRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.RetrieveFirewallRule(context.Background(), firewallId, requestRuleId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.RetrieveFirewallRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveFirewallRule`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.RetrieveFirewallRule`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiPartialUpdateFirewallRuleRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+  
+  patchedFirewallRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(header_accept)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateFirewallRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveFirewallRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedFirewallRuleRequest** | **PatchedFirewallRuleRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
+**FirewallRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveFirewallRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallRuleResponse RetrieveFirewallRule2(ctx, firewallId, requestRuleId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Firewall Rule
+# **partialUpdateFirewallRule2**
+> FirewallRuleResponse partialUpdateFirewallRule2()
 
-
+Update one or more fields of an existing Firewall Rule without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiPartialUpdateFirewallRule2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.RetrieveFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.RetrieveFirewallRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveFirewallRule2`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.RetrieveFirewallRule2`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiPartialUpdateFirewallRule2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedFirewallRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(header_accept)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateFirewallRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveFirewallRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedFirewallRuleRequest** | **PatchedFirewallRuleRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
+**FirewallRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateFirewallRule
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallRuleResponse UpdateFirewallRule(ctx, firewallId, requestRuleId).FirewallRuleRequest(firewallRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Firewall Rule
+# **retrieveFirewallRule**
+> FirewallRuleResponse retrieveFirewallRule()
 
-
+Retrieve details of a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiRetrieveFirewallRuleRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]FirewallCriterionFieldRequest{[]openapiclient.FirewallCriterionFieldRequest{*openapiclient.NewFirewallCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.FirewallCriterionFieldVariableEnum("$(header_accept)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorArgsRequest: openapiclient.NewFirewallBehaviorArgsRequest("Type_example", *openapiclient.NewFirewallBehaviorRunFunctionAttributesRequest(int64(123)))}}) // FirewallRuleRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule(context.Background(), firewallId, requestRuleId).FirewallRuleRequest(firewallRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.UpdateFirewallRule``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateFirewallRule`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.UpdateFirewallRule`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiRetrieveFirewallRuleRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveFirewallRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFirewallRuleRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
- **firewallRuleRequest** | [**FirewallRuleRequest**](FirewallRuleRequest.md) |  | 
 
 ### Return type
 
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
+**FirewallRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateFirewallRule2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallRuleResponse UpdateFirewallRule2(ctx, firewallId, requestRuleId, versionId).FirewallRuleRequest(firewallRuleRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Firewall Rule
+# **retrieveFirewallRule2**
+> FirewallRuleResponse retrieveFirewallRule2()
 
-
+Retrieve details of a specific Rule in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiRetrieveFirewallRule2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]FirewallCriterionFieldRequest{[]openapiclient.FirewallCriterionFieldRequest{*openapiclient.NewFirewallCriterionFieldRequest(openapiclient.ConditionalEnum("if"), openapiclient.FirewallCriterionFieldVariableEnum("$(header_accept)"), openapiclient.CriterionOperatorEnum("does_not_exist"))}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorArgsRequest: openapiclient.NewFirewallBehaviorArgsRequest("Type_example", *openapiclient.NewFirewallBehaviorRunFunctionAttributesRequest(int64(123)))}}) // FirewallRuleRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).FirewallRuleRequest(firewallRuleRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.UpdateFirewallRule2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateFirewallRule2`: FirewallRuleResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.UpdateFirewallRule2`: %v\n", resp)
-}
+const request: FirewallsRulesEngineApiRetrieveFirewallRule2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveFirewallRule2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFirewallRule2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
-
- **firewallRuleRequest** | [**FirewallRuleRequest**](FirewallRuleRequest.md) |  | 
 
 ### Return type
 
-[**FirewallRuleResponse**](FirewallRuleResponse.md)
+**FirewallRuleResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateFirewallRule**
+> FirewallRuleResponse updateFirewallRule(firewallRuleRequest)
+
+Update an existing Rule. This replaces the entire Rule with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiUpdateFirewallRuleRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
+
+const request: FirewallsRulesEngineApiUpdateFirewallRuleRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+  
+  firewallRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(header_accept)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateFirewallRule(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **firewallRuleRequest** | **FirewallRuleRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
+
+
+### Return type
+
+**FirewallRuleResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateFirewallRule2**
+> FirewallRuleResponse updateFirewallRule2(firewallRuleRequest)
+
+Update an existing Rule. This replaces the entire Rule with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FirewallsRulesEngineApi } from '';
+import type { FirewallsRulesEngineApiUpdateFirewallRule2Request } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FirewallsRulesEngineApi(configuration);
+
+const request: FirewallsRulesEngineApiUpdateFirewallRule2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the request rule.
+  requestRuleId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  firewallRuleRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    criteria: [
+      [
+        {
+          conditional: "if",
+          variable: "$(header_accept)",
+          operator: "does_not_exist",
+          argument: ,
+        },
+      ],
+    ],
+    behaviors: [
+      null,
+    ],
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateFirewallRule2(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **firewallRuleRequest** | **FirewallRuleRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **requestRuleId** | [**number**] | A unique integer value identifying the request rule. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**FirewallRuleResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall rule updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

@@ -1,312 +1,291 @@
-# \OrchestratorNodeServicesAPI
+# .OrchestratorNodeServicesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BindNodeServices**](OrchestratorNodeServicesAPI.md#BindNodeServices) | **Post** /orchestrator/nodes/{node_id}/services | Bind Node Service
-[**ListNodeServices**](OrchestratorNodeServicesAPI.md#ListNodeServices) | **Get** /orchestrator/nodes/{node_id}/services | List Node Services
-[**RetrieveNodeServiceBind**](OrchestratorNodeServicesAPI.md#RetrieveNodeServiceBind) | **Get** /orchestrator/nodes/{node_id}/services/{bind_id} | Retrieve details of an Node Service Bind
-[**UnbindNodeService**](OrchestratorNodeServicesAPI.md#UnbindNodeService) | **Delete** /orchestrator/nodes/{node_id}/services/{bind_id} | Unbind Node Service
+[**bindNodeServices**](OrchestratorNodeServicesApi.md#bindNodeServices) | **POST** /orchestrator/nodes/{node_id}/services | Bind Node Service
+[**listNodeServices**](OrchestratorNodeServicesApi.md#listNodeServices) | **GET** /orchestrator/nodes/{node_id}/services | List Node Services
+[**retrieveNodeServiceBind**](OrchestratorNodeServicesApi.md#retrieveNodeServiceBind) | **GET** /orchestrator/nodes/{node_id}/services/{bind_id} | Retrieve details of an Node Service Bind
+[**unbindNodeService**](OrchestratorNodeServicesApi.md#unbindNodeService) | **DELETE** /orchestrator/nodes/{node_id}/services/{bind_id} | Unbind Node Service
 
 
+# **bindNodeServices**
+> ResponseAsyncNodeServices bindNodeServices(nodeServicesRequest)
 
-## BindNodeServices
-
-> ResponseAsyncNodeServices BindNodeServices(ctx, nodeId).NodeServicesRequest(nodeServicesRequest).Execute()
-
-Bind Node Service
-
-
+Create a bind between Node and Service.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, OrchestratorNodeServicesApi } from '';
+import type { OrchestratorNodeServicesApiBindNodeServicesRequest } from '';
 
-func main() {
-	nodeId := int64(789) // int64 | 
-	nodeServicesRequest := *openapiclient.NewNodeServicesRequest(int64(123)) // NodeServicesRequest | 
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodeServicesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodeServicesAPI.BindNodeServices(context.Background(), nodeId).NodeServicesRequest(nodeServicesRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodeServicesAPI.BindNodeServices``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `BindNodeServices`: ResponseAsyncNodeServices
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodeServicesAPI.BindNodeServices`: %v\n", resp)
-}
+const request: OrchestratorNodeServicesApiBindNodeServicesRequest = {
+  
+  nodeId: 1,
+  
+  nodeServicesRequest: {
+    id: 1,
+    serviceName: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    serviceId: 1,
+    active: true,
+  },
+};
+
+const data = await apiInstance.bindNodeServices(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiBindNodeServicesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **nodeServicesRequest** | [**NodeServicesRequest**](NodeServicesRequest.md) |  | 
-
-### Return type
-
-[**ResponseAsyncNodeServices**](ResponseAsyncNodeServices.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## ListNodeServices
-
-> PaginatedNodeServicesList ListNodeServices(ctx, nodeId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-
-List Node Services
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	nodeId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodeServicesAPI.ListNodeServices(context.Background(), nodeId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodeServicesAPI.ListNodeServices``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListNodeServices`: PaginatedNodeServicesList
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodeServicesAPI.ListNodeServices`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**nodeId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListNodeServicesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
-
-### Return type
-
-[**PaginatedNodeServicesList**](PaginatedNodeServicesList.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## RetrieveNodeServiceBind
-
-> ResponseRetrieveNodeServiceBind RetrieveNodeServiceBind(ctx, bindId, nodeId).Fields(fields).Execute()
-
-Retrieve details of an Node Service Bind
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	bindId := int64(789) // int64 | 
-	nodeId := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodeServicesAPI.RetrieveNodeServiceBind(context.Background(), bindId, nodeId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodeServicesAPI.RetrieveNodeServiceBind``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveNodeServiceBind`: ResponseRetrieveNodeServiceBind
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodeServicesAPI.RetrieveNodeServiceBind`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bindId** | **int64** |  | 
-**nodeId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveNodeServiceBindRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
-
-### Return type
-
-[**ResponseRetrieveNodeServiceBind**](ResponseRetrieveNodeServiceBind.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## UnbindNodeService
-
-> ResponseAsyncDeleteNodeServiceBind UnbindNodeService(ctx, bindId, nodeId).Execute()
-
-Unbind Node Service
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	bindId := int64(789) // int64 | 
-	nodeId := int64(789) // int64 | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrchestratorNodeServicesAPI.UnbindNodeService(context.Background(), bindId, nodeId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `OrchestratorNodeServicesAPI.UnbindNodeService``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UnbindNodeService`: ResponseAsyncDeleteNodeServiceBind
-	fmt.Fprintf(os.Stdout, "Response from `OrchestratorNodeServicesAPI.UnbindNodeService`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**bindId** | **int64** |  | 
-**nodeId** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUnbindNodeServiceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **nodeServicesRequest** | **NodeServicesRequest**|  |
+ **nodeId** | [**number**] |  | defaults to undefined
 
 
 ### Return type
 
-[**ResponseAsyncDeleteNodeServiceBind**](ResponseAsyncDeleteNodeServiceBind.md)
+**ResponseAsyncNodeServices**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listNodeServices**
+> PaginatedNodeServicesList listNodeServices()
+
+List all Services from an Node.
+
+### Example
+
+
+```typescript
+import { createConfiguration, OrchestratorNodeServicesApi } from '';
+import type { OrchestratorNodeServicesApiListNodeServicesRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodeServicesApi(configuration);
+
+const request: OrchestratorNodeServicesApiListNodeServicesRequest = {
+  
+  nodeId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listNodeServices(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **nodeId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+
+
+### Return type
+
+**PaginatedNodeServicesList**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveNodeServiceBind**
+> ResponseRetrieveNodeServiceBind retrieveNodeServiceBind()
+
+Retrieve details of a specific Node Service Bind in your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, OrchestratorNodeServicesApi } from '';
+import type { OrchestratorNodeServicesApiRetrieveNodeServiceBindRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodeServicesApi(configuration);
+
+const request: OrchestratorNodeServicesApiRetrieveNodeServiceBindRequest = {
+  
+  bindId: 1,
+  
+  nodeId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveNodeServiceBind(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bindId** | [**number**] |  | defaults to undefined
+ **nodeId** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**ResponseRetrieveNodeServiceBind**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **unbindNodeService**
+> ResponseAsyncDeleteNodeServiceBind unbindNodeService()
+
+Remove the bind between Node and Service.
+
+### Example
+
+
+```typescript
+import { createConfiguration, OrchestratorNodeServicesApi } from '';
+import type { OrchestratorNodeServicesApiUnbindNodeServiceRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new OrchestratorNodeServicesApi(configuration);
+
+const request: OrchestratorNodeServicesApiUnbindNodeServiceRequest = {
+  
+  bindId: 1,
+  
+  nodeId: 1,
+};
+
+const data = await apiInstance.unbindNodeService(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bindId** | [**number**] |  | defaults to undefined
+ **nodeId** | [**number**] |  | defaults to undefined
+
+
+### Return type
+
+**ResponseAsyncDeleteNodeServiceBind**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** | Accepted |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

@@ -1,950 +1,885 @@
-# \ApplicationsDeviceGroupsAPI
+# .ApplicationsDeviceGroupsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDeviceGroup**](ApplicationsDeviceGroupsAPI.md#CreateDeviceGroup) | **Post** /workspace/applications/{application_id}/device_groups | Create an Applications Device Group
-[**CreateDeviceGroup2**](ApplicationsDeviceGroupsAPI.md#CreateDeviceGroup2) | **Post** /workspace/applications/{application_id}/versions/{version_id}/device_groups | Create an Applications Device Group
-[**DeleteDeviceGroup**](ApplicationsDeviceGroupsAPI.md#DeleteDeviceGroup) | **Delete** /workspace/applications/{application_id}/device_groups/{device_group_id} | Delete an Applications Device Group
-[**DeleteDeviceGroup2**](ApplicationsDeviceGroupsAPI.md#DeleteDeviceGroup2) | **Delete** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Delete an Applications Device Group
-[**ListDeviceGroups**](ApplicationsDeviceGroupsAPI.md#ListDeviceGroups) | **Get** /workspace/applications/{application_id}/device_groups | List Applications Device Groups
-[**ListDeviceGroups2**](ApplicationsDeviceGroupsAPI.md#ListDeviceGroups2) | **Get** /workspace/applications/{application_id}/versions/{version_id}/device_groups | List Applications Device Groups
-[**PartialUpdateDeviceGroup**](ApplicationsDeviceGroupsAPI.md#PartialUpdateDeviceGroup) | **Patch** /workspace/applications/{application_id}/device_groups/{device_group_id} | Partially update an Applications Device Group
-[**PartialUpdateDeviceGroup2**](ApplicationsDeviceGroupsAPI.md#PartialUpdateDeviceGroup2) | **Patch** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Partially update an Applications Device Group
-[**RetrieveDeviceGroup**](ApplicationsDeviceGroupsAPI.md#RetrieveDeviceGroup) | **Get** /workspace/applications/{application_id}/device_groups/{device_group_id} | Retrieve details of a Device Group
-[**RetrieveDeviceGroup2**](ApplicationsDeviceGroupsAPI.md#RetrieveDeviceGroup2) | **Get** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Retrieve details of a Device Group
-[**UpdateDeviceGroup**](ApplicationsDeviceGroupsAPI.md#UpdateDeviceGroup) | **Put** /workspace/applications/{application_id}/device_groups/{device_group_id} | Update an Applications Device Group
-[**UpdateDeviceGroup2**](ApplicationsDeviceGroupsAPI.md#UpdateDeviceGroup2) | **Put** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Update an Applications Device Group
+[**createDeviceGroup**](ApplicationsDeviceGroupsApi.md#createDeviceGroup) | **POST** /workspace/applications/{application_id}/device_groups | Create an Applications Device Group
+[**createDeviceGroup2**](ApplicationsDeviceGroupsApi.md#createDeviceGroup2) | **POST** /workspace/applications/{application_id}/versions/{version_id}/device_groups | Create an Applications Device Group
+[**deleteDeviceGroup**](ApplicationsDeviceGroupsApi.md#deleteDeviceGroup) | **DELETE** /workspace/applications/{application_id}/device_groups/{device_group_id} | Delete an Applications Device Group
+[**deleteDeviceGroup2**](ApplicationsDeviceGroupsApi.md#deleteDeviceGroup2) | **DELETE** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Delete an Applications Device Group
+[**listDeviceGroups**](ApplicationsDeviceGroupsApi.md#listDeviceGroups) | **GET** /workspace/applications/{application_id}/device_groups | List Applications Device Groups
+[**listDeviceGroups2**](ApplicationsDeviceGroupsApi.md#listDeviceGroups2) | **GET** /workspace/applications/{application_id}/versions/{version_id}/device_groups | List Applications Device Groups
+[**partialUpdateDeviceGroup**](ApplicationsDeviceGroupsApi.md#partialUpdateDeviceGroup) | **PATCH** /workspace/applications/{application_id}/device_groups/{device_group_id} | Partially update an Applications Device Group
+[**partialUpdateDeviceGroup2**](ApplicationsDeviceGroupsApi.md#partialUpdateDeviceGroup2) | **PATCH** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Partially update an Applications Device Group
+[**retrieveDeviceGroup**](ApplicationsDeviceGroupsApi.md#retrieveDeviceGroup) | **GET** /workspace/applications/{application_id}/device_groups/{device_group_id} | Retrieve details of a Device Group
+[**retrieveDeviceGroup2**](ApplicationsDeviceGroupsApi.md#retrieveDeviceGroup2) | **GET** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Retrieve details of a Device Group
+[**updateDeviceGroup**](ApplicationsDeviceGroupsApi.md#updateDeviceGroup) | **PUT** /workspace/applications/{application_id}/device_groups/{device_group_id} | Update an Applications Device Group
+[**updateDeviceGroup2**](ApplicationsDeviceGroupsApi.md#updateDeviceGroup2) | **PUT** /workspace/applications/{application_id}/versions/{version_id}/device_groups/{device_group_id} | Update an Applications Device Group
 
 
+# **createDeviceGroup**
+> DeviceGroupResponse createDeviceGroup(deviceGroupRequest)
 
-## CreateDeviceGroup
-
-> DeviceGroupResponse CreateDeviceGroup(ctx, applicationId).DeviceGroupRequest(deviceGroupRequest).Execute()
-
-Create an Applications Device Group
-
-
+Create a new Device Group in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiCreateDeviceGroupRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupRequest := *openapiclient.NewDeviceGroupRequest("Name_example", "UserAgent_example") // DeviceGroupRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.CreateDeviceGroup(context.Background(), applicationId).DeviceGroupRequest(deviceGroupRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.CreateDeviceGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateDeviceGroup`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.CreateDeviceGroup`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiCreateDeviceGroupRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+  
+  deviceGroupRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    userAgent: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createDeviceGroup(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateDeviceGroupRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **deviceGroupRequest** | [**DeviceGroupRequest**](DeviceGroupRequest.md) |  | 
-
-### Return type
-
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateDeviceGroup2
-
-> DeviceGroupResponse CreateDeviceGroup2(ctx, applicationId, versionId).DeviceGroupRequest(deviceGroupRequest).Execute()
-
-Create an Applications Device Group
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	deviceGroupRequest := *openapiclient.NewDeviceGroupRequest("Name_example", "UserAgent_example") // DeviceGroupRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.CreateDeviceGroup2(context.Background(), applicationId, versionId).DeviceGroupRequest(deviceGroupRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.CreateDeviceGroup2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateDeviceGroup2`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.CreateDeviceGroup2`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateDeviceGroup2Request struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **deviceGroupRequest** | [**DeviceGroupRequest**](DeviceGroupRequest.md) |  | 
-
-### Return type
-
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteDeviceGroup
-
-> DeleteResponse DeleteDeviceGroup(ctx, applicationId, deviceGroupId).Execute()
-
-Delete an Applications Device Group
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.DeleteDeviceGroup(context.Background(), applicationId, deviceGroupId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.DeleteDeviceGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteDeviceGroup`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.DeleteDeviceGroup`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteDeviceGroupRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **deviceGroupRequest** | **DeviceGroupRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**DeviceGroupResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## DeleteDeviceGroup2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Device group created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeleteResponse DeleteDeviceGroup2(ctx, applicationId, deviceGroupId, versionId).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Delete an Applications Device Group
+# **createDeviceGroup2**
+> DeviceGroupResponse createDeviceGroup2(deviceGroupRequest)
 
-
+Create a new Device Group in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiCreateDeviceGroup2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.DeleteDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.DeleteDeviceGroup2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteDeviceGroup2`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.DeleteDeviceGroup2`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiCreateDeviceGroup2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  deviceGroupRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    userAgent: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.createDeviceGroup2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteDeviceGroup2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
+ **deviceGroupRequest** | **DeviceGroupRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**DeviceGroupResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListDeviceGroups
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Device group created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedDeviceGroupList ListDeviceGroups(ctx, applicationId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).UserAgent(userAgent).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Applications Device Groups
+# **deleteDeviceGroup**
+> DeleteResponse deleteDeviceGroup()
 
-
+Delete a specific Device Group in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiDeleteDeviceGroupRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	userAgent := "userAgent_example" // string | Filter by user agent (case-insensitive, partial match). (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.ListDeviceGroups(context.Background(), applicationId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).UserAgent(userAgent).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.ListDeviceGroups``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListDeviceGroups`: PaginatedDeviceGroupList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.ListDeviceGroups`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiDeleteDeviceGroupRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+};
+
+const data = await apiInstance.deleteDeviceGroup(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListDeviceGroupsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **userAgent** | **string** | Filter by user agent (case-insensitive, partial match). | 
 
 ### Return type
 
-[**PaginatedDeviceGroupList**](PaginatedDeviceGroupList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## ListDeviceGroups2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedDeviceGroupList ListDeviceGroups2(ctx, applicationId, versionId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).UserAgent(userAgent).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Applications Device Groups
+# **deleteDeviceGroup2**
+> DeleteResponse deleteDeviceGroup2()
 
-
+Delete a specific Device Group in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiDeleteDeviceGroup2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	userAgent := "userAgent_example" // string | Filter by user agent (case-insensitive, partial match). (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.ListDeviceGroups2(context.Background(), applicationId, versionId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).UserAgent(userAgent).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.ListDeviceGroups2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListDeviceGroups2`: PaginatedDeviceGroupList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.ListDeviceGroups2`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiDeleteDeviceGroup2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteDeviceGroup2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListDeviceGroups2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **userAgent** | **string** | Filter by user agent (case-insensitive, partial match). | 
 
 ### Return type
 
-[**PaginatedDeviceGroupList**](PaginatedDeviceGroupList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateDeviceGroup
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeviceGroupResponse PartialUpdateDeviceGroup(ctx, applicationId, deviceGroupId).PatchedDeviceGroupRequest(patchedDeviceGroupRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Applications Device Group
+# **listDeviceGroups**
+> PaginatedDeviceGroupList listDeviceGroups()
 
-
+List all Device Groups owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiListDeviceGroupsRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	patchedDeviceGroupRequest := *openapiclient.NewPatchedDeviceGroupRequest() // PatchedDeviceGroupRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).PatchedDeviceGroupRequest(patchedDeviceGroupRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateDeviceGroup`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiListDeviceGroupsRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+    // Filter by user agent (case-insensitive, partial match). (optional)
+  userAgent: "user_agent_example",
+};
+
+const data = await apiInstance.listDeviceGroups(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateDeviceGroupRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **userAgent** | [**string**] | Filter by user agent (case-insensitive, partial match). | (optional) defaults to undefined
 
-
- **patchedDeviceGroupRequest** | [**PatchedDeviceGroupRequest**](PatchedDeviceGroupRequest.md) |  | 
 
 ### Return type
 
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
+**PaginatedDeviceGroupList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateDeviceGroup2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of device groups retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeviceGroupResponse PartialUpdateDeviceGroup2(ctx, applicationId, deviceGroupId, versionId).PatchedDeviceGroupRequest(patchedDeviceGroupRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Applications Device Group
+# **listDeviceGroups2**
+> PaginatedDeviceGroupList listDeviceGroups2()
 
-
+List all Device Groups owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiListDeviceGroups2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	patchedDeviceGroupRequest := *openapiclient.NewPatchedDeviceGroupRequest() // PatchedDeviceGroupRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).PatchedDeviceGroupRequest(patchedDeviceGroupRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateDeviceGroup2`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup2`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiListDeviceGroups2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+    // Filter by user agent (case-insensitive, partial match). (optional)
+  userAgent: "user_agent_example",
+};
+
+const data = await apiInstance.listDeviceGroups2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateDeviceGroup2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **userAgent** | [**string**] | Filter by user agent (case-insensitive, partial match). | (optional) defaults to undefined
 
-
-
- **patchedDeviceGroupRequest** | [**PatchedDeviceGroupRequest**](PatchedDeviceGroupRequest.md) |  | 
 
 ### Return type
 
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
+**PaginatedDeviceGroupList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveDeviceGroup
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of device groups retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeviceGroupResponse RetrieveDeviceGroup(ctx, applicationId, deviceGroupId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of a Device Group
+# **partialUpdateDeviceGroup**
+> DeviceGroupResponse partialUpdateDeviceGroup()
 
-
+Update one or more fields of an existing Device Group without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiPartialUpdateDeviceGroupRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup(context.Background(), applicationId, deviceGroupId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveDeviceGroup`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiPartialUpdateDeviceGroupRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+  
+  patchedDeviceGroupRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    userAgent: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateDeviceGroup(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveDeviceGroupRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedDeviceGroupRequest** | **PatchedDeviceGroupRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
+**DeviceGroupResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveDeviceGroup2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeviceGroupResponse RetrieveDeviceGroup2(ctx, applicationId, deviceGroupId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of a Device Group
+# **partialUpdateDeviceGroup2**
+> DeviceGroupResponse partialUpdateDeviceGroup2()
 
-
+Update one or more fields of an existing Device Group without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiPartialUpdateDeviceGroup2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveDeviceGroup2`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup2`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiPartialUpdateDeviceGroup2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedDeviceGroupRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    userAgent: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.partialUpdateDeviceGroup2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveDeviceGroup2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedDeviceGroupRequest** | **PatchedDeviceGroupRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
+**DeviceGroupResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateDeviceGroup
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeviceGroupResponse UpdateDeviceGroup(ctx, applicationId, deviceGroupId).DeviceGroupRequest(deviceGroupRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Applications Device Group
+# **retrieveDeviceGroup**
+> DeviceGroupResponse retrieveDeviceGroup()
 
-
+Retrieve details of a specific Device Group in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiRetrieveDeviceGroupRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	deviceGroupRequest := *openapiclient.NewDeviceGroupRequest("Name_example", "UserAgent_example") // DeviceGroupRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).DeviceGroupRequest(deviceGroupRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.UpdateDeviceGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateDeviceGroup`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.UpdateDeviceGroup`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiRetrieveDeviceGroupRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveDeviceGroup(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateDeviceGroupRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
- **deviceGroupRequest** | [**DeviceGroupRequest**](DeviceGroupRequest.md) |  | 
 
 ### Return type
 
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
+**DeviceGroupResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateDeviceGroup2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeviceGroupResponse UpdateDeviceGroup2(ctx, applicationId, deviceGroupId, versionId).DeviceGroupRequest(deviceGroupRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Applications Device Group
+# **retrieveDeviceGroup2**
+> DeviceGroupResponse retrieveDeviceGroup2()
 
-
+Retrieve details of a specific Device Group in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiRetrieveDeviceGroup2Request } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	deviceGroupRequest := *openapiclient.NewDeviceGroupRequest("Name_example", "UserAgent_example") // DeviceGroupRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).DeviceGroupRequest(deviceGroupRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.UpdateDeviceGroup2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateDeviceGroup2`: DeviceGroupResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.UpdateDeviceGroup2`: %v\n", resp)
-}
+const request: ApplicationsDeviceGroupsApiRetrieveDeviceGroup2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveDeviceGroup2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateDeviceGroup2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
-
- **deviceGroupRequest** | [**DeviceGroupRequest**](DeviceGroupRequest.md) |  | 
 
 ### Return type
 
-[**DeviceGroupResponse**](DeviceGroupResponse.md)
+**DeviceGroupResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateDeviceGroup**
+> DeviceGroupResponse updateDeviceGroup(deviceGroupRequest)
+
+Update an existing Device Group. This replaces the entire Device Group with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiUpdateDeviceGroupRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
+
+const request: ApplicationsDeviceGroupsApiUpdateDeviceGroupRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+  
+  deviceGroupRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    userAgent: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateDeviceGroup(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceGroupRequest** | **DeviceGroupRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
+
+
+### Return type
+
+**DeviceGroupResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateDeviceGroup2**
+> DeviceGroupResponse updateDeviceGroup2(deviceGroupRequest)
+
+Update an existing Device Group. This replaces the entire Device Group with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationsDeviceGroupsApi } from '';
+import type { ApplicationsDeviceGroupsApiUpdateDeviceGroup2Request } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsDeviceGroupsApi(configuration);
+
+const request: ApplicationsDeviceGroupsApiUpdateDeviceGroup2Request = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // A unique integer value identifying the device group.
+  deviceGroupId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  deviceGroupRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    userAgent: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.updateDeviceGroup2(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceGroupRequest** | **DeviceGroupRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **deviceGroupId** | [**number**] | A unique integer value identifying the device group. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**DeviceGroupResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Device group updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

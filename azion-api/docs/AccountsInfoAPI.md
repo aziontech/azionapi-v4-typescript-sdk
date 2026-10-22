@@ -1,154 +1,145 @@
-# \AccountsInfoAPI
+# .AccountsInfoApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveAccountInfoDetails**](AccountsInfoAPI.md#RetrieveAccountInfoDetails) | **Get** /account/accounts/{account_id}/info | Retrieve account information details
-[**UpdateAccountInfoDetails**](AccountsInfoAPI.md#UpdateAccountInfoDetails) | **Put** /account/accounts/{account_id}/info | Update account information details
+[**retrieveAccountInfoDetails**](AccountsInfoApi.md#retrieveAccountInfoDetails) | **GET** /account/accounts/{account_id}/info | Retrieve account information details
+[**updateAccountInfoDetails**](AccountsInfoApi.md#updateAccountInfoDetails) | **PUT** /account/accounts/{account_id}/info | Update account information details
 
 
+# **retrieveAccountInfoDetails**
+> ResponseRetrieveAccountInfo retrieveAccountInfoDetails()
 
-## RetrieveAccountInfoDetails
-
-> ResponseRetrieveAccountInfo RetrieveAccountInfoDetails(ctx, accountId).Fields(fields).Execute()
-
-Retrieve account information details
-
-
+Retrieve detailed information about your account or a specific child account under your logged-in account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AccountsInfoApi } from '';
+import type { AccountsInfoApiRetrieveAccountInfoDetailsRequest } from '';
 
-func main() {
-	accountId := int64(789) // int64 | A unique integer value identifying the account.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new AccountsInfoApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsInfoAPI.RetrieveAccountInfoDetails(context.Background(), accountId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountsInfoAPI.RetrieveAccountInfoDetails``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveAccountInfoDetails`: ResponseRetrieveAccountInfo
-	fmt.Fprintf(os.Stdout, "Response from `AccountsInfoAPI.RetrieveAccountInfoDetails`: %v\n", resp)
-}
+const request: AccountsInfoApiRetrieveAccountInfoDetailsRequest = {
+    // A unique integer value identifying the account.
+  accountId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveAccountInfoDetails(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **int64** | A unique integer value identifying the account. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveAccountInfoDetailsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **accountId** | [**number**] | A unique integer value identifying the account. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponseRetrieveAccountInfo**](ResponseRetrieveAccountInfo.md)
+**ResponseRetrieveAccountInfo**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateAccountInfoDetails
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseAccountInfo UpdateAccountInfoDetails(ctx, accountId).UpdateAccountInfoDetailsRequest(updateAccountInfoDetailsRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update account information details
+# **updateAccountInfoDetails**
+> ResponseAsyncAccountInfo | ResponseAccountInfo updateAccountInfoDetails()
 
-
+Update the information details about your account or a specific child account under your logged-in account. This operation allows replacing the entire account info data with new values. In this operation, you can also clear all detailed information of an account by providing an empty dictionary in the `info` field.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AccountsInfoApi } from '';
+import type { AccountsInfoApiUpdateAccountInfoDetailsRequest } from '';
 
-func main() {
-	accountId := int64(789) // int64 | A unique integer value identifying the account.
-	updateAccountInfoDetailsRequest := *openapiclient.NewUpdateAccountInfoDetailsRequest() // UpdateAccountInfoDetailsRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new AccountsInfoApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsInfoAPI.UpdateAccountInfoDetails(context.Background(), accountId).UpdateAccountInfoDetailsRequest(updateAccountInfoDetailsRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AccountsInfoAPI.UpdateAccountInfoDetails``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateAccountInfoDetails`: ResponseAccountInfo
-	fmt.Fprintf(os.Stdout, "Response from `AccountsInfoAPI.UpdateAccountInfoDetails`: %v\n", resp)
-}
+const request: AccountsInfoApiUpdateAccountInfoDetailsRequest = {
+    // A unique integer value identifying the account.
+  accountId: 1,
+  
+  updateAccountInfoDetailsRequest: {
+    info: {
+      industry: {},
+      companySize: 1,
+    },
+  },
+};
+
+const data = await apiInstance.updateAccountInfoDetails(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **int64** | A unique integer value identifying the account. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAccountInfoDetailsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **updateAccountInfoDetailsRequest** | **UpdateAccountInfoDetailsRequest**|  |
+ **accountId** | [**number**] | A unique integer value identifying the account. | defaults to undefined
 
- **updateAccountInfoDetailsRequest** | [**UpdateAccountInfoDetailsRequest**](UpdateAccountInfoDetailsRequest.md) |  | 
 
 ### Return type
 
-[**ResponseAccountInfo**](ResponseAccountInfo.md)
+**ResponseAsyncAccountInfo | ResponseAccountInfo**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

@@ -1,509 +1,494 @@
-# \BillingPaymentsAPI
+# .BillingPaymentsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddCredits**](BillingPaymentsAPI.md#AddCredits) | **Post** /payments/credits | Add credits using the default credit card
-[**CreateCreditCard**](BillingPaymentsAPI.md#CreateCreditCard) | **Post** /payments/credit_cards | Create a new credit card
-[**DestroyCreditCard**](BillingPaymentsAPI.md#DestroyCreditCard) | **Delete** /payments/credit_cards/{id} | Destroy a credit card
-[**ListCreditCards**](BillingPaymentsAPI.md#ListCreditCards) | **Get** /payments/credit_cards | List of the credit cards
-[**ListPaymentHistory**](BillingPaymentsAPI.md#ListPaymentHistory) | **Get** /payments/history | List of the payment history
-[**PartialUpdateCreditCard**](BillingPaymentsAPI.md#PartialUpdateCreditCard) | **Patch** /payments/credit_cards/{id} | Partially update a credit card
-[**RetrieveCreditCard**](BillingPaymentsAPI.md#RetrieveCreditCard) | **Get** /payments/credit_cards/{id} | Retrieve details from a credit card
+[**addCredits**](BillingPaymentsApi.md#addCredits) | **POST** /payments/credits | Add credits using the default credit card
+[**createCreditCard**](BillingPaymentsApi.md#createCreditCard) | **POST** /payments/credit_cards | Create a new credit card
+[**destroyCreditCard**](BillingPaymentsApi.md#destroyCreditCard) | **DELETE** /payments/credit_cards/{id} | Destroy a credit card
+[**listCreditCards**](BillingPaymentsApi.md#listCreditCards) | **GET** /payments/credit_cards | List of the credit cards
+[**listPaymentHistory**](BillingPaymentsApi.md#listPaymentHistory) | **GET** /payments/history | List of the payment history
+[**partialUpdateCreditCard**](BillingPaymentsApi.md#partialUpdateCreditCard) | **PATCH** /payments/credit_cards/{id} | Partially update a credit card
+[**retrieveCreditCard**](BillingPaymentsApi.md#retrieveCreditCard) | **GET** /payments/credit_cards/{id} | Retrieve details from a credit card
 
 
+# **addCredits**
+> CreditResponse addCredits(creditRequest)
 
-## AddCredits
-
-> CreditResponse AddCredits(ctx).CreditRequest(creditRequest).Execute()
-
-Add credits using the default credit card
-
-
+Add credit into the default credit card in US Dollars.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, BillingPaymentsApi } from '';
+import type { BillingPaymentsApiAddCreditsRequest } from '';
 
-func main() {
-	creditRequest := *openapiclient.NewCreditRequest("Amount_example") // CreditRequest | 
+const configuration = createConfiguration();
+const apiInstance = new BillingPaymentsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingPaymentsAPI.AddCredits(context.Background()).CreditRequest(creditRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingPaymentsAPI.AddCredits``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `AddCredits`: CreditResponse
-	fmt.Fprintf(os.Stdout, "Response from `BillingPaymentsAPI.AddCredits`: %v\n", resp)
-}
+const request: BillingPaymentsApiAddCreditsRequest = {
+  
+  creditRequest: {
+    amount: "-807",
+  },
+};
+
+const data = await apiInstance.addCredits(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddCreditsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **creditRequest** | [**CreditRequest**](CreditRequest.md) |  | 
-
-### Return type
-
-[**CreditResponse**](CreditResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateCreditCard
-
-> PaymentMethodResponse CreateCreditCard(ctx).PaymentMethodRequest(paymentMethodRequest).Execute()
-
-Create a new credit card
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	paymentMethodRequest := *openapiclient.NewPaymentMethodRequest("CardHolder_example", "CardBrand_example", int64(123), int64(123), "CardLast4Digits_example", "CardAddressZip_example", "CardCountry_example", "StripeToken_example", "CardId_example") // PaymentMethodRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingPaymentsAPI.CreateCreditCard(context.Background()).PaymentMethodRequest(paymentMethodRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingPaymentsAPI.CreateCreditCard``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateCreditCard`: PaymentMethodResponse
-	fmt.Fprintf(os.Stdout, "Response from `BillingPaymentsAPI.CreateCreditCard`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCreditCardRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **paymentMethodRequest** | [**PaymentMethodRequest**](PaymentMethodRequest.md) |  | 
-
-### Return type
-
-[**PaymentMethodResponse**](PaymentMethodResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DestroyCreditCard
-
-> DeleteResponse DestroyCreditCard(ctx, id).Execute()
-
-Destroy a credit card
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	id := "id_example" // string | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingPaymentsAPI.DestroyCreditCard(context.Background(), id).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingPaymentsAPI.DestroyCreditCard``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DestroyCreditCard`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `BillingPaymentsAPI.DestroyCreditCard`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDestroyCreditCardRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **creditRequest** | **CreditRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**CreditResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListCreditCards
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**202** |  |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedPaymentMethodResponseList ListCreditCards(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List of the credit cards
+# **createCreditCard**
+> PaymentMethodResponse createCreditCard(paymentMethodRequest)
 
-
+Create a new credit card for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, BillingPaymentsApi } from '';
+import type { BillingPaymentsApiCreateCreditCardRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new BillingPaymentsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingPaymentsAPI.ListCreditCards(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingPaymentsAPI.ListCreditCards``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListCreditCards`: PaginatedPaymentMethodResponseList
-	fmt.Fprintf(os.Stdout, "Response from `BillingPaymentsAPI.ListCreditCards`: %v\n", resp)
-}
+const request: BillingPaymentsApiCreateCreditCardRequest = {
+  
+  paymentMethodRequest: {
+    cardHolder: "Z",
+    cardBrand: "Z",
+    cardExpirationMonth: 1,
+    cardExpirationYear: 2022,
+    cardLast4Digits: "0480",
+    cardAddressZip: "H",
+    cardCountry: "Z",
+    cardAddressLine1: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    cardAddressLine2: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    stripeToken: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    cardId: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    isDefault: true,
+  },
+};
+
+const data = await apiInstance.createCreditCard(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListCreditCardsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **paymentMethodRequest** | **PaymentMethodRequest**|  |
+
 
 ### Return type
 
-[**PaginatedPaymentMethodResponseList**](PaginatedPaymentMethodResponseList.md)
+**PaymentMethodResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListPaymentHistory
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+**202** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedPaymentHistoryList ListPaymentHistory(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List of the payment history
+# **destroyCreditCard**
+> DeleteResponse destroyCreditCard()
 
-
+Destruction of a specific credit card in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, BillingPaymentsApi } from '';
+import type { BillingPaymentsApiDestroyCreditCardRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new BillingPaymentsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingPaymentsAPI.ListPaymentHistory(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingPaymentsAPI.ListPaymentHistory``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListPaymentHistory`: PaginatedPaymentHistoryList
-	fmt.Fprintf(os.Stdout, "Response from `BillingPaymentsAPI.ListPaymentHistory`: %v\n", resp)
-}
+const request: BillingPaymentsApiDestroyCreditCardRequest = {
+  
+  id: "id_example",
+};
+
+const data = await apiInstance.destroyCreditCard(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListPaymentHistoryRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **id** | [**string**] |  | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedPaymentHistoryList**](PaginatedPaymentHistoryList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateCreditCard
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaymentMethodResponse PartialUpdateCreditCard(ctx, id).PatchedPartialUpdateRequest(patchedPartialUpdateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a credit card
+# **listCreditCards**
+> PaginatedPaymentMethodResponseList listCreditCards()
 
-
+List all credit cards owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, BillingPaymentsApi } from '';
+import type { BillingPaymentsApiListCreditCardsRequest } from '';
 
-func main() {
-	id := "id_example" // string | 
-	patchedPartialUpdateRequest := *openapiclient.NewPatchedPartialUpdateRequest() // PatchedPartialUpdateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new BillingPaymentsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingPaymentsAPI.PartialUpdateCreditCard(context.Background(), id).PatchedPartialUpdateRequest(patchedPartialUpdateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingPaymentsAPI.PartialUpdateCreditCard``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateCreditCard`: PaymentMethodResponse
-	fmt.Fprintf(os.Stdout, "Response from `BillingPaymentsAPI.PartialUpdateCreditCard`: %v\n", resp)
-}
+const request: BillingPaymentsApiListCreditCardsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listCreditCards(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateCreditCardRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedPartialUpdateRequest** | [**PatchedPartialUpdateRequest**](PatchedPartialUpdateRequest.md) |  | 
 
 ### Return type
 
-[**PaymentMethodResponse**](PaymentMethodResponse.md)
+**PaginatedPaymentMethodResponseList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveCreditCard
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaymentMethodResponse RetrieveCreditCard(ctx, id).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a credit card
+# **listPaymentHistory**
+> PaginatedPaymentHistoryList listPaymentHistory()
 
-
+List all details of the payment history.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, BillingPaymentsApi } from '';
+import type { BillingPaymentsApiListPaymentHistoryRequest } from '';
 
-func main() {
-	id := "id_example" // string | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new BillingPaymentsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BillingPaymentsAPI.RetrieveCreditCard(context.Background(), id).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BillingPaymentsAPI.RetrieveCreditCard``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveCreditCard`: PaymentMethodResponse
-	fmt.Fprintf(os.Stdout, "Response from `BillingPaymentsAPI.RetrieveCreditCard`: %v\n", resp)
-}
+const request: BillingPaymentsApiListPaymentHistoryRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listPaymentHistory(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveCreditCardRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**PaymentMethodResponse**](PaymentMethodResponse.md)
+**PaginatedPaymentHistoryList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **partialUpdateCreditCard**
+> PaymentMethodResponse partialUpdateCreditCard()
+
+Update the field \'is_default\' to enable of an existing credit card. Only the field \'is_default\' is editable for an existing card.
+
+### Example
+
+
+```typescript
+import { createConfiguration, BillingPaymentsApi } from '';
+import type { BillingPaymentsApiPartialUpdateCreditCardRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new BillingPaymentsApi(configuration);
+
+const request: BillingPaymentsApiPartialUpdateCreditCardRequest = {
+  
+  id: "id_example",
+  
+  patchedPartialUpdateRequest: {
+    isDefault: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateCreditCard(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchedPartialUpdateRequest** | **PatchedPartialUpdateRequest**|  |
+ **id** | [**string**] |  | defaults to undefined
+
+
+### Return type
+
+**PaymentMethodResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** |  |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveCreditCard**
+> PaymentMethodResponse retrieveCreditCard()
+
+Retrieve details from a specific credit card in your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, BillingPaymentsApi } from '';
+import type { BillingPaymentsApiRetrieveCreditCardRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new BillingPaymentsApi(configuration);
+
+const request: BillingPaymentsApiRetrieveCreditCardRequest = {
+  
+  id: "id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveCreditCard(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**string**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**PaymentMethodResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

@@ -1,453 +1,471 @@
-# \CustomPagesAPI
+# .CustomPagesApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCustomPage**](CustomPagesAPI.md#CreateCustomPage) | **Post** /workspace/custom_pages | Create a Custom Page
-[**DeleteCustomPage**](CustomPagesAPI.md#DeleteCustomPage) | **Delete** /workspace/custom_pages/{custom_page_id} | Delete a Custom Page
-[**ListCustomPages**](CustomPagesAPI.md#ListCustomPages) | **Get** /workspace/custom_pages | List Custom Pages
-[**PartialUpdateCustomPage**](CustomPagesAPI.md#PartialUpdateCustomPage) | **Patch** /workspace/custom_pages/{custom_page_id} | Partially update a Custom Page
-[**RetrieveCustomPage**](CustomPagesAPI.md#RetrieveCustomPage) | **Get** /workspace/custom_pages/{custom_page_id} | Retrieve details of a Custom Page
-[**UpdateCustomPage**](CustomPagesAPI.md#UpdateCustomPage) | **Put** /workspace/custom_pages/{custom_page_id} | Update a Custom Page
+[**createCustomPage**](CustomPagesApi.md#createCustomPage) | **POST** /workspace/custom_pages | Create a Custom Page
+[**deleteCustomPage**](CustomPagesApi.md#deleteCustomPage) | **DELETE** /workspace/custom_pages/{custom_page_id} | Delete a Custom Page
+[**listCustomPages**](CustomPagesApi.md#listCustomPages) | **GET** /workspace/custom_pages | List Custom Pages
+[**partialUpdateCustomPage**](CustomPagesApi.md#partialUpdateCustomPage) | **PATCH** /workspace/custom_pages/{custom_page_id} | Partially update a Custom Page
+[**retrieveCustomPage**](CustomPagesApi.md#retrieveCustomPage) | **GET** /workspace/custom_pages/{custom_page_id} | Retrieve details of a Custom Page
+[**updateCustomPage**](CustomPagesApi.md#updateCustomPage) | **PUT** /workspace/custom_pages/{custom_page_id} | Update a Custom Page
 
 
+# **createCustomPage**
+> CustomPageResponse createCustomPage(customPageRequest)
 
-## CreateCustomPage
-
-> CustomPageResponse CreateCustomPage(ctx).CustomPageRequest(customPageRequest).Execute()
-
-Create a Custom Page
-
-
+Create a new Custom Page in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPagesApi } from '';
+import type { CustomPagesApiCreateCustomPageRequest } from '';
 
-func main() {
-	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequestBase{*openapiclient.NewPageRequestBase(openapiclient.CodeEnum("default"), *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
+const configuration = createConfiguration();
+const apiInstance = new CustomPagesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.CreateCustomPage(context.Background()).CustomPageRequest(customPageRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.CreateCustomPage``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateCustomPage`: CustomPageResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.CreateCustomPage`: %v\n", resp)
-}
+const request: CustomPagesApiCreateCustomPageRequest = {
+  
+  customPageRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    pages: [
+      {
+        code: "default",
+        page: {
+          type: "page_connector",
+          attributes: {
+            connector: 1,
+            ttl: 0,
+            uri: "jUR,rZ#UM/?R,Fp^l6$ARj",
+            customStatusCode: 100,
+          },
+        },
+      },
+    ],
+  },
+};
+
+const data = await apiInstance.createCustomPage(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCustomPageRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **customPageRequest** | [**CustomPageRequest**](CustomPageRequest.md) |  | 
-
-### Return type
-
-[**CustomPageResponse**](CustomPageResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteCustomPage
-
-> DeleteResponse DeleteCustomPage(ctx, customPageId).Execute()
-
-Delete a Custom Page
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.DeleteCustomPage(context.Background(), customPageId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.DeleteCustomPage``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteCustomPage`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.DeleteCustomPage`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | A unique integer value identifying the custom page. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCustomPageRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **customPageRequest** | **CustomPageRequest**|  |
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**CustomPageResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListCustomPages
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Custom page created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedCustomPageList ListCustomPages(ctx).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Custom Pages
+# **deleteCustomPage**
+> DeleteResponse deleteCustomPage()
 
-
+Delete a specific Custom Page in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPagesApi } from '';
+import type { CustomPagesApiDeleteCustomPageRequest } from '';
 
-func main() {
-	active := true // bool | Filter by active status. (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPagesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.ListCustomPages(context.Background()).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.ListCustomPages``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListCustomPages`: PaginatedCustomPageList
-	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.ListCustomPages`: %v\n", resp)
-}
+const request: CustomPagesApiDeleteCustomPageRequest = {
+    // A unique integer value identifying the custom page.
+  customPageId: 1,
+};
+
+const data = await apiInstance.deleteCustomPage(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListCustomPagesRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** | Filter by active status. | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **customPageId** | [**number**] | A unique integer value identifying the custom page. | defaults to undefined
+
 
 ### Return type
 
-[**PaginatedCustomPageList**](PaginatedCustomPageList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateCustomPage
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Custom page deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CustomPageResponse PartialUpdateCustomPage(ctx, customPageId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Custom Page
+# **listCustomPages**
+> PaginatedCustomPageList listCustomPages()
 
-
+List all Custom Pages owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPagesApi } from '';
+import type { CustomPagesApiListCustomPagesRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
-	patchedCustomPageRequest := *openapiclient.NewPatchedCustomPageRequest() // PatchedCustomPageRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPagesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.PartialUpdateCustomPage(context.Background(), customPageId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.PartialUpdateCustomPage``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateCustomPage`: CustomPageResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.PartialUpdateCustomPage`: %v\n", resp)
-}
+const request: CustomPagesApiListCustomPagesRequest = {
+    // Filter by active status. (optional)
+  active: true,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listCustomPages(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | A unique integer value identifying the custom page. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateCustomPageRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | [**boolean**] | Filter by active status. | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **patchedCustomPageRequest** | [**PatchedCustomPageRequest**](PatchedCustomPageRequest.md) |  | 
 
 ### Return type
 
-[**CustomPageResponse**](CustomPageResponse.md)
+**PaginatedCustomPageList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveCustomPage
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of custom pages retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CustomPageResponse RetrieveCustomPage(ctx, customPageId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of a Custom Page
+# **partialUpdateCustomPage**
+> CustomPageResponse partialUpdateCustomPage()
 
-
+Update one or more fields of an existing Custom Page without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPagesApi } from '';
+import type { CustomPagesApiPartialUpdateCustomPageRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new CustomPagesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.RetrieveCustomPage(context.Background(), customPageId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.RetrieveCustomPage``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveCustomPage`: CustomPageResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.RetrieveCustomPage`: %v\n", resp)
-}
+const request: CustomPagesApiPartialUpdateCustomPageRequest = {
+    // A unique integer value identifying the custom page.
+  customPageId: 1,
+  
+  patchedCustomPageRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    pages: [
+      {
+        code: "default",
+        page: {
+          type: "page_connector",
+          attributes: {
+            connector: 1,
+            ttl: 0,
+            uri: "jUR,rZ#UM/?R,Fp^l6$ARj",
+            customStatusCode: 100,
+          },
+        },
+      },
+    ],
+  },
+};
+
+const data = await apiInstance.partialUpdateCustomPage(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | A unique integer value identifying the custom page. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveCustomPageRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedCustomPageRequest** | **PatchedCustomPageRequest**|  |
+ **customPageId** | [**number**] | A unique integer value identifying the custom page. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**CustomPageResponse**](CustomPageResponse.md)
+**CustomPageResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateCustomPage
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Custom page partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> CustomPageResponse UpdateCustomPage(ctx, customPageId).CustomPageRequest(customPageRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Custom Page
+# **retrieveCustomPage**
+> CustomPageResponse retrieveCustomPage()
 
-
+Retrieve details of a specific Custom Page in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, CustomPagesApi } from '';
+import type { CustomPagesApiRetrieveCustomPageRequest } from '';
 
-func main() {
-	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
-	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequestBase{*openapiclient.NewPageRequestBase(openapiclient.CodeEnum("default"), *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
+const configuration = createConfiguration();
+const apiInstance = new CustomPagesApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.UpdateCustomPage(context.Background(), customPageId).CustomPageRequest(customPageRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.UpdateCustomPage``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateCustomPage`: CustomPageResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.UpdateCustomPage`: %v\n", resp)
-}
+const request: CustomPagesApiRetrieveCustomPageRequest = {
+    // A unique integer value identifying the custom page.
+  customPageId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveCustomPage(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **int64** | A unique integer value identifying the custom page. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateCustomPageRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **customPageId** | [**number**] | A unique integer value identifying the custom page. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **customPageRequest** | [**CustomPageRequest**](CustomPageRequest.md) |  | 
 
 ### Return type
 
-[**CustomPageResponse**](CustomPageResponse.md)
+**CustomPageResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Custom page details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateCustomPage**
+> CustomPageResponse updateCustomPage(customPageRequest)
+
+Update an existing Custom Page. This replaces the entire Custom Page with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, CustomPagesApi } from '';
+import type { CustomPagesApiUpdateCustomPageRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CustomPagesApi(configuration);
+
+const request: CustomPagesApiUpdateCustomPageRequest = {
+    // A unique integer value identifying the custom page.
+  customPageId: 1,
+  
+  customPageRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    active: true,
+    pages: [
+      {
+        code: "default",
+        page: {
+          type: "page_connector",
+          attributes: {
+            connector: 1,
+            ttl: 0,
+            uri: "jUR,rZ#UM/?R,Fp^l6$ARj",
+            customStatusCode: 100,
+          },
+        },
+      },
+    ],
+  },
+};
+
+const data = await apiInstance.updateCustomPage(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customPageRequest** | **CustomPageRequest**|  |
+ **customPageId** | [**number**] | A unique integer value identifying the custom page. | defaults to undefined
+
+
+### Return type
+
+**CustomPageResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Custom page updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

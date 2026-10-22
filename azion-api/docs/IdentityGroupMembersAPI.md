@@ -1,154 +1,144 @@
-# \IdentityGroupMembersAPI
+# .IdentityGroupMembersApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveMembersGroup**](IdentityGroupMembersAPI.md#RetrieveMembersGroup) | **Get** /identity/groups/{id}/members | Retrieve members from a group
-[**UpdateMembersGroup**](IdentityGroupMembersAPI.md#UpdateMembersGroup) | **Put** /identity/groups/{id}/members | Update members from a group
+[**retrieveMembersGroup**](IdentityGroupMembersApi.md#retrieveMembersGroup) | **GET** /identity/groups/{id}/members | Retrieve members from a group
+[**updateMembersGroup**](IdentityGroupMembersApi.md#updateMembersGroup) | **PUT** /identity/groups/{id}/members | Update members from a group
 
 
+# **retrieveMembersGroup**
+> ResponseRetrieveGroupMembers retrieveMembersGroup()
 
-## RetrieveMembersGroup
-
-> ResponseRetrieveGroupMembers RetrieveMembersGroup(ctx, id).Fields(fields).Execute()
-
-Retrieve members from a group
-
-
+Retrieve members from a specific group in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, IdentityGroupMembersApi } from '';
+import type { IdentityGroupMembersApiRetrieveMembersGroupRequest } from '';
 
-func main() {
-	id := int64(789) // int64 | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new IdentityGroupMembersApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentityGroupMembersAPI.RetrieveMembersGroup(context.Background(), id).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IdentityGroupMembersAPI.RetrieveMembersGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveMembersGroup`: ResponseRetrieveGroupMembers
-	fmt.Fprintf(os.Stdout, "Response from `IdentityGroupMembersAPI.RetrieveMembersGroup`: %v\n", resp)
-}
+const request: IdentityGroupMembersApiRetrieveMembersGroupRequest = {
+  
+  id: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveMembersGroup(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveMembersGroupRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **id** | [**number**] |  | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ResponseRetrieveGroupMembers**](ResponseRetrieveGroupMembers.md)
+**ResponseRetrieveGroupMembers**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateMembersGroup
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ResponseGroupMembers UpdateMembersGroup(ctx, id).GroupMembersRequest(groupMembersRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update members from a group
+# **updateMembersGroup**
+> ResponseGroupMembers updateMembersGroup(groupMembersRequest)
 
-
+Update all members from a group. This replaces the entire group members with the new data provided.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, IdentityGroupMembersApi } from '';
+import type { IdentityGroupMembersApiUpdateMembersGroupRequest } from '';
 
-func main() {
-	id := int64(789) // int64 | 
-	groupMembersRequest := *openapiclient.NewGroupMembersRequest([]int64{int64(123)}) // GroupMembersRequest | 
+const configuration = createConfiguration();
+const apiInstance = new IdentityGroupMembersApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IdentityGroupMembersAPI.UpdateMembersGroup(context.Background(), id).GroupMembersRequest(groupMembersRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IdentityGroupMembersAPI.UpdateMembersGroup``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateMembersGroup`: ResponseGroupMembers
-	fmt.Fprintf(os.Stdout, "Response from `IdentityGroupMembersAPI.UpdateMembersGroup`: %v\n", resp)
-}
+const request: IdentityGroupMembersApiUpdateMembersGroupRequest = {
+  
+  id: 1,
+  
+  groupMembersRequest: {
+    members: [
+      1,
+    ],
+  },
+};
+
+const data = await apiInstance.updateMembersGroup(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateMembersGroupRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **groupMembersRequest** | **GroupMembersRequest**|  |
+ **id** | [**number**] |  | defaults to undefined
 
- **groupMembersRequest** | [**GroupMembersRequest**](GroupMembersRequest.md) |  | 
 
 ### Return type
 
-[**ResponseGroupMembers**](ResponseGroupMembers.md)
+**ResponseGroupMembers**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**202** | Accepted |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

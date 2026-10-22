@@ -1,75 +1,71 @@
-# \AuthRevokeAPI
+# .AuthRevokeApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AuthUserRevoke**](AuthRevokeAPI.md#AuthUserRevoke) | **Post** /account/auth/revoke | Revoke user JWT refresh token
+[**authUserRevoke**](AuthRevokeApi.md#authUserRevoke) | **POST** /account/auth/revoke | Revoke user JWT refresh token
 
 
+# **authUserRevoke**
+> StateExecutedResponse authUserRevoke()
 
-## AuthUserRevoke
-
-> StateExecutedResponse AuthUserRevoke(ctx).Body(body).Execute()
-
-Revoke user JWT refresh token
-
-
+Revoke refresh token via a POST request.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, AuthRevokeApi } from '';
+import type { AuthRevokeApiAuthUserRevokeRequest } from '';
 
-func main() {
-	body := interface{}(987) // interface{} |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new AuthRevokeApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthRevokeAPI.AuthUserRevoke(context.Background()).Body(body).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthRevokeAPI.AuthUserRevoke``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `AuthUserRevoke`: StateExecutedResponse
-	fmt.Fprintf(os.Stdout, "Response from `AuthRevokeAPI.AuthUserRevoke`: %v\n", resp)
-}
+const request: AuthRevokeApiAuthUserRevokeRequest = {
+  
+  body: null,
+};
+
+const data = await apiInstance.authUserRevoke(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiAuthUserRevokeRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **interface{}** |  | 
+ **body** | **any**|  |
+
 
 ### Return type
 
-[**StateExecutedResponse**](StateExecutedResponse.md)
+**StateExecutedResponse**
 
 ### Authorization
 
-[JwtRefreshAuthentication](../README.md#JwtRefreshAuthentication)
+[JwtRefreshAuthentication](README.md#JwtRefreshAuthentication)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Revoke successfully executed. |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

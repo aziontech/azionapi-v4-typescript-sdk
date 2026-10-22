@@ -1,666 +1,574 @@
-# \FunctionVersionsAPI
+# .FunctionVersionsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveFunctionVersion**](FunctionVersionsAPI.md#ArchiveFunctionVersion) | **Post** /workspace/functions/{function_id}/versions/{version_id}/archive | Archive a Function version
-[**BuildFunctionVersion**](FunctionVersionsAPI.md#BuildFunctionVersion) | **Post** /workspace/functions/{function_id}/versions/{version_id}/build | Build a Function version
-[**CancelFunctionVersionBuild**](FunctionVersionsAPI.md#CancelFunctionVersionBuild) | **Post** /workspace/functions/{function_id}/versions/{version_id}/cancel | Cancel a Function version build
-[**CreateFunctionVersion**](FunctionVersionsAPI.md#CreateFunctionVersion) | **Post** /workspace/functions/{function_id}/versions | Create a new Function version
-[**DeleteFunctionVersion**](FunctionVersionsAPI.md#DeleteFunctionVersion) | **Delete** /workspace/functions/{function_id}/versions/{version_id} | Delete a Function version
-[**ListFunctionVersions**](FunctionVersionsAPI.md#ListFunctionVersions) | **Get** /workspace/functions/{function_id}/versions | List Function versions
-[**PartialUpdateFunctionVersion**](FunctionVersionsAPI.md#PartialUpdateFunctionVersion) | **Patch** /workspace/functions/{function_id}/versions/{version_id} | Partially update a Function version
-[**RetrieveFunctionVersion**](FunctionVersionsAPI.md#RetrieveFunctionVersion) | **Get** /workspace/functions/{function_id}/versions/{version_id} | Retrieve a Function version
-[**UpdateFunctionVersion**](FunctionVersionsAPI.md#UpdateFunctionVersion) | **Put** /workspace/functions/{function_id}/versions/{version_id} | Update a Function version
+[**archiveFunctionVersion**](FunctionVersionsApi.md#archiveFunctionVersion) | **POST** /workspace/functions/{function_id}/versions/{version_id}/archive | Archive a Function version
+[**buildFunctionVersion**](FunctionVersionsApi.md#buildFunctionVersion) | **POST** /workspace/functions/{function_id}/versions/{version_id}/build | Build a Function version
+[**cancelFunctionVersionBuild**](FunctionVersionsApi.md#cancelFunctionVersionBuild) | **POST** /workspace/functions/{function_id}/versions/{version_id}/cancel | Cancel a Function version build
+[**createFunctionVersion**](FunctionVersionsApi.md#createFunctionVersion) | **POST** /workspace/functions/{function_id}/versions | Create a new Function version
+[**deleteFunctionVersion**](FunctionVersionsApi.md#deleteFunctionVersion) | **DELETE** /workspace/functions/{function_id}/versions/{version_id} | Delete a Function version
+[**listFunctionVersions**](FunctionVersionsApi.md#listFunctionVersions) | **GET** /workspace/functions/{function_id}/versions | List Function versions
+[**partialUpdateFunctionVersion**](FunctionVersionsApi.md#partialUpdateFunctionVersion) | **PATCH** /workspace/functions/{function_id}/versions/{version_id} | Partially update a Function version
+[**retrieveFunctionVersion**](FunctionVersionsApi.md#retrieveFunctionVersion) | **GET** /workspace/functions/{function_id}/versions/{version_id} | Retrieve a Function version
+[**updateFunctionVersion**](FunctionVersionsApi.md#updateFunctionVersion) | **PUT** /workspace/functions/{function_id}/versions/{version_id} | Update a Function version
 
 
+# **archiveFunctionVersion**
+> void archiveFunctionVersion()
 
-## ArchiveFunctionVersion
-
-> ArchiveFunctionVersion(ctx, functionId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-
-Archive a Function version
-
-
+Archive a ready version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiArchiveFunctionVersionRequest } from '';
 
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.ArchiveFunctionVersion(context.Background(), functionId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.ArchiveFunctionVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: FunctionVersionsApiArchiveFunctionVersionRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionArchiveRequest: {
+    comment: "",
+  },
+};
+
+const data = await apiInstance.archiveFunctionVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiArchiveFunctionVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
- **versionArchiveRequest** | [**VersionArchiveRequest**](VersionArchiveRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## BuildFunctionVersion
-
-> BuildFunctionVersion(ctx, functionId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-
-Build a Function version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.BuildFunctionVersion(context.Background(), functionId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.BuildFunctionVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiBuildFunctionVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionBuildRequest** | [**VersionBuildRequest**](VersionBuildRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CancelFunctionVersionBuild
-
-> CancelFunctionVersionBuild(ctx, functionId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
-
-Cancel a Function version build
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.CancelFunctionVersionBuild(context.Background(), functionId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.CancelFunctionVersionBuild``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCancelFunctionVersionBuildRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **versionCancelRequest** | [**VersionCancelRequest**](VersionCancelRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateFunctionVersion
-
-> CreateFunctionVersion(ctx, functionId).VersionCreateRequest(versionCreateRequest).Execute()
-
-Create a new Function version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.CreateFunctionVersion(context.Background(), functionId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.CreateFunctionVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFunctionVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteFunctionVersion
-
-> DeleteFunctionVersion(ctx, functionId, versionId).Execute()
-
-Delete a Function version
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.DeleteFunctionVersion(context.Background(), functionId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.DeleteFunctionVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFunctionVersionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **versionArchiveRequest** | **VersionArchiveRequest**|  |
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListFunctionVersions
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> ListFunctionVersions(ctx, functionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Function versions
+# **buildFunctionVersion**
+> void buildFunctionVersion()
 
-
+Trigger a build for a draft version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiBuildFunctionVersionRequest } from '';
 
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.ListFunctionVersions(context.Background(), functionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.ListFunctionVersions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: FunctionVersionsApiBuildFunctionVersionRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionBuildRequest: {
+    traceId: "",
+    comment: "",
+  },
+};
+
+const data = await apiInstance.buildFunctionVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListFunctionVersionsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionBuildRequest** | **VersionBuildRequest**|  |
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateFunctionVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> PartialUpdateFunctionVersion(ctx, functionId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Function version
+# **cancelFunctionVersionBuild**
+> void cancelFunctionVersionBuild()
 
-
+Cancel a queued or building version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiCancelFunctionVersionBuildRequest } from '';
 
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.PartialUpdateFunctionVersion(context.Background(), functionId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.PartialUpdateFunctionVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: FunctionVersionsApiCancelFunctionVersionBuildRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionCancelRequest: {
+    comment: "",
+  },
+};
+
+const data = await apiInstance.cancelFunctionVersionBuild(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateFunctionVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionCancelRequest** | **VersionCancelRequest**|  |
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveFunctionVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> RetrieveFunctionVersion(ctx, functionId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve a Function version
+# **createFunctionVersion**
+> void createFunctionVersion()
 
-
+Create a new version by cloning.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiCreateFunctionVersionRequest } from '';
 
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.RetrieveFunctionVersion(context.Background(), functionId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.RetrieveFunctionVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: FunctionVersionsApiCreateFunctionVersionRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.createFunctionVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveFunctionVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateFunctionVersion
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | No response body |  -  |
+**500** | Internal Server Error |  -  |
 
-> UpdateFunctionVersion(ctx, functionId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Function version
+# **deleteFunctionVersion**
+> void deleteFunctionVersion()
 
-
+Delete a specific version.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiDeleteFunctionVersionRequest } from '';
 
-func main() {
-	functionId := int64(789) // int64 | The ID of the Function resource.
-	versionId := "versionId_example" // string | The identifier of the version.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.UpdateFunctionVersion(context.Background(), functionId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.UpdateFunctionVersion``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
+const request: FunctionVersionsApiDeleteFunctionVersionRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteFunctionVersion(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | The ID of the Function resource. | 
-**versionId** | **string** | The identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFunctionVersionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
 
-
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
 
 ### Return type
 
- (empty response body)
+**void**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listFunctionVersions**
+> void listFunctionVersions()
+
+List all versions of a specific Function.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiListFunctionVersionsRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
+
+const request: FunctionVersionsApiListFunctionVersionsRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.listFunctionVersions(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **partialUpdateFunctionVersion**
+> void partialUpdateFunctionVersion()
+
+Partially update a draft version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiPartialUpdateFunctionVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
+
+const request: FunctionVersionsApiPartialUpdateFunctionVersionRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedVersionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.partialUpdateFunctionVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **patchedVersionCreateRequest** | **PatchedVersionCreateRequest**|  |
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveFunctionVersion**
+> void retrieveFunctionVersion()
+
+Retrieve details of a specific version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiRetrieveFunctionVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
+
+const request: FunctionVersionsApiRetrieveFunctionVersionRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveFunctionVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateFunctionVersion**
+> void updateFunctionVersion()
+
+Update a draft version.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FunctionVersionsApi } from '';
+import type { FunctionVersionsApiUpdateFunctionVersionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FunctionVersionsApi(configuration);
+
+const request: FunctionVersionsApiUpdateFunctionVersionRequest = {
+    // The ID of the Function resource.
+  functionId: 1,
+    // The identifier of the version.
+  versionId: "version_id_example",
+  
+  versionCreateRequest: {
+    sourceVersion: "sourceVersion_example",
+    comment: "",
+    override: {
+      "key": null,
+    },
+  },
+};
+
+const data = await apiInstance.updateFunctionVersion(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **versionCreateRequest** | **VersionCreateRequest**|  |
+ **functionId** | [**number**] | The ID of the Function resource. | defaults to undefined
+ **versionId** | [**string**] | The identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No response body |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

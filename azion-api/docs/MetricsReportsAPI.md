@@ -1,505 +1,535 @@
-# \MetricsReportsAPI
+# .MetricsReportsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateReport**](MetricsReportsAPI.md#CreateReport) | **Post** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports | Create a new report
-[**DeleteReport**](MetricsReportsAPI.md#DeleteReport) | **Delete** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/{report_id} | Delete a report
-[**ListReports**](MetricsReportsAPI.md#ListReports) | **Get** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports | List of reports
-[**OrderingReport**](MetricsReportsAPI.md#OrderingReport) | **Put** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/order | Ordering reports in row
-[**RetrieveReport**](MetricsReportsAPI.md#RetrieveReport) | **Get** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/{report_id} | Retrieve details from a report
-[**UpdateReport**](MetricsReportsAPI.md#UpdateReport) | **Put** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/{report_id} | Update a report
+[**createReport**](MetricsReportsApi.md#createReport) | **POST** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports | Create a new report
+[**deleteReport**](MetricsReportsApi.md#deleteReport) | **DELETE** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/{report_id} | Delete a report
+[**listReports**](MetricsReportsApi.md#listReports) | **GET** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports | List of reports
+[**orderingReport**](MetricsReportsApi.md#orderingReport) | **PUT** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/order | Ordering reports in row
+[**retrieveReport**](MetricsReportsApi.md#retrieveReport) | **GET** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/{report_id} | Retrieve details from a report
+[**updateReport**](MetricsReportsApi.md#updateReport) | **PUT** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id}/reports/{report_id} | Update a report
 
 
+# **createReport**
+> ReportResponse createReport(reportRequest)
 
-## CreateReport
-
-> ReportResponse CreateReport(ctx, dashboardId, folderId, rowId).ReportRequest(reportRequest).Execute()
-
-Create a new report
-
-
+Create a new report in a given scope.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsReportsApi } from '';
+import type { MetricsReportsApiCreateReportRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	rowId := int64(789) // int64 | The unique identifier of the row
-	reportRequest := *openapiclient.NewReportRequest("Description_example", "Type_example", "AggregationType_example", "DataUnit_example", []openapiclient.BaseQueryRequest{*openapiclient.NewBaseQueryRequest("Dataset_example", int64(123), "OrderDirection_example")}, int64(123), "Name_example") // ReportRequest | 
+const configuration = createConfiguration();
+const apiInstance = new MetricsReportsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsReportsAPI.CreateReport(context.Background(), dashboardId, folderId, rowId).ReportRequest(reportRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.CreateReport``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateReport`: ReportResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.CreateReport`: %v\n", resp)
-}
+const request: MetricsReportsApiCreateReportRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+  
+  reportRequest: {
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "big-numbers",
+    xAxis: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    aggregationType: "avg",
+    dataUnit: "bits-per-second",
+    queries: [
+      {
+        dataset: "jUR,rZ#UM/?R,Fp^l6$ARj",
+        filters: {
+          "key": null,
+        },
+        groupBy: [
+          "jUR,rZ#UM/?R,Fp^l6$ARj",
+        ],
+        limit: 0,
+        aggregatedFields: [
+          {
+            aggregation: "jUR,rZ#UM/?R,Fp^l6$ARj",
+            variable: "jUR,rZ#UM/?R,Fp^l6$ARj",
+          },
+        ],
+        calculatedFields: [
+          "jUR,rZ#UM/?R,Fp^l6$ARj",
+        ],
+        orderDirection: "asc",
+        topX: true,
+        maxYAxis: 1,
+      },
+    ],
+    columns: 1,
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    rotated: true,
+    comparisonType: "inverse",
+    helpCenterPath: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    library: true,
+  },
+};
+
+const data = await apiInstance.createReport(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateReportRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
-
- **reportRequest** | [**ReportRequest**](ReportRequest.md) |  | 
-
-### Return type
-
-[**ReportResponse**](ReportResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteReport
-
-> DeleteResponse DeleteReport(ctx, dashboardId, folderId, reportId, rowId).Execute()
-
-Delete a report
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	reportId := int64(789) // int64 | The unique identifier of the report
-	rowId := int64(789) // int64 | The unique identifier of the row
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsReportsAPI.DeleteReport(context.Background(), dashboardId, folderId, reportId, rowId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.DeleteReport``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteReport`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.DeleteReport`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**reportId** | **int64** | The unique identifier of the report | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteReportRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
+ **reportRequest** | **ReportRequest**|  |
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**ReportResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListReports
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedReportListResponseList ListReports(ctx, dashboardId, folderId, rowId).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List of reports
+# **deleteReport**
+> DeleteResponse deleteReport()
 
-
+Delete a specific report.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsReportsApi } from '';
+import type { MetricsReportsApiDeleteReportRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	rowId := int64(789) // int64 | The unique identifier of the row
-	aggregationType := "aggregationType_example" // string | Filter by aggregation type (accepts comma-separated values). (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
-	type_ := "type__example" // string | Filter by type (accepts comma-separated values). (optional)
+const configuration = createConfiguration();
+const apiInstance = new MetricsReportsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsReportsAPI.ListReports(context.Background(), dashboardId, folderId, rowId).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.ListReports``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListReports`: PaginatedReportListResponseList
-	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.ListReports`: %v\n", resp)
-}
+const request: MetricsReportsApiDeleteReportRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the report
+  reportId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+};
+
+const data = await apiInstance.deleteReport(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListReportsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **reportId** | [**number**] | The unique identifier of the report | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
 
-
-
- **aggregationType** | **string** | Filter by aggregation type (accepts comma-separated values). | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
- **type_** | **string** | Filter by type (accepts comma-separated values). | 
 
 ### Return type
 
-[**PaginatedReportListResponseList**](PaginatedReportListResponseList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## OrderingReport
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful deletion |  -  |
+**500** | Internal Server Error |  -  |
 
-> OrderResponse OrderingReport(ctx, dashboardId, folderId, rowId).OrderRequest(orderRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Ordering reports in row
+# **listReports**
+> PaginatedReportListResponseList listReports()
 
-
+List all reports for your user.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsReportsApi } from '';
+import type { MetricsReportsApiListReportsRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	rowId := int64(789) // int64 | The unique identifier of the row
-	orderRequest := *openapiclient.NewOrderRequest([]int64{int64(123)}) // OrderRequest | 
+const configuration = createConfiguration();
+const apiInstance = new MetricsReportsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsReportsAPI.OrderingReport(context.Background(), dashboardId, folderId, rowId).OrderRequest(orderRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.OrderingReport``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `OrderingReport`: OrderResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.OrderingReport`: %v\n", resp)
-}
+const request: MetricsReportsApiListReportsRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+    // Filter by aggregation type (accepts comma-separated values). (optional)
+  aggregationType: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+    // Filter by type (accepts comma-separated values). (optional)
+  type: "jUR,rZ#UM/?R,Fp^l6$ARj",
+};
+
+const data = await apiInstance.listReports(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiOrderingReportRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
+ **aggregationType** | [**string**] | Filter by aggregation type (accepts comma-separated values). | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
+ **type** | [**string**] | Filter by type (accepts comma-separated values). | (optional) defaults to undefined
 
-
-
- **orderRequest** | [**OrderRequest**](OrderRequest.md) |  | 
 
 ### Return type
 
-[**OrderResponse**](OrderResponse.md)
+**PaginatedReportListResponseList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveReport
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ReportResponse RetrieveReport(ctx, dashboardId, folderId, reportId, rowId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a report
+# **orderingReport**
+> OrderResponse orderingReport(orderRequest)
 
-
+Reorder all reports for a specific Row.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsReportsApi } from '';
+import type { MetricsReportsApiOrderingReportRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	reportId := int64(789) // int64 | The unique identifier of the report
-	rowId := int64(789) // int64 | The unique identifier of the row
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new MetricsReportsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsReportsAPI.RetrieveReport(context.Background(), dashboardId, folderId, reportId, rowId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.RetrieveReport``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveReport`: ReportResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.RetrieveReport`: %v\n", resp)
-}
+const request: MetricsReportsApiOrderingReportRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+  
+  orderRequest: {
+    order: [
+      1,
+    ],
+  },
+};
+
+const data = await apiInstance.orderingReport(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**reportId** | **int64** | The unique identifier of the report | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveReportRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **orderRequest** | **OrderRequest**|  |
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
 
-
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ReportResponse**](ReportResponse.md)
+**OrderResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateReport
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**202** |  |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
 
-> ReportResponse UpdateReport(ctx, dashboardId, folderId, reportId, rowId).ReportRequest(reportRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a report
+# **retrieveReport**
+> ReportResponse retrieveReport()
 
-
+Retrieve details from a specific report.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, MetricsReportsApi } from '';
+import type { MetricsReportsApiRetrieveReportRequest } from '';
 
-func main() {
-	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
-	folderId := int64(789) // int64 | The unique identifier of the folder
-	reportId := int64(789) // int64 | The unique identifier of the report
-	rowId := int64(789) // int64 | The unique identifier of the row
-	reportRequest := *openapiclient.NewReportRequest("Description_example", "Type_example", "AggregationType_example", "DataUnit_example", []openapiclient.BaseQueryRequest{*openapiclient.NewBaseQueryRequest("Dataset_example", int64(123), "OrderDirection_example")}, int64(123), "Name_example") // ReportRequest | 
+const configuration = createConfiguration();
+const apiInstance = new MetricsReportsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsReportsAPI.UpdateReport(context.Background(), dashboardId, folderId, reportId, rowId).ReportRequest(reportRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.UpdateReport``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateReport`: ReportResponse
-	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.UpdateReport`: %v\n", resp)
-}
+const request: MetricsReportsApiRetrieveReportRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the report
+  reportId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveReport(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **int64** | The unique identifier of the dashboard | 
-**folderId** | **int64** | The unique identifier of the folder | 
-**reportId** | **int64** | The unique identifier of the report | 
-**rowId** | **int64** | The unique identifier of the row | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateReportRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **reportId** | [**number**] | The unique identifier of the report | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
-
-
- **reportRequest** | [**ReportRequest**](ReportRequest.md) |  | 
 
 ### Return type
 
-[**ReportResponse**](ReportResponse.md)
+**ReportResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateReport**
+> ReportResponse updateReport(reportRequest)
+
+Update an existing report. This replaces the entire report with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, MetricsReportsApi } from '';
+import type { MetricsReportsApiUpdateReportRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new MetricsReportsApi(configuration);
+
+const request: MetricsReportsApiUpdateReportRequest = {
+    // The unique identifier of the dashboard
+  dashboardId: 1,
+    // The unique identifier of the folder
+  folderId: 1,
+    // The unique identifier of the report
+  reportId: 1,
+    // The unique identifier of the row
+  rowId: 1,
+  
+  reportRequest: {
+    description: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    type: "big-numbers",
+    xAxis: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    aggregationType: "avg",
+    dataUnit: "bits-per-second",
+    queries: [
+      {
+        dataset: "jUR,rZ#UM/?R,Fp^l6$ARj",
+        filters: {
+          "key": null,
+        },
+        groupBy: [
+          "jUR,rZ#UM/?R,Fp^l6$ARj",
+        ],
+        limit: 0,
+        aggregatedFields: [
+          {
+            aggregation: "jUR,rZ#UM/?R,Fp^l6$ARj",
+            variable: "jUR,rZ#UM/?R,Fp^l6$ARj",
+          },
+        ],
+        calculatedFields: [
+          "jUR,rZ#UM/?R,Fp^l6$ARj",
+        ],
+        orderDirection: "asc",
+        topX: true,
+        maxYAxis: 1,
+      },
+    ],
+    columns: 1,
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    rotated: true,
+    comparisonType: "inverse",
+    helpCenterPath: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    library: true,
+  },
+};
+
+const data = await apiInstance.updateReport(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **reportRequest** | **ReportRequest**|  |
+ **dashboardId** | [**number**] | The unique identifier of the dashboard | defaults to undefined
+ **folderId** | [**number**] | The unique identifier of the folder | defaults to undefined
+ **reportId** | [**number**] | The unique identifier of the report | defaults to undefined
+ **rowId** | [**number**] | The unique identifier of the row | defaults to undefined
+
+
+### Return type
+
+**ReportResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

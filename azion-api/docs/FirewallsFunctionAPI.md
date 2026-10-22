@@ -1,960 +1,939 @@
-# \FirewallsFunctionAPI
+# .FirewallsFunctionApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFirewallFunction**](FirewallsFunctionAPI.md#CreateFirewallFunction) | **Post** /workspace/firewalls/{firewall_id}/functions | Create an Firewall Function
-[**CreateFirewallFunction2**](FirewallsFunctionAPI.md#CreateFirewallFunction2) | **Post** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions | Create an Firewall Function
-[**DeleteFirewallFunction**](FirewallsFunctionAPI.md#DeleteFirewallFunction) | **Delete** /workspace/firewalls/{firewall_id}/functions/{function_id} | Delete an Firewall Function
-[**DeleteFirewallFunction2**](FirewallsFunctionAPI.md#DeleteFirewallFunction2) | **Delete** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Delete an Firewall Function
-[**ListFirewallFunction**](FirewallsFunctionAPI.md#ListFirewallFunction) | **Get** /workspace/firewalls/{firewall_id}/functions | List Firewall Function
-[**ListFirewallFunction2**](FirewallsFunctionAPI.md#ListFirewallFunction2) | **Get** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions | List Firewall Function
-[**PartialUpdateFirewallFunction**](FirewallsFunctionAPI.md#PartialUpdateFirewallFunction) | **Patch** /workspace/firewalls/{firewall_id}/functions/{function_id} | Partially update an Firewall Function
-[**PartialUpdateFirewallFunction2**](FirewallsFunctionAPI.md#PartialUpdateFirewallFunction2) | **Patch** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Partially update an Firewall Function
-[**RetrieveFirewallFunction**](FirewallsFunctionAPI.md#RetrieveFirewallFunction) | **Get** /workspace/firewalls/{firewall_id}/functions/{function_id} | Retrieve details of an Firewall Function
-[**RetrieveFirewallFunction2**](FirewallsFunctionAPI.md#RetrieveFirewallFunction2) | **Get** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Retrieve details of an Firewall Function
-[**UpdateFirewallFunction**](FirewallsFunctionAPI.md#UpdateFirewallFunction) | **Put** /workspace/firewalls/{firewall_id}/functions/{function_id} | Update an Firewall Function
-[**UpdateFirewallFunction2**](FirewallsFunctionAPI.md#UpdateFirewallFunction2) | **Put** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Update an Firewall Function
+[**createFirewallFunction**](FirewallsFunctionApi.md#createFirewallFunction) | **POST** /workspace/firewalls/{firewall_id}/functions | Create an Firewall Function
+[**createFirewallFunction2**](FirewallsFunctionApi.md#createFirewallFunction2) | **POST** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions | Create an Firewall Function
+[**deleteFirewallFunction**](FirewallsFunctionApi.md#deleteFirewallFunction) | **DELETE** /workspace/firewalls/{firewall_id}/functions/{function_id} | Delete an Firewall Function
+[**deleteFirewallFunction2**](FirewallsFunctionApi.md#deleteFirewallFunction2) | **DELETE** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Delete an Firewall Function
+[**listFirewallFunction**](FirewallsFunctionApi.md#listFirewallFunction) | **GET** /workspace/firewalls/{firewall_id}/functions | List Firewall Function
+[**listFirewallFunction2**](FirewallsFunctionApi.md#listFirewallFunction2) | **GET** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions | List Firewall Function
+[**partialUpdateFirewallFunction**](FirewallsFunctionApi.md#partialUpdateFirewallFunction) | **PATCH** /workspace/firewalls/{firewall_id}/functions/{function_id} | Partially update an Firewall Function
+[**partialUpdateFirewallFunction2**](FirewallsFunctionApi.md#partialUpdateFirewallFunction2) | **PATCH** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Partially update an Firewall Function
+[**retrieveFirewallFunction**](FirewallsFunctionApi.md#retrieveFirewallFunction) | **GET** /workspace/firewalls/{firewall_id}/functions/{function_id} | Retrieve details of an Firewall Function
+[**retrieveFirewallFunction2**](FirewallsFunctionApi.md#retrieveFirewallFunction2) | **GET** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Retrieve details of an Firewall Function
+[**updateFirewallFunction**](FirewallsFunctionApi.md#updateFirewallFunction) | **PUT** /workspace/firewalls/{firewall_id}/functions/{function_id} | Update an Firewall Function
+[**updateFirewallFunction2**](FirewallsFunctionApi.md#updateFirewallFunction2) | **PUT** /workspace/firewalls/{firewall_id}/versions/{version_id}/functions/{function_id} | Update an Firewall Function
 
 
+# **createFirewallFunction**
+> FirewallFunctionInstanceResponse createFirewallFunction(firewallFunctionInstanceRequest)
 
-## CreateFirewallFunction
-
-> FirewallFunctionInstanceResponse CreateFirewallFunction(ctx, firewallId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
-
-Create an Firewall Function
-
-
+Create a new Function Instance for a specific Firewall in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiCreateFirewallFunctionRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	firewallFunctionInstanceRequest := *openapiclient.NewFirewallFunctionInstanceRequest("Name_example", int64(123)) // FirewallFunctionInstanceRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.CreateFirewallFunction(context.Background(), firewallId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.CreateFirewallFunction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateFirewallFunction`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.CreateFirewallFunction`: %v\n", resp)
-}
+const request: FirewallsFunctionApiCreateFirewallFunctionRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+  
+  firewallFunctionInstanceRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    args: {
+      arg: {},
+    },
+    azionForm: {
+      arg: {},
+    },
+    _function: 1,
+    active: true,
+  },
+};
+
+const data = await apiInstance.createFirewallFunction(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFirewallFunctionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **firewallFunctionInstanceRequest** | [**FirewallFunctionInstanceRequest**](FirewallFunctionInstanceRequest.md) |  | 
-
-### Return type
-
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateFirewallFunction2
-
-> FirewallFunctionInstanceResponse CreateFirewallFunction2(ctx, firewallId, versionId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
-
-Create an Firewall Function
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	firewallFunctionInstanceRequest := *openapiclient.NewFirewallFunctionInstanceRequest("Name_example", int64(123)) // FirewallFunctionInstanceRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.CreateFirewallFunction2(context.Background(), firewallId, versionId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.CreateFirewallFunction2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateFirewallFunction2`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.CreateFirewallFunction2`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFirewallFunction2Request struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **firewallFunctionInstanceRequest** | [**FirewallFunctionInstanceRequest**](FirewallFunctionInstanceRequest.md) |  | 
-
-### Return type
-
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteFirewallFunction
-
-> DeleteResponse DeleteFirewallFunction(ctx, firewallId, functionId).Execute()
-
-Delete an Firewall Function
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.DeleteFirewallFunction(context.Background(), firewallId, functionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.DeleteFirewallFunction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteFirewallFunction`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.DeleteFirewallFunction`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFirewallFunctionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
+ **firewallFunctionInstanceRequest** | **FirewallFunctionInstanceRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**FirewallFunctionInstanceResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## DeleteFirewallFunction2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Firewall function instance created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> DeleteResponse DeleteFirewallFunction2(ctx, firewallId, functionId, versionId).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Delete an Firewall Function
+# **createFirewallFunction2**
+> FirewallFunctionInstanceResponse createFirewallFunction2(firewallFunctionInstanceRequest)
 
-
+Create a new Function Instance for a specific Firewall in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiCreateFirewallFunction2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.DeleteFirewallFunction2(context.Background(), firewallId, functionId, versionId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.DeleteFirewallFunction2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteFirewallFunction2`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.DeleteFirewallFunction2`: %v\n", resp)
-}
+const request: FirewallsFunctionApiCreateFirewallFunction2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  firewallFunctionInstanceRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    args: {
+      arg: {},
+    },
+    azionForm: {
+      arg: {},
+    },
+    _function: 1,
+    active: true,
+  },
+};
+
+const data = await apiInstance.createFirewallFunction2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFirewallFunction2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
+ **firewallFunctionInstanceRequest** | **FirewallFunctionInstanceRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**FirewallFunctionInstanceResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListFirewallFunction
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Firewall function instance created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFirewallFunctionInstanceList ListFirewallFunction(ctx, firewallId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Firewall Function
+# **deleteFirewallFunction**
+> DeleteResponse deleteFirewallFunction()
 
-
+Delete a specific Firewall Function Instance in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiDeleteFirewallFunctionRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.ListFirewallFunction(context.Background(), firewallId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.ListFirewallFunction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListFirewallFunction`: PaginatedFirewallFunctionInstanceList
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.ListFirewallFunction`: %v\n", resp)
-}
+const request: FirewallsFunctionApiDeleteFirewallFunctionRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+};
+
+const data = await apiInstance.deleteFirewallFunction(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListFirewallFunctionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedFirewallFunctionInstanceList**](PaginatedFirewallFunctionInstanceList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## ListFirewallFunction2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedFirewallFunctionInstanceList ListFirewallFunction2(ctx, firewallId, versionId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Firewall Function
+# **deleteFirewallFunction2**
+> DeleteResponse deleteFirewallFunction2()
 
-
+Delete a specific Firewall Function Instance in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiDeleteFirewallFunction2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.ListFirewallFunction2(context.Background(), firewallId, versionId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.ListFirewallFunction2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListFirewallFunction2`: PaginatedFirewallFunctionInstanceList
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.ListFirewallFunction2`: %v\n", resp)
-}
+const request: FirewallsFunctionApiDeleteFirewallFunction2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+};
+
+const data = await apiInstance.deleteFirewallFunction2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListFirewallFunction2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedFirewallFunctionInstanceList**](PaginatedFirewallFunctionInstanceList.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateFirewallFunction
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallFunctionInstanceResponse PartialUpdateFirewallFunction(ctx, firewallId, functionId).PatchedFirewallFunctionInstanceRequest(patchedFirewallFunctionInstanceRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Firewall Function
+# **listFirewallFunction**
+> PaginatedFirewallFunctionInstanceList listFirewallFunction()
 
-
+List all Function Instances for a specific Firewall owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiListFirewallFunctionRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	patchedFirewallFunctionInstanceRequest := *openapiclient.NewPatchedFirewallFunctionInstanceRequest() // PatchedFirewallFunctionInstanceRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.PartialUpdateFirewallFunction(context.Background(), firewallId, functionId).PatchedFirewallFunctionInstanceRequest(patchedFirewallFunctionInstanceRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.PartialUpdateFirewallFunction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateFirewallFunction`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.PartialUpdateFirewallFunction`: %v\n", resp)
-}
+const request: FirewallsFunctionApiListFirewallFunctionRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listFirewallFunction(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateFirewallFunctionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
- **patchedFirewallFunctionInstanceRequest** | [**PatchedFirewallFunctionInstanceRequest**](PatchedFirewallFunctionInstanceRequest.md) |  | 
 
 ### Return type
 
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
+**PaginatedFirewallFunctionInstanceList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## PartialUpdateFirewallFunction2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of firewall function instances retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallFunctionInstanceResponse PartialUpdateFirewallFunction2(ctx, firewallId, functionId, versionId).PatchedFirewallFunctionInstanceRequest(patchedFirewallFunctionInstanceRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Firewall Function
+# **listFirewallFunction2**
+> PaginatedFirewallFunctionInstanceList listFirewallFunction2()
 
-
+List all Function Instances for a specific Firewall owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiListFirewallFunction2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	patchedFirewallFunctionInstanceRequest := *openapiclient.NewPatchedFirewallFunctionInstanceRequest() // PatchedFirewallFunctionInstanceRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.PartialUpdateFirewallFunction2(context.Background(), firewallId, functionId, versionId).PatchedFirewallFunctionInstanceRequest(patchedFirewallFunctionInstanceRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.PartialUpdateFirewallFunction2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateFirewallFunction2`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.PartialUpdateFirewallFunction2`: %v\n", resp)
-}
+const request: FirewallsFunctionApiListFirewallFunction2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listFirewallFunction2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateFirewallFunction2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
-
-
- **patchedFirewallFunctionInstanceRequest** | [**PatchedFirewallFunctionInstanceRequest**](PatchedFirewallFunctionInstanceRequest.md) |  | 
 
 ### Return type
 
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
+**PaginatedFirewallFunctionInstanceList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveFirewallFunction
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of firewall function instances retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallFunctionInstanceResponse RetrieveFirewallFunction(ctx, firewallId, functionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Firewall Function
+# **partialUpdateFirewallFunction**
+> FirewallFunctionInstanceResponse partialUpdateFirewallFunction()
 
-
+Update one or more fields of an existing Firewall Function Instance without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiPartialUpdateFirewallFunctionRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.RetrieveFirewallFunction(context.Background(), firewallId, functionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.RetrieveFirewallFunction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveFirewallFunction`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.RetrieveFirewallFunction`: %v\n", resp)
-}
+const request: FirewallsFunctionApiPartialUpdateFirewallFunctionRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+  
+  patchedFirewallFunctionInstanceRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    args: {
+      arg: {},
+    },
+    azionForm: {
+      arg: {},
+    },
+    _function: 1,
+    active: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateFirewallFunction(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveFirewallFunctionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedFirewallFunctionInstanceRequest** | **PatchedFirewallFunctionInstanceRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
 
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
+**FirewallFunctionInstanceResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## RetrieveFirewallFunction2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallFunctionInstanceResponse RetrieveFirewallFunction2(ctx, firewallId, functionId, versionId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Firewall Function
+# **partialUpdateFirewallFunction2**
+> FirewallFunctionInstanceResponse partialUpdateFirewallFunction2()
 
-
+Update one or more fields of an existing Firewall Function Instance without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiPartialUpdateFirewallFunction2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.RetrieveFirewallFunction2(context.Background(), firewallId, functionId, versionId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.RetrieveFirewallFunction2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveFirewallFunction2`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.RetrieveFirewallFunction2`: %v\n", resp)
-}
+const request: FirewallsFunctionApiPartialUpdateFirewallFunction2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  patchedFirewallFunctionInstanceRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    args: {
+      arg: {},
+    },
+    azionForm: {
+      arg: {},
+    },
+    _function: 1,
+    active: true,
+  },
+};
+
+const data = await apiInstance.partialUpdateFirewallFunction2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveFirewallFunction2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedFirewallFunctionInstanceRequest** | **PatchedFirewallFunctionInstanceRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
 
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
+**FirewallFunctionInstanceResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## UpdateFirewallFunction
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallFunctionInstanceResponse UpdateFirewallFunction(ctx, firewallId, functionId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Firewall Function
+# **retrieveFirewallFunction**
+> FirewallFunctionInstanceResponse retrieveFirewallFunction()
 
-
+Retrieve details of a specific Firewall Function Instance in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiRetrieveFirewallFunctionRequest } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	firewallFunctionInstanceRequest := *openapiclient.NewFirewallFunctionInstanceRequest("Name_example", int64(123)) // FirewallFunctionInstanceRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.UpdateFirewallFunction(context.Background(), firewallId, functionId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.UpdateFirewallFunction``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateFirewallFunction`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.UpdateFirewallFunction`: %v\n", resp)
-}
+const request: FirewallsFunctionApiRetrieveFirewallFunctionRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveFirewallFunction(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFirewallFunctionRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
- **firewallFunctionInstanceRequest** | [**FirewallFunctionInstanceRequest**](FirewallFunctionInstanceRequest.md) |  | 
 
 ### Return type
 
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
+**FirewallFunctionInstanceResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateFirewallFunction2
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> FirewallFunctionInstanceResponse UpdateFirewallFunction2(ctx, firewallId, functionId, versionId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Firewall Function
+# **retrieveFirewallFunction2**
+> FirewallFunctionInstanceResponse retrieveFirewallFunction2()
 
-
+Retrieve details of a specific Firewall Function Instance in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiRetrieveFirewallFunction2Request } from '';
 
-func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	versionId := "versionId_example" // string | The ULID identifier of the version.
-	firewallFunctionInstanceRequest := *openapiclient.NewFirewallFunctionInstanceRequest("Name_example", int64(123)) // FirewallFunctionInstanceRequest | 
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsFunctionAPI.UpdateFirewallFunction2(context.Background(), firewallId, functionId, versionId).FirewallFunctionInstanceRequest(firewallFunctionInstanceRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.UpdateFirewallFunction2``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateFirewallFunction2`: FirewallFunctionInstanceResponse
-	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.UpdateFirewallFunction2`: %v\n", resp)
-}
+const request: FirewallsFunctionApiRetrieveFirewallFunction2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveFirewallFunction2(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**functionId** | **int64** | A unique integer value identifying the function instance. | 
-**versionId** | **string** | The ULID identifier of the version. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFirewallFunction2Request struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
 
-
-
- **firewallFunctionInstanceRequest** | [**FirewallFunctionInstanceRequest**](FirewallFunctionInstanceRequest.md) |  | 
 
 ### Return type
 
-[**FirewallFunctionInstanceResponse**](FirewallFunctionInstanceResponse.md)
+**FirewallFunctionInstanceResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateFirewallFunction**
+> FirewallFunctionInstanceResponse updateFirewallFunction(firewallFunctionInstanceRequest)
+
+Update an existing Firewall Function Instance. This replaces the entire Function Instance with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiUpdateFirewallFunctionRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
+
+const request: FirewallsFunctionApiUpdateFirewallFunctionRequest = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+  
+  firewallFunctionInstanceRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    args: {
+      arg: {},
+    },
+    azionForm: {
+      arg: {},
+    },
+    _function: 1,
+    active: true,
+  },
+};
+
+const data = await apiInstance.updateFirewallFunction(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **firewallFunctionInstanceRequest** | **FirewallFunctionInstanceRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
+
+
+### Return type
+
+**FirewallFunctionInstanceResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateFirewallFunction2**
+> FirewallFunctionInstanceResponse updateFirewallFunction2(firewallFunctionInstanceRequest)
+
+Update an existing Firewall Function Instance. This replaces the entire Function Instance with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, FirewallsFunctionApi } from '';
+import type { FirewallsFunctionApiUpdateFirewallFunction2Request } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new FirewallsFunctionApi(configuration);
+
+const request: FirewallsFunctionApiUpdateFirewallFunction2Request = {
+    // A unique integer value identifying the firewall.
+  firewallId: 1,
+    // A unique integer value identifying the function instance.
+  functionId: 1,
+    // The ULID identifier of the version.
+  versionId: "version_id_example",
+  
+  firewallFunctionInstanceRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    args: {
+      arg: {},
+    },
+    azionForm: {
+      arg: {},
+    },
+    _function: 1,
+    active: true,
+  },
+};
+
+const data = await apiInstance.updateFirewallFunction2(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **firewallFunctionInstanceRequest** | **FirewallFunctionInstanceRequest**|  |
+ **firewallId** | [**number**] | A unique integer value identifying the firewall. | defaults to undefined
+ **functionId** | [**number**] | A unique integer value identifying the function instance. | defaults to undefined
+ **versionId** | [**string**] | The ULID identifier of the version. | defaults to undefined
+
+
+### Return type
+
+**FirewallFunctionInstanceResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Firewall function instance updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

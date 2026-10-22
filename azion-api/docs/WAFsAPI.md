@@ -1,517 +1,532 @@
-# \WAFsAPI
+# .WAFsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CloneWaf**](WAFsAPI.md#CloneWaf) | **Post** /workspace/wafs/{waf_id}/clone | Clone a Web Application Firewall (WAF)
-[**CreateWaf**](WAFsAPI.md#CreateWaf) | **Post** /workspace/wafs | Create a Web Application Firewall (WAF)
-[**DeleteWaf**](WAFsAPI.md#DeleteWaf) | **Delete** /workspace/wafs/{waf_id} | Delete a Web Application Firewall (WAF)
-[**ListWafs**](WAFsAPI.md#ListWafs) | **Get** /workspace/wafs | List Web Application Firewalls (WAFs)
-[**PartialUpdateWaf**](WAFsAPI.md#PartialUpdateWaf) | **Patch** /workspace/wafs/{waf_id} | Partially update a Web Application Firewall (WAF)
-[**RetrieveWaf**](WAFsAPI.md#RetrieveWaf) | **Get** /workspace/wafs/{waf_id} | Retrieve details from a Web Application Firewall (WAF)
-[**UpdateWaf**](WAFsAPI.md#UpdateWaf) | **Put** /workspace/wafs/{waf_id} | Update a Web Application Firewall (WAF)
+[**cloneWaf**](WAFsApi.md#cloneWaf) | **POST** /workspace/wafs/{waf_id}/clone | Clone a Web Application Firewall (WAF)
+[**createWaf**](WAFsApi.md#createWaf) | **POST** /workspace/wafs | Create a Web Application Firewall (WAF)
+[**deleteWaf**](WAFsApi.md#deleteWaf) | **DELETE** /workspace/wafs/{waf_id} | Delete a Web Application Firewall (WAF)
+[**listWafs**](WAFsApi.md#listWafs) | **GET** /workspace/wafs | List Web Application Firewalls (WAFs)
+[**partialUpdateWaf**](WAFsApi.md#partialUpdateWaf) | **PATCH** /workspace/wafs/{waf_id} | Partially update a Web Application Firewall (WAF)
+[**retrieveWaf**](WAFsApi.md#retrieveWaf) | **GET** /workspace/wafs/{waf_id} | Retrieve details from a Web Application Firewall (WAF)
+[**updateWaf**](WAFsApi.md#updateWaf) | **PUT** /workspace/wafs/{waf_id} | Update a Web Application Firewall (WAF)
 
 
+# **cloneWaf**
+> WAFResponse cloneWaf(cloneWAFRequest)
 
-## CloneWaf
-
-> WAFResponse CloneWaf(ctx, wafId).CloneWAFRequest(cloneWAFRequest).Execute()
-
-Clone a Web Application Firewall (WAF)
-
-
+Create a new WAF by performing a deep copy of an existing WAF, including its Exceptions.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WAFsApi } from '';
+import type { WAFsApiCloneWafRequest } from '';
 
-func main() {
-	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
-	cloneWAFRequest := *openapiclient.NewCloneWAFRequest("Name_example") // CloneWAFRequest | 
+const configuration = createConfiguration();
+const apiInstance = new WAFsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.CloneWaf(context.Background(), wafId).CloneWAFRequest(cloneWAFRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CloneWaf``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CloneWaf`: WAFResponse
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CloneWaf`: %v\n", resp)
-}
+const request: WAFsApiCloneWafRequest = {
+    // A unique integer value identifying the WAF.
+  wafId: 1,
+  
+  cloneWAFRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.cloneWaf(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **int64** | A unique integer value identifying the WAF. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCloneWafRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **cloneWAFRequest** | [**CloneWAFRequest**](CloneWAFRequest.md) |  | 
-
-### Return type
-
-[**WAFResponse**](WAFResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateWaf
-
-> WAFResponse CreateWaf(ctx).WAFRequest(wAFRequest).Execute()
-
-Create a Web Application Firewall (WAF)
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	wAFRequest := *openapiclient.NewWAFRequest("Name_example") // WAFRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.CreateWaf(context.Background()).WAFRequest(wAFRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CreateWaf``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateWaf`: WAFResponse
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CreateWaf`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateWafRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **wAFRequest** | [**WAFRequest**](WAFRequest.md) |  | 
-
-### Return type
-
-[**WAFResponse**](WAFResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteWaf
-
-> DeleteResponse DeleteWaf(ctx, wafId).Execute()
-
-Delete a Web Application Firewall (WAF)
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.DeleteWaf(context.Background(), wafId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.DeleteWaf``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteWaf`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.DeleteWaf`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **int64** | A unique integer value identifying the WAF. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteWafRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **cloneWAFRequest** | **CloneWAFRequest**|  |
+ **wafId** | [**number**] | A unique integer value identifying the WAF. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**WAFResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListWafs
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | WAF cloned successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedWAFList ListWafs(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Web Application Firewalls (WAFs)
+# **createWaf**
+> WAFResponse createWaf(wAFRequest)
 
-
+Create a new WAF for your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WAFsApi } from '';
+import type { WAFsApiCreateWafRequest } from '';
 
-func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new WAFsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.ListWafs(context.Background()).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.ListWafs``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListWafs`: PaginatedWAFList
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.ListWafs`: %v\n", resp)
-}
+const request: WAFsApiCreateWafRequest = {
+  
+  wAFRequest: {
+    active: true,
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    productVersion: "1.0",
+    engineSettings: {
+      engineVersion: null,
+      type: null,
+      attributes: {
+        rulesets: [
+          1,
+        ],
+        thresholds: [
+          {
+            threat: "cross_site_scripting",
+            sensitivity: null,
+          },
+        ],
+      },
+    },
+  },
+};
+
+const data = await apiInstance.createWaf(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListWafsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **wAFRequest** | **WAFRequest**|  |
+
 
 ### Return type
 
-[**PaginatedWAFList**](PaginatedWAFList.md)
+**WAFResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateWaf
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | WAF created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> WAFResponse PartialUpdateWaf(ctx, wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update a Web Application Firewall (WAF)
+# **deleteWaf**
+> DeleteResponse deleteWaf()
 
-
+Delete a specific WAF in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WAFsApi } from '';
+import type { WAFsApiDeleteWafRequest } from '';
 
-func main() {
-	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
-	patchedWAFRequest := *openapiclient.NewPatchedWAFRequest() // PatchedWAFRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new WAFsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.PartialUpdateWaf(context.Background(), wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.PartialUpdateWaf``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateWaf`: WAFResponse
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.PartialUpdateWaf`: %v\n", resp)
-}
+const request: WAFsApiDeleteWafRequest = {
+    // A unique integer value identifying the WAF.
+  wafId: 1,
+};
+
+const data = await apiInstance.deleteWaf(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **int64** | A unique integer value identifying the WAF. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateWafRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **wafId** | [**number**] | A unique integer value identifying the WAF. | defaults to undefined
 
- **patchedWAFRequest** | [**PatchedWAFRequest**](PatchedWAFRequest.md) |  | 
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveWaf
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | WAF deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> WAFResponse RetrieveWaf(ctx, wafId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details from a Web Application Firewall (WAF)
+# **listWafs**
+> PaginatedWAFList listWafs()
 
-
+List all WAFs owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WAFsApi } from '';
+import type { WAFsApiListWafsRequest } from '';
 
-func main() {
-	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new WAFsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.RetrieveWaf(context.Background(), wafId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.RetrieveWaf``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveWaf`: WAFResponse
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.RetrieveWaf`: %v\n", resp)
-}
+const request: WAFsApiListWafsRequest = {
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listWafs(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **int64** | A unique integer value identifying the WAF. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveWafRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+**PaginatedWAFList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateWaf
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of WAFs retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> WAFResponse UpdateWaf(ctx, wafId).WAFRequest(wAFRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update a Web Application Firewall (WAF)
+# **partialUpdateWaf**
+> WAFResponse partialUpdateWaf()
 
-
+Update one or more fields of an existing WAF without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, WAFsApi } from '';
+import type { WAFsApiPartialUpdateWafRequest } from '';
 
-func main() {
-	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
-	wAFRequest := *openapiclient.NewWAFRequest("Name_example") // WAFRequest | 
+const configuration = createConfiguration();
+const apiInstance = new WAFsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.UpdateWaf(context.Background(), wafId).WAFRequest(wAFRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.UpdateWaf``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateWaf`: WAFResponse
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.UpdateWaf`: %v\n", resp)
-}
+const request: WAFsApiPartialUpdateWafRequest = {
+    // A unique integer value identifying the WAF.
+  wafId: 1,
+  
+  patchedWAFRequest: {
+    active: true,
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    productVersion: "1.0",
+    engineSettings: {
+      engineVersion: null,
+      type: null,
+      attributes: {
+        rulesets: [
+          1,
+        ],
+        thresholds: [
+          {
+            threat: "cross_site_scripting",
+            sensitivity: null,
+          },
+        ],
+      },
+    },
+  },
+};
+
+const data = await apiInstance.partialUpdateWaf(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **int64** | A unique integer value identifying the WAF. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateWafRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedWAFRequest** | **PatchedWAFRequest**|  |
+ **wafId** | [**number**] | A unique integer value identifying the WAF. | defaults to undefined
 
- **wAFRequest** | [**WAFRequest**](WAFRequest.md) |  | 
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+**WAFResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | WAF partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveWaf**
+> WAFResponse retrieveWaf()
+
+Retrieve details from a specific WAF in your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, WAFsApi } from '';
+import type { WAFsApiRetrieveWafRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new WAFsApi(configuration);
+
+const request: WAFsApiRetrieveWafRequest = {
+    // A unique integer value identifying the WAF.
+  wafId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveWaf(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **wafId** | [**number**] | A unique integer value identifying the WAF. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**WAFResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | WAF details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateWaf**
+> WAFResponse updateWaf(wAFRequest)
+
+Update an existing WAF. This replaces the entire WAF with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, WAFsApi } from '';
+import type { WAFsApiUpdateWafRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new WAFsApi(configuration);
+
+const request: WAFsApiUpdateWafRequest = {
+    // A unique integer value identifying the WAF.
+  wafId: 1,
+  
+  wAFRequest: {
+    active: true,
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    productVersion: "1.0",
+    engineSettings: {
+      engineVersion: null,
+      type: null,
+      attributes: {
+        rulesets: [
+          1,
+        ],
+        thresholds: [
+          {
+            threat: "cross_site_scripting",
+            sensitivity: null,
+          },
+        ],
+      },
+    },
+  },
+};
+
+const data = await apiInstance.updateWaf(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **wAFRequest** | **WAFRequest**|  |
+ **wafId** | [**number**] | A unique integer value identifying the WAF. | defaults to undefined
+
+
+### Return type
+
+**WAFResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | WAF updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

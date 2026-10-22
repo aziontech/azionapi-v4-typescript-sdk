@@ -1,526 +1,517 @@
-# \ApplicationsAPI
+# .ApplicationsApi
 
 All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CloneApplication**](ApplicationsAPI.md#CloneApplication) | **Post** /workspace/applications/{application_id}/clone | Clone an Application
-[**CreateApplication**](ApplicationsAPI.md#CreateApplication) | **Post** /workspace/applications | Create an Application
-[**DeleteApplication**](ApplicationsAPI.md#DeleteApplication) | **Delete** /workspace/applications/{application_id} | Delete an Application
-[**ListApplications**](ApplicationsAPI.md#ListApplications) | **Get** /workspace/applications | List Applications
-[**PartialUpdateApplication**](ApplicationsAPI.md#PartialUpdateApplication) | **Patch** /workspace/applications/{application_id} | Partially update an Application
-[**RetrieveApplication**](ApplicationsAPI.md#RetrieveApplication) | **Get** /workspace/applications/{application_id} | Retrieve details of an Application
-[**UpdateApplication**](ApplicationsAPI.md#UpdateApplication) | **Put** /workspace/applications/{application_id} | Update an Application
+[**cloneApplication**](ApplicationsApi.md#cloneApplication) | **POST** /workspace/applications/{application_id}/clone | Clone an Application
+[**createApplication**](ApplicationsApi.md#createApplication) | **POST** /workspace/applications | Create an Application
+[**deleteApplication**](ApplicationsApi.md#deleteApplication) | **DELETE** /workspace/applications/{application_id} | Delete an Application
+[**listApplications**](ApplicationsApi.md#listApplications) | **GET** /workspace/applications | List Applications
+[**partialUpdateApplication**](ApplicationsApi.md#partialUpdateApplication) | **PATCH** /workspace/applications/{application_id} | Partially update an Application
+[**retrieveApplication**](ApplicationsApi.md#retrieveApplication) | **GET** /workspace/applications/{application_id} | Retrieve details of an Application
+[**updateApplication**](ApplicationsApi.md#updateApplication) | **PUT** /workspace/applications/{application_id} | Update an Application
 
 
+# **cloneApplication**
+> ApplicationResponse cloneApplication(cloneApplicationRequest)
 
-## CloneApplication
-
-> ApplicationResponse CloneApplication(ctx, applicationId).CloneApplicationRequest(cloneApplicationRequest).Execute()
-
-Clone an Application
-
-
+Create a new Application by performing a deep copy of an existing Application, including its Cache Settings, Origins, Error Responses, Function Instances, and Rules Engine.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsApi } from '';
+import type { ApplicationsApiCloneApplicationRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	cloneApplicationRequest := *openapiclient.NewCloneApplicationRequest("Name_example") // CloneApplicationRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.CloneApplication(context.Background(), applicationId).CloneApplicationRequest(cloneApplicationRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.CloneApplication``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CloneApplication`: ApplicationResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.CloneApplication`: %v\n", resp)
-}
+const request: ApplicationsApiCloneApplicationRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+  
+  cloneApplicationRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+  },
+};
+
+const data = await apiInstance.cloneApplication(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCloneApplicationRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
- **cloneApplicationRequest** | [**CloneApplicationRequest**](CloneApplicationRequest.md) |  | 
-
-### Return type
-
-[**ApplicationResponse**](ApplicationResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateApplication
-
-> ApplicationResponse CreateApplication(ctx).ApplicationRequest(applicationRequest).Execute()
-
-Create an Application
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationRequest := *openapiclient.NewApplicationRequest("Name_example") // ApplicationRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.CreateApplication(context.Background()).ApplicationRequest(applicationRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.CreateApplication``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateApplication`: ApplicationResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.CreateApplication`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateApplicationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationRequest** | [**ApplicationRequest**](ApplicationRequest.md) |  | 
-
-### Return type
-
-[**ApplicationResponse**](ApplicationResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteApplication
-
-> DeleteResponse DeleteApplication(ctx, applicationId).Execute()
-
-Delete an Application
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.DeleteApplication(context.Background(), applicationId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.DeleteApplication``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteApplication`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.DeleteApplication`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteApplicationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
+ **cloneApplicationRequest** | **CloneApplicationRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
 
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+**ApplicationResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## ListApplications
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Application cloned successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> PaginatedApplicationList ListApplications(ctx).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-List Applications
+# **createApplication**
+> ApplicationResponse createApplication(applicationRequest)
 
-
+Create a new Application in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-    "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsApi } from '';
+import type { ApplicationsApiCreateApplicationRequest } from '';
 
-func main() {
-	active := true // bool | Filter by active status. (optional)
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.ListApplications(context.Background()).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.ListApplications``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `ListApplications`: PaginatedApplicationList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.ListApplications`: %v\n", resp)
-}
+const request: ApplicationsApiCreateApplicationRequest = {
+  
+  applicationRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    modules: {
+      cache: null,
+      functions: null,
+      applicationAccelerator: null,
+      imageProcessor: null,
+    },
+    active: true,
+    debug: false,
+  },
+};
+
+const data = await apiInstance.createApplication(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiListApplicationsRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** | Filter by active status. | 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
- **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **applicationRequest** | **ApplicationRequest**|  |
+
 
 ### Return type
 
-[**PaginatedApplicationList**](PaginatedApplicationList.md)
+**ApplicationResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
-## PartialUpdateApplication
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Application created successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ApplicationResponse PartialUpdateApplication(ctx, applicationId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Partially update an Application
+# **deleteApplication**
+> DeleteResponse deleteApplication()
 
-
+Delete a specific Application in your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsApi } from '';
+import type { ApplicationsApiDeleteApplicationRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	patchedApplicationRequest := *openapiclient.NewPatchedApplicationRequest() // PatchedApplicationRequest |  (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.PartialUpdateApplication(context.Background(), applicationId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.PartialUpdateApplication``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `PartialUpdateApplication`: ApplicationResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.PartialUpdateApplication`: %v\n", resp)
-}
+const request: ApplicationsApiDeleteApplicationRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+};
+
+const data = await apiInstance.deleteApplication(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPartialUpdateApplicationRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
 
- **patchedApplicationRequest** | [**PatchedApplicationRequest**](PatchedApplicationRequest.md) |  | 
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+**DeleteResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## RetrieveApplication
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application deleted successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ApplicationResponse RetrieveApplication(ctx, applicationId).Fields(fields).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Retrieve details of an Application
+# **listApplications**
+> PaginatedApplicationList listApplications()
 
-
+List all Applications owned by your account.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsApi } from '';
+import type { ApplicationsApiListApplicationsRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.RetrieveApplication(context.Background(), applicationId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.RetrieveApplication``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `RetrieveApplication`: ApplicationResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.RetrieveApplication`: %v\n", resp)
-}
+const request: ApplicationsApiListApplicationsRequest = {
+    // Filter by active status. (optional)
+  active: true,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+    // Filter by id (accepts comma-separated values). (optional)
+  id: 1,
+    // Filter by last editor (case-insensitive, partial match). (optional)
+  lastEditor: "last_editor_example",
+    // Filter by last modified date (greater than or equal). (optional)
+  lastModifiedGte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by last modified date (less than or equal). (optional)
+  lastModifiedLte: new Date('1970-01-01T00:00:00.00Z'),
+    // Filter by name (case-insensitive, partial match). (optional)
+  name: "name_example",
+    // Which field to use when ordering the results. (optional)
+  ordering: "ordering_example",
+    // A page number within the paginated result set. (optional)
+  page: 1,
+    // A numeric value that indicates the number of items per page. (optional)
+  pageSize: 1,
+    // A search term. (optional)
+  search: "search_example",
+};
+
+const data = await apiInstance.listApplications(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiRetrieveApplicationRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | [**boolean**] | Filter by active status. | (optional) defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+ **id** | [**number**] | Filter by id (accepts comma-separated values). | (optional) defaults to undefined
+ **lastEditor** | [**string**] | Filter by last editor (case-insensitive, partial match). | (optional) defaults to undefined
+ **lastModifiedGte** | [**Date**] | Filter by last modified date (greater than or equal). | (optional) defaults to undefined
+ **lastModifiedLte** | [**Date**] | Filter by last modified date (less than or equal). | (optional) defaults to undefined
+ **name** | [**string**] | Filter by name (case-insensitive, partial match). | (optional) defaults to undefined
+ **ordering** | [**string**] | Which field to use when ordering the results. | (optional) defaults to undefined
+ **page** | [**number**] | A page number within the paginated result set. | (optional) defaults to undefined
+ **pageSize** | [**number**] | A numeric value that indicates the number of items per page. | (optional) defaults to undefined
+ **search** | [**string**] | A search term. | (optional) defaults to undefined
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+**PaginatedApplicationList**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
-## UpdateApplication
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of applications retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
 
-> ApplicationResponse UpdateApplication(ctx, applicationId).ApplicationRequest(applicationRequest).Execute()
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-Update an Application
+# **partialUpdateApplication**
+> ApplicationResponse partialUpdateApplication()
 
-
+Update one or more fields of an existing Application without affecting other fields.
 
 ### Example
 
-```go
-package main
 
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
+```typescript
+import { createConfiguration, ApplicationsApi } from '';
+import type { ApplicationsApiPartialUpdateApplicationRequest } from '';
 
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	applicationRequest := *openapiclient.NewApplicationRequest("Name_example") // ApplicationRequest | 
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsApi(configuration);
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.UpdateApplication(context.Background(), applicationId).ApplicationRequest(applicationRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.UpdateApplication``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `UpdateApplication`: ApplicationResponse
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.UpdateApplication`: %v\n", resp)
-}
+const request: ApplicationsApiPartialUpdateApplicationRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+  
+  patchedApplicationRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    modules: {
+      cache: null,
+      functions: null,
+      applicationAccelerator: null,
+      imageProcessor: null,
+    },
+    active: true,
+    debug: false,
+  },
+};
+
+const data = await apiInstance.partialUpdateApplication(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
-### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApplicationRequest struct via the builder pattern
-
+### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **patchedApplicationRequest** | **PatchedApplicationRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
 
- **applicationRequest** | [**ApplicationRequest**](ApplicationRequest.md) |  | 
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+**ApplicationResponse**
 
 ### Authorization
 
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application partially updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **retrieveApplication**
+> ApplicationResponse retrieveApplication()
+
+Retrieve details of a specific Application in your account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationsApi } from '';
+import type { ApplicationsApiRetrieveApplicationRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsApi(configuration);
+
+const request: ApplicationsApiRetrieveApplicationRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+    // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+  fields: "fields_example",
+};
+
+const data = await apiInstance.retrieveApplication(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+ **fields** | [**string**] | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | (optional) defaults to undefined
+
+
+### Return type
+
+**ApplicationResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application details retrieved successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateApplication**
+> ApplicationResponse updateApplication(applicationRequest)
+
+Update an existing Application. This replaces the entire Application with the new data provided.
+
+### Example
+
+
+```typescript
+import { createConfiguration, ApplicationsApi } from '';
+import type { ApplicationsApiUpdateApplicationRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ApplicationsApi(configuration);
+
+const request: ApplicationsApiUpdateApplicationRequest = {
+    // A unique integer value identifying the application.
+  applicationId: 1,
+  
+  applicationRequest: {
+    name: "jUR,rZ#UM/?R,Fp^l6$ARj",
+    modules: {
+      cache: null,
+      functions: null,
+      applicationAccelerator: null,
+      imageProcessor: null,
+    },
+    active: true,
+    debug: false,
+  },
+};
+
+const data = await apiInstance.updateApplication(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **applicationRequest** | **ApplicationRequest**|  |
+ **applicationId** | [**number**] | A unique integer value identifying the application. | defaults to undefined
+
+
+### Return type
+
+**ApplicationResponse**
+
+### Authorization
+
+[TokenAuth](README.md#TokenAuth), [BearerAuth](README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Application updated successfully. |  -  |
+**401** | Authentication Failed |  -  |
+**403** | Permission Denied |  -  |
+**400** | Validation Error |  -  |
+**404** | Not Found |  -  |
+**405** | Method Not Allowed |  -  |
+**406** | Not Acceptable |  -  |
+**429** | Throttled |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 

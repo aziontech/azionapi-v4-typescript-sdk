@@ -51,7 +51,7 @@ What each option does:
 | `-t templates/typescript` | Template overrides (see [Custom templates](#custom-templates)) |
 | `--git-user-id` / `--git-repo-id` | Builds the `repository.url` in `package.json` (`https://github.com/aziontech/azionapi-v4-typescript-sdk.git`) |
 | `npmName=@aziontech/azion-api-v4-sdk` | Package `name` in the generated `package.json` |
-| `npmVersion=0.1.0` | Package `version` in the generated `package.json` — set it to the version you are releasing |
+| `npmVersion=0.0.1` | Package `version` in the generated `package.json`. Keep the current value: the published version comes from the release tag (see [Releasing](#releasing)) |
 | `licenseName=MIT` | `license` in the generated `package.json` (matches [LICENSE](./LICENSE)) |
 | `disallowAdditionalPropertiesIfNotPresent=false` | Allows extra properties on objects whose schema does not declare `additionalProperties`, so new fields returned by the API don't break the client |
 
@@ -92,9 +92,26 @@ sed -i '' 's#{{\#lambda.pascalcase}}{{name}}{{/lambda.pascalcase}}Authentication
    grep -nE "pattern: .+\^" azion-api.yaml
    ```
 
-3. Bump `npmVersion` and regenerate with the command above.
+3. Commit it with the message `chore: updated YAML files` and open a PR. The
+   [`generate.yaml`](.github/workflows/generate.yaml) workflow regenerates `azion-api/`,
+   refreshes `package-lock.json`, checks that it builds and pushes the result to the PR
+   branch. To regenerate locally instead, run the command above.
 4. Review the diff in `azion-api/`, including files that were removed or added in
    `azion-api/.openapi-generator/FILES`.
+
+## Releasing
+
+Releases are automated by [`release.yaml`](.github/workflows/release.yaml). When a merge to
+`main` changes `azion-api/`:
+
+1. A `vX.Y.Z` tag is created. The bump is `minor` by default. Add `#major`, `#minor`,
+   `#patch` or `#none` to the merge commit message to choose it.
+2. The tagged commit is built with Node 22 and published to npm as `X.Y.Z`. Versions with a
+   prerelease suffix (`X.Y.Z-rc.1`) are published under the `next` dist-tag.
+
+Publishing uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC),
+so the workflow needs no npm token and every version gets a provenance attestation. The
+`version` in `azion-api/package.json` is a placeholder: the tag is the source of truth.
 
 ## Building and testing locally
 

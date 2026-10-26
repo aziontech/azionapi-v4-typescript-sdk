@@ -1,0 +1,91 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    # The tag is the npm version, so only bump when the published package changes.
+    paths:
+      - 'azion-api/**'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    permissions:
+      contents: write # pushes the version tag
+    runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.bump.outputs.new_tag }}
+      old_tag: ${{ steps.bump.outputs.old_tag }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Bump version and push tag
+        id: bump
+        uses: anothrNick/github-tag-action@4ed44965e0db8dab2b466a16da04aec3cc312fd8 # 1.75.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_BRANCHES: main
+          WITH_V: true
+
+  publish:
+    # A tag pushed with GITHUB_TOKEN doesn't trigger other workflows, so the
+    # publish runs here, in the same workflow as the tag.
+    needs: tag
+    if: needs.tag.outputs.new_tag != '' && needs.tag.outputs.new_tag != needs.tag.outputs.old_tag
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing (OIDC) and provenance
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: azion-api
+
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.tag.outputs.new_tag }}
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Upgrade npm
+        # Node 22 ships npm 10; trusted publishing needs npm >= 11.5.1.
+        run: npm install -g npm@11.6.2
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Set version from tag
+        env:
+          NEW_TAG: ${{ needs.tag.outputs.new_tag }}
+        run: npm version "${NEW_TAG#v}" --no-git-tag-version --allow-same-version
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish to npm
+        env:
+          NEW_TAG: ${{ needs.tag.outputs.new_tag }}
+        run: |
+          # Prerelease versions (x.y.z-foo) go to "next" so they never become "latest".
+          DIST_TAG=latest
+          if [[ "$NEW_TAG" == *-* ]]; then
+            DIST_TAG=next
+          fi
+          # Trusted publishing attaches provenance automatically for a public repo.
+          npm publish --access public --tag "$DIST_TAG" --ignore-scripts

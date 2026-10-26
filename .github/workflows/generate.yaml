@@ -12,52 +12,12 @@ jobs:
     # head.ref, which is meaningless (or wrong) for a fork's head branch.
     if: github.event.pull_request.head.repo.full_name == github.repository
     permissions:
-      contents: write # pushes generated SDKs to the PR head branch
+      contents: write # pushes the generated SDK to the PR head branch
     runs-on: ubuntu-latest
     outputs:
       run_sdk: ${{ steps.find-yaml.outputs.run_sdk }}
-    container:
-      # Pinned by digest: a mutable tag in the repo's only contents: write job
-      # is a supply-chain hole. Refresh with:
-      #   docker buildx imagetools inspect ubuntu:22.04
-      image: ubuntu@sha256:2edbbc5dc405e9612ba3584ce95480277e3eb374407b5505fe26f17df77c7dbc # 22.04
 
     steps:
-      - name: Setup Env
-        run: apt-get update && apt-get install -y npm curl git
-        shell: bash
-
-      - name: Install GH CLI
-        # Pinned release + sha256 verification instead of adding an unverified
-        # keyring and a floating apt source to a contents: write job.
-        env:
-          GH_VERSION: '2.98.0'
-          GH_SHA256_AMD64: 'f65a3fa2fa0eb2e97c445ee3f5e087a40aae03b64847f45a8f13805e504535d6'
-          GH_SHA256_ARM64: 'bbc4ac7964c2a091fd555cd1758d10a7cfcfdc472e405f0b0fb958f05d535cb6'
-        run: |
-          set -euo pipefail
-          ARCH=$(dpkg --print-architecture)
-          case "$ARCH" in
-            amd64) EXPECTED="$GH_SHA256_AMD64" ;;
-            arm64) EXPECTED="$GH_SHA256_ARM64" ;;
-            *) echo "::error::unsupported architecture $ARCH"; exit 1 ;;
-          esac
-          DEB="gh_${GH_VERSION}_linux_${ARCH}.deb"
-          curl -fsSL -o "/tmp/${DEB}" \
-            "https://github.com/cli/cli/releases/download/v${GH_VERSION}/${DEB}"
-          echo "${EXPECTED}  /tmp/${DEB}" | sha256sum -c -
-          apt-get install -y "/tmp/${DEB}"
-        shell: bash
-
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: 22 # openapi-generator-cli 2.40.x requires node >= 22
-
-      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -65,9 +25,7 @@ jobs:
           # pointer: head.ref resolves at run time and can advance mid-run,
           # letting content bypass the commit-message gate below.
           ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: run safe dir
-        run: git config --global --add safe.directory /__w/azionapi-v4-typescript-sdk/azionapi-v4-typescript-sdk
+          fetch-depth: 0
 
       - name: Check if Commit Message Matches
         id: check-commit
@@ -86,69 +44,76 @@ jobs:
           fi
         shell: bash
 
-      - name: Find Modified YAML Files
+      - name: Find Modified Spec
         id: find-yaml
         if: steps.check-commit.outputs.run_commit == 'true'
         run: |
-          # Fetch all branches to make sure origin/main is available
           git fetch origin main
-        
-          YAML_FILES=$(git diff --name-only origin/main HEAD | grep -E '\.yaml$' | grep -v '^\.github/' | grep -v '/api/openapi\.yaml$' || echo "")
 
-          if [ -z "$YAML_FILES" ]; then
-            echo "::warning::No YAML files modified. Skipping SDK generation."
-            echo "run_sdk=false" >> $GITHUB_OUTPUT
+          # This repo publishes a single package, so the only spec that drives
+          # generation is the root azion-api.yaml (or an openapi.yaml dropped in
+          # its place, which is renamed below).
+          CHANGED=$(git diff --name-only origin/main HEAD -- azion-api.yaml openapi.yaml)
+
+          if [ -z "$CHANGED" ]; then
+            echo "::warning::azion-api.yaml not modified. Skipping SDK generation."
+            echo "run_sdk=false" >> "$GITHUB_OUTPUT"
           else
-            echo "Modified YAML files: $YAML_FILES"
-            echo "run_sdk=true" >> $GITHUB_OUTPUT
-            echo "$YAML_FILES" > yaml_files_list.txt
+            echo "Modified spec: $CHANGED"
+            echo "run_sdk=true" >> "$GITHUB_OUTPUT"
           fi
         shell: bash
+
+      - name: Rename openapi.yaml to azion-api.yaml
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        run: |
+          if [ -f openapi.yaml ]; then
+            echo "Renaming openapi.yaml -> azion-api.yaml"
+            mv -f openapi.yaml azion-api.yaml
+          fi
+        shell: bash
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        with:
+          node-version: 22 # openapi-generator-cli 2.40.x requires node >= 22
+
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        with:
+          distribution: 'temurin'
+          java-version: '11'
 
       - name: Install OpenAPI Generator
         if: steps.find-yaml.outputs.run_sdk == 'true'
         run: npm install @openapitools/openapi-generator-cli@2.40.1 -g
         shell: bash
 
-      - name: Rename openapi.yaml to azion-api.yaml
+      - name: Run OpenAPI Generator
         if: steps.find-yaml.outputs.run_sdk == 'true'
         run: |
-          temp_file=$(mktemp)
-          while IFS= read -r file; do
-            filename=$(basename "$file")
-            if [ "$filename" = "openapi.yaml" ]; then
-              dir=$(dirname "$file")
-              if [ "$dir" = "." ]; then
-                new_file="azion-api.yaml"
-              else
-                new_file="${dir}/azion-api.yaml"
-              fi
-              echo "Renaming $file -> $new_file"
-              mv "$file" "$new_file"
-              echo "$new_file" >> "$temp_file"
-            else
-              echo "$file" >> "$temp_file"
-            fi
-          done < yaml_files_list.txt
-          mv "$temp_file" yaml_files_list.txt
-          echo "Updated yaml_files_list.txt contents:"
-          cat yaml_files_list.txt
+          # The published version comes from the release tag (release.yaml), so
+          # keep whatever version is on disk to avoid churn in package.json.
+          CURRENT_VERSION=$(node -p "require('./azion-api/package.json').version")
+
+          openapi-generator-cli generate -i azion-api.yaml -g typescript -o ./azion-api \
+            -t templates/typescript \
+            --git-user-id aziontech --git-repo-id azionapi-v4-typescript-sdk \
+            --additional-properties=npmName=@aziontech/azion-api-v4-sdk,npmVersion=${CURRENT_VERSION},licenseName=MIT,disallowAdditionalPropertiesIfNotPresent=false
         shell: bash
 
-      - name: Run OpenAPI Generator for Changed Files
+      - name: Update Lockfile and Build
         if: steps.find-yaml.outputs.run_sdk == 'true'
+        working-directory: azion-api
         run: |
-          while IFS= read -r file; do
-            removed=$(echo ${file} | cut -d. -f1)
-            pkg_name=$(echo ${removed} | tr -d '-')
-            npx @openapitools/openapi-generator-cli@2.40.1 generate -i "$file" -g go -o "./${removed}" --package-name "${pkg_name}"
+          # Pushes made with GITHUB_TOKEN don't trigger ci.yml, so the generated
+          # code has to compile here before it is committed.
+          npm install --package-lock-only --ignore-scripts
+          npm ci --ignore-scripts
+          npm run build
+        shell: bash
 
-            echo 'go.mod' >> ./${removed}/.gitignore
-            echo 'go.sum' >> ./${removed}/.gitignore
-            echo 'api/openapi.yaml' >> ./${removed}/.gitignore
-          done < yaml_files_list.txt
-
-      - name: Commit and Push Generated SDKs
+      - name: Commit and Push Generated SDK
         if: steps.find-yaml.outputs.run_sdk == 'true'
         env:
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
@@ -156,18 +121,15 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add .
-
-          while IFS= read -r file; do
-            git rm -f "$file"
-          done < yaml_files_list.txt
+          git add -A
 
           if git diff-index --quiet HEAD --; then
             echo "::warning::No SDK changes to commit."
           else
-            git commit -m "Auto-generated SDKs for YAML files"
+            git commit -m "chore: regenerate sdk from azion-api.yaml"
             git push origin "HEAD:refs/heads/$HEAD_REF"
           fi
+        shell: bash
 
   notify-slack:
     # Separate job so the webhook is never present in a runner that has checked
